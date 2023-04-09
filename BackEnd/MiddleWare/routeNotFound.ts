@@ -1,6 +1,4 @@
-//importation
 import { Request, Response, NextFunction } from 'express'
-//error->model
 import { RouteNotFoundError } from '../Models/ClientErrors'
 
 //middleware function

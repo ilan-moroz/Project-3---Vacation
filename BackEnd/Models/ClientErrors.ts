@@ -15,16 +15,16 @@ export class RouteNotFoundError extends ClientError {
   }
 }
 
-//"child" video error class
+//"child" vacation error class
 export class VideoNotFoundError extends ClientError {
-  public constructor(videoID: string) {
-    super(404, `video id:${videoID} was not found`)
+  public constructor(vacationId: string) {
+    super(404, `vacation id:${vacationId} was not found`)
   }
 }
 
 //"child" user not logged
 export class UserNotLoggedError extends ClientError {
   public constructor() {
-    super(401, 'User not authrized, please login...')
+    super(401, 'User not authorized, please login...')
   }
 }
