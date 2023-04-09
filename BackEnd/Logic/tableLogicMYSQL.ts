@@ -4,7 +4,7 @@ const createUsersTable = () => {
   const SQLcommand = `
   CREATE TABLE IF NOT EXISTS vacation.users (
     userKey INT NOT NULL AUTO_INCREMENT,
-    privateName VARCHAR(45) NOT NULL,
+    firstName VARCHAR(45) NOT NULL,
     lastName VARCHAR(45) NOT NULL,
     email VARCHAR(90) NOT NULL,
     password VARCHAR(45) NOT NULL,
