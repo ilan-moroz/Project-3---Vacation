@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import ErrorHandler from './MiddleWare/routeNotFound'
 import config from './Utils/Config'
 import logic from './Logic/tableLogicMYSQL'
+import loginRouter from './Routes/UserRoutes'
 
 // Create Server
 const server = express()
@@ -22,7 +23,7 @@ server.use(express.json())
 server.use(bodyParser.json())
 
 // How to use routes
-// server.use('/api/v1/vacation/users')
+server.use('/api/v1/vacation/users', loginRouter)
 // server.use('/api/v1/vacation/')
 
 //Create the tables if they not exists
