@@ -9,7 +9,6 @@ const createUsersTable = () => {
     email VARCHAR(90) NOT NULL,
     password VARCHAR(45) NOT NULL,
     role VARCHAR(45) NOT NULL,
-    PRIMARY KEY (userKey));
-  `
+    PRIMARY KEY (userKey));`
   dalMySQL.execute(SQLcommand)
 }
