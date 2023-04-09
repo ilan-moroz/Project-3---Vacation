@@ -16,7 +16,7 @@ export class RouteNotFoundError extends ClientError {
 }
 
 //"child" vacation error class
-export class VideoNotFoundError extends ClientError {
+export class VacationNotFoundError extends ClientError {
   public constructor(vacationId: string) {
     super(404, `vacation id:${vacationId} was not found`)
   }
