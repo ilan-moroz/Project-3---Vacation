@@ -4,7 +4,3 @@
   display: grid;
   grid-template-rows: 95% 5%;
 }
-
-main {
-  overflow: auto;
-}
