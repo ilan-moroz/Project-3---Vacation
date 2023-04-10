@@ -2,10 +2,9 @@
   height: 100%;
   box-sizing: border-box;
   display: grid;
-  grid-template-rows: 15% 80% 5%;
+  grid-template-rows: 95% 5%;
 }
 
-.MainLayout,
-.MainLayout > * {
-  border: 1px solid red;
+main {
+  overflow: auto;
 }

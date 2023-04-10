@@ -1,11 +1,7 @@
-import "./Footer.css";
+import './Footer.css'
 
 function Footer(): JSX.Element {
-    return (
-        <div className="Footer">
-			
-        </div>
-    );
+  return <div className="Footer">created by ILAN MOROZ ⓒ</div>
 }
 
-export default Footer;
+export default Footer
