@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import './Login.css'
 
 function Copyright(props: any) {
   return (
@@ -26,8 +27,19 @@ function Copyright(props: any) {
   )
 }
 
-const theme = createTheme()
-
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    background: {
+      default: '#000000',
+      paper: '#121212',
+    },
+    text: {
+      primary: '#ffffff',
+      secondary: '#b0bec5',
+    },
+  },
+})
 export default function Login() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -40,7 +52,7 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100%' }}>
+      <Grid container component="main" sx={{ height: '92vh' }}>
         <CssBaseline />
         <Grid
           item
@@ -49,7 +61,7 @@ export default function Login() {
           md={7}
           sx={{
             backgroundImage:
-              'url(https://source.unsplash.com/1600x900/?travel,planes)',
+              'url(https://source.unsplash.com/1600x900/?planes,travel)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light'
@@ -59,9 +71,19 @@ export default function Login() {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={5}
+          component={Paper}
+          elevation={6}
+          square
+          sx={{ height: '100%' }}
+        >
           <Box
             sx={{
+              height: '100%',
               my: 8,
               mx: 4,
               display: 'flex',
