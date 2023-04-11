@@ -26,7 +26,9 @@ function Page404(): JSX.Element {
       <section className="error">
         <div className="error__content">
           <div className="error__message message">
-            <h1 className="message__title">Page Not Found</h1>
+            <h1 className="message__title" style={{ fontFamily: 'tiki' }}>
+              ]4*4 Page N*t Found[
+            </h1>
             <p className="message__text">
               We're sorry, the page you were looking for isn't found here. The
               link you followed may either be broken or no longer exists. Please

@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './Login.css'
+import Header from '../../Layout/Header/Header'
 
 function Copyright(props: any) {
   return (
@@ -81,10 +82,11 @@ export default function Login() {
           square
           sx={{ height: '100%' }}
         >
+          <Header />
           <Box
             sx={{
               height: '100%',
-              my: -5,
+              my: -10,
               mx: 4,
               display: 'flex',
               flexDirection: 'column',

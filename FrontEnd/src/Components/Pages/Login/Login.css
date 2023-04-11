@@ -1,1 +1,4 @@
-
+@font-face {
+  font-family: "tiki";
+  src: url("../../../fonts/tiki.ttf") format("truetype");
+}
