@@ -6,7 +6,7 @@ function Header(): JSX.Element {
       <h1
         style={{
           fontFamily: 'tiki',
-          fontSize: '5rem',
+          fontSize: '380%',
           color: 'rgb(144,192,245)',
         }}
       >
