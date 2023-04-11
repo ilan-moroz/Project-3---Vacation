@@ -3,6 +3,7 @@
   font-family: tiki;
   font-size: 3vw;
   color: rgb(144, 192, 245);
+  margin-top: 1.5rem;
 }
 
 @media (max-width: 768px) {
