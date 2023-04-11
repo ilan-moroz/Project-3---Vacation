@@ -3,7 +3,6 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -64,7 +63,7 @@ export default function Register() {
           md={7}
           sx={{
             backgroundImage:
-              'url(https://source.unsplash.com/1920x1080/?planes,travel,airport)',
+              'url(https://source.unsplash.com/1920x1080/?landscape,travel)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'dark'

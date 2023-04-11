@@ -62,7 +62,7 @@ export default function Login() {
           md={7}
           sx={{
             backgroundImage:
-              'url(https://source.unsplash.com/1600x900/?planes,travel)',
+              'url(https://source.unsplash.com/1920x1080/?landscape,travel)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'dark'
