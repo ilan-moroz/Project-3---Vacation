@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Header from '../../Layout/Header/Header'
 import { Link as RouterLink } from 'react-router-dom'
+import './Register.css'
 
 function Copyright(props: any) {
   return (
