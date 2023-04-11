@@ -3,15 +3,7 @@ import './Header.css'
 function Header(): JSX.Element {
   return (
     <div className="Header">
-      <h1
-        style={{
-          fontFamily: 'tiki',
-          fontSize: '380%',
-          color: 'rgb(144,192,245)',
-        }}
-      >
-        ]SHN|TZEL V@CATI*NS[
-      </h1>
+      <h1>]SHN|TZEL V@CATI*NS[</h1>
     </div>
   )
 }
