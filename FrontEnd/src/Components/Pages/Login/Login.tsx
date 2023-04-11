@@ -12,6 +12,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './Login.css'
 import Header from '../../Layout/Header/Header'
 import { Link as RouterLink } from 'react-router-dom'
+import { InputAdornment } from '@mui/material'
+import { Email } from '@mui/icons-material'
 
 function Copyright(props: any) {
   return (
@@ -113,10 +115,19 @@ export default function Login() {
                 fullWidth
                 id="email"
                 label="Email Address"
+                placeholder="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Email />
+                    </InputAdornment>
+                  ),
+                }}
               />
+
               <TextField
                 margin="normal"
                 required
@@ -128,6 +139,7 @@ export default function Login() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                placeholder="Password"
               />
               <Button
                 type="submit"
