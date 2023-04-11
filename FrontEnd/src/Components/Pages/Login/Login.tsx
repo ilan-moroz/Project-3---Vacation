@@ -109,6 +109,7 @@ export default function Login() {
               <TextField
                 margin="normal"
                 required
+                // error
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -119,6 +120,8 @@ export default function Login() {
               <TextField
                 margin="normal"
                 required
+                // error
+                // helperText="Incorrect entry."
                 fullWidth
                 name="password"
                 label="Password"
