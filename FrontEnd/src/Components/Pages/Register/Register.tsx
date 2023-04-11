@@ -26,13 +26,26 @@ function Copyright(props: any) {
   )
 }
 
-const theme = createTheme()
-
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    background: {
+      default: '#000000',
+      paper: '#121212',
+    },
+    text: {
+      primary: '#ffffff',
+      secondary: '#b0bec5',
+    },
+  },
+})
 export default function Register() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     console.log({
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
     })
@@ -40,7 +53,7 @@ export default function Register() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100%' }}>
+      <Grid container component="main" sx={{ height: '96vh' }}>
         <CssBaseline />
         <Grid
           item
@@ -48,23 +61,35 @@ export default function Register() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage:
+              'url(https://source.unsplash.com/1920x1080/?planes,travel,airport)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
-              t.palette.mode === 'light'
+              t.palette.mode === 'dark'
                 ? t.palette.grey[50]
                 : t.palette.grey[900],
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={5}
+          component={Paper}
+          elevation={6}
+          square
+          sx={{ height: '100%' }}
+        >
           <Box
             sx={{
-              my: 8,
+              height: '100%',
+              my: -5,
               mx: 4,
               display: 'flex',
               flexDirection: 'column',
+              justifyContent: 'center',
               alignItems: 'center',
             }}
           >
@@ -129,7 +154,7 @@ export default function Register() {
                 Register
               </Button>
               <Link href="#" variant="body2">
-                {'Already a member? Login'}
+                {'Already have an account? Login'}
               </Link>
               <Copyright sx={{ mt: 5 }} />
             </Box>

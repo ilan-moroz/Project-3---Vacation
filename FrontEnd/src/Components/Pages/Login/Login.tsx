@@ -52,7 +52,7 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '92vh' }}>
+      <Grid container component="main" sx={{ height: '95vh' }}>
         <CssBaseline />
         <Grid
           item
@@ -64,7 +64,7 @@ export default function Login() {
               'url(https://source.unsplash.com/1600x900/?planes,travel)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
-              t.palette.mode === 'light'
+              t.palette.mode === 'dark'
                 ? t.palette.grey[50]
                 : t.palette.grey[900],
             backgroundSize: 'cover',
@@ -84,10 +84,11 @@ export default function Login() {
           <Box
             sx={{
               height: '100%',
-              my: 8,
+              my: -5,
               mx: 4,
               display: 'flex',
               flexDirection: 'column',
+              justifyContent: 'center',
               alignItems: 'center',
             }}
           >
