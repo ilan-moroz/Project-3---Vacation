@@ -2,3 +2,8 @@
   font-family: "tiki";
   src: url("../../../fonts/tiki.ttf") format("truetype");
 }
+
+.button {
+  color: rgb(144, 192, 245);
+  text-decoration: underline;
+}

@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Header from '../../Layout/Header/Header'
+import { Link as RouterLink } from 'react-router-dom'
 
 function Copyright(props: any) {
   return (
@@ -155,9 +156,9 @@ export default function Register() {
               >
                 Register
               </Button>
-              <Link href="#" variant="body2">
-                {'Already have an account? Login'}
-              </Link>
+              <RouterLink to="/login" className="button">
+                {'Already have an account? Login now!'}
+              </RouterLink>
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
