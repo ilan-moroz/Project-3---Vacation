@@ -13,7 +13,7 @@ import './Login.css'
 import Header from '../../Layout/Header/Header'
 import { Link as RouterLink } from 'react-router-dom'
 import { InputAdornment } from '@mui/material'
-import { Email } from '@mui/icons-material'
+import { Email, Password } from '@mui/icons-material'
 
 function Copyright(props: any) {
   return (
@@ -140,6 +140,13 @@ export default function Login() {
                 id="password"
                 autoComplete="current-password"
                 placeholder="Password"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Password />
+                    </InputAdornment>
+                  ),
+                }}
               />
               <Button
                 type="submit"
