@@ -1,4 +1,5 @@
 import { Button } from '@mui/material'
+import { Link } from 'react-router-dom'
 import './Page404.css'
 
 function Page404(): JSX.Element {
@@ -36,9 +37,11 @@ function Page404(): JSX.Element {
             </p>
           </div>
           <div className="error__nav e-nav">
-            <Button color="primary" variant="outlined">
-              Home Page
-            </Button>
+            <Link to="/">
+              <Button color="primary" variant="outlined">
+                Home Page
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
