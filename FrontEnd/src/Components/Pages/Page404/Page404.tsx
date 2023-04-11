@@ -1,5 +1,5 @@
+import { Button } from '@mui/material'
 import './Page404.css'
-// import img404 from '../../../Img/page404.png'
 
 function Page404(): JSX.Element {
   return (
@@ -30,11 +30,13 @@ function Page404(): JSX.Element {
             <p className="message__text">
               We're sorry, the page you were looking for isn't found here. The
               link you followed may either be broken or no longer exists. Please
-              try again, or take a look at our.
+              try again, or go back to home page.
             </p>
           </div>
           <div className="error__nav e-nav">
-            <a href="" target="_blank" className="e-nav__link"></a>
+            <Button color="primary" variant="outlined">
+              Home Page
+            </Button>
           </div>
         </div>
       </section>
