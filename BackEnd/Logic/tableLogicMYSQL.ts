@@ -1,5 +1,6 @@
 import dalMySQL from '../Utils/dalMySQL'
 
+// CREATE USERS TABLE IF NOT EXISTS
 const createUsersTable = () => {
   const SQLcommand = `
   CREATE TABLE IF NOT EXISTS vacation.users (
@@ -13,6 +14,7 @@ const createUsersTable = () => {
   dalMySQL.execute(SQLcommand)
 }
 
+// CREATE VACATIONS TABLE IF NOT EXISTS
 const createVacationsTable = () => {
   const SQLcommand = `
   CREATE TABLE IF NOT EXISTS vacation.vacations (

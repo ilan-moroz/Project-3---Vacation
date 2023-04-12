@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { RouteNotFoundError } from '../Models/ClientErrors'
 
-//middleware function
+//middleware ERORRHANDLER function
 const ErrorHandler = (
   request: Request,
   response: Response,

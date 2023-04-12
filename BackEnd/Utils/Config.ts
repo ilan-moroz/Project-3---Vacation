@@ -1,3 +1,4 @@
+// CONFIG FOR DATABASE
 class Config {
   public WebPort = 8080
   public mySQLhost = 'localhost'
