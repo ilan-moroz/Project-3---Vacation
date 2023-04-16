@@ -3,13 +3,13 @@ export class User {
   public lastName: string
   public email: string
   public password: string
-  public admin: boolean
+  public admin: number
   constructor(
     firstName: string,
     lastName: string,
     email: string,
     password: string,
-    admin: boolean,
+    admin: number,
   ) {
     this.firstName = firstName
     this.lastName = lastName

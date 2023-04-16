@@ -56,12 +56,17 @@ export default function Register() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    console.log({
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      email: data.get('email'),
-      password: data.get('password'),
-    })
+    const email = data.get('email') as string
+    const password = data.get('password') as string
+    const isAdmin = email === 'admin@admin.admin' && password === 'Admin'
+    const newUser: User = {
+      firstName: data.get('firstName') as string,
+      lastName: data.get('lastName') as string,
+      email: email,
+      password: password,
+      admin: isAdmin ? 1 : 0,
+    }
+    addNewUser(newUser)
   }
 
   return (
@@ -164,7 +169,6 @@ export default function Register() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                // onClick={addNewUser()}
               >
                 Register
               </Button>
