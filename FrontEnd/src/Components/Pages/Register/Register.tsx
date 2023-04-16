@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Header from '../../Layout/Header/Header'
-import { Link as RouterLink } from 'react-router-dom'
+import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import './Register.css'
 import { User } from '../../../../../BackEnd/Models/User'
 import axios from 'axios'
@@ -20,7 +20,6 @@ const addNewUser = (newUser: User) => {
     .post('http://localhost:8080/api/v1/vacation/users/newUser', newUser)
     .then((response) => {
       console.log(response)
-      // navigate('/')
     })
 }
 
@@ -53,6 +52,7 @@ const theme = createTheme({
   },
 })
 export default function Register() {
+  const navigate = useNavigate()
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
@@ -67,6 +67,7 @@ export default function Register() {
       admin: isAdmin ? 1 : 0,
     }
     addNewUser(newUser)
+    navigate('/')
   }
 
   return (
