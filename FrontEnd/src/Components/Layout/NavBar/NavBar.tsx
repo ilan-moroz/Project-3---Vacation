@@ -13,8 +13,10 @@ import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import Header from '../Header/Header'
 import './NavBar.css'
+import { NavLink } from 'react-router-dom'
 
 const pages = ['Vacations', 'Favorites', 'login', 'register']
+
 const settings = ['Profile', 'Logout']
 
 function ResponsiveAppBar() {
@@ -87,13 +89,15 @@ function ResponsiveAppBar() {
             }}
           >
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+              <NavLink to={`/${page.toLowerCase()}`}>
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+              </NavLink>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
