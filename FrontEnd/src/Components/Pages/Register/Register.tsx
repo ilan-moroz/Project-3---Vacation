@@ -12,6 +12,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Header from '../../Layout/Header/Header'
 import { Link as RouterLink } from 'react-router-dom'
 import './Register.css'
+import { User } from '../../../../../BackEnd/Models/User'
+import axios from 'axios'
+
+const addNewUser = (newUser: User) => {
+  axios
+    .post('http://localhost:8080/api/v1/vacation/users/newUser', newUser)
+    .then((response) => {
+      console.log(response)
+      // navigate('/')
+    })
+}
 
 function Copyright(props: any) {
   return (
@@ -153,7 +164,7 @@ export default function Register() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={() => {}}
+                // onClick={addNewUser()}
               >
                 Register
               </Button>
