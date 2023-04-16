@@ -1,11 +1,12 @@
-import "./Main.css";
+import NavBar from '../NavBar/NavBar'
+import './Main.css'
 
 function Main(): JSX.Element {
-    return (
-        <div className="Main">
-			
-        </div>
-    );
+  return (
+    <div className="Main">
+      <NavBar />
+    </div>
+  )
 }
 
-export default Main;
+export default Main
