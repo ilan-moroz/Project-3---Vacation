@@ -9,7 +9,7 @@ userRouter.post(
   async (request: Request, response: Response, next: NextFunction) => {
     const newUser = request.body
     console.log(newUser)
-    // response.status(201).json(await logic.addUser(newUser))
+    response.status(201).json(await logic.addUser(newUser))
   },
 )
 

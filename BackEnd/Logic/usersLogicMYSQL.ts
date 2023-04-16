@@ -8,8 +8,7 @@ const addUser = async (newUser: User) => {
     (firstName, lastName, email, password, admin)
     VALUES ('${newUser.firstName}', '${newUser.lastName}', 
     '${newUser.email}', '${newUser.password}', '${newUser.admin}');`
-  const result: OkPacket = await dalMySQL.execute(SQLcommand)
-  return result
+  dalMySQL.execute(SQLcommand)
 }
 
 export default {
