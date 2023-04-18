@@ -16,7 +16,6 @@ import './NavBar.css'
 import { NavLink } from 'react-router-dom'
 
 const pages = ['Vacations', 'Favorites', 'login', 'register']
-
 const settings = ['Profile', 'Logout']
 
 function ResponsiveAppBar() {
