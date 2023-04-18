@@ -9,18 +9,9 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import { Input, Textarea } from '@mui/joy'
 import { InputLabel } from '@mui/material'
-import { ChangeEvent, useState } from 'react'
 
 export default function AddVacationModal() {
   const [open, setOpen] = React.useState(false)
-  const [imageUrl, setImageUrl] = useState<string>('')
-  const [previewImage, setPreviewImage] = useState<string>('')
-
-  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const url = event.target.value
-    setImageUrl(url)
-    setPreviewImage(url)
-  }
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -59,7 +50,6 @@ export default function AddVacationModal() {
           <Input type="date" id="date" />
           <br />
           <Input placeholder="Price " id="price" startDecorator="$" />
-          <br />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
