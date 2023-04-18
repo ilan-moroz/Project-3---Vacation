@@ -88,7 +88,7 @@ function ResponsiveAppBar() {
             }}
           >
             {pages.map((page) => (
-              <NavLink to={`/${page.toLowerCase()}`}>
+              <NavLink key={page} to={`/${page.toLowerCase()}`}>
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
