@@ -23,7 +23,11 @@ export default function AddVacationModal() {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleClickOpen}>
+      <Button
+        variant="contained"
+        onClick={handleClickOpen}
+        sx={{ marginTop: '1rem' }}
+      >
         Add Vacation
       </Button>
       <Dialog
