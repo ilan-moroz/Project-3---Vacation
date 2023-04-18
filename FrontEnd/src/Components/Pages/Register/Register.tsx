@@ -67,7 +67,7 @@ export default function Register() {
       admin: isAdmin ? 1 : 0,
     }
     addNewUser(newUser)
-    navigate('/')
+    navigate('/vacations')
   }
 
   return (
