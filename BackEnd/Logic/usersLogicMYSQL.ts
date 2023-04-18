@@ -1,6 +1,5 @@
 import { User } from '../Models/User'
 import dalMySQL from '../Utils/dalMySQL'
-import { OkPacket } from 'mysql'
 
 const addUser = async (newUser: User) => {
   const SQLcommand = `
