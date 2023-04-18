@@ -7,10 +7,10 @@ const createUsersTable = () => {
     userKey INT NOT NULL AUTO_INCREMENT,
     firstName VARCHAR(45) NOT NULL,
     lastName VARCHAR(45) NOT NULL,
-    email VARCHAR(90) NOT NULL,
+    email VARCHAR(90) NOT NULL UNIQUE,
     password VARCHAR(45) NOT NULL,
     admin TINYINT NOT NULL,
-    PRIMARY KEY (userKey));`
+    PRIMARY KEY (userkey));`
   dalMySQL.execute(SQLcommand)
 }
 
