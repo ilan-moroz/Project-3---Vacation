@@ -26,10 +26,22 @@ export default function AddVacationModal() {
       <Button variant="contained" onClick={handleClickOpen}>
         Add Vacation
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        sx={{
+          backgroundColor: 'rgba(0,0,0,0.4)',
+        }}
+        PaperProps={{
+          sx: {
+            backgroundColor: 'rgba(0,0,0,0.7)',
+            color: 'white',
+          },
+        }}
+      >
         <DialogTitle>Add Vacation</DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          <DialogContentText sx={{ color: 'white' }}>
             To add a vacation to this website, please fill up all the fields
             below.
           </DialogContentText>
@@ -43,10 +55,14 @@ export default function AddVacationModal() {
             placeholder="Description"
           />
           <br />
-          <InputLabel htmlFor="startDate">Start date:</InputLabel>
+          <InputLabel htmlFor="startDate" sx={{ color: 'white' }}>
+            Start date:
+          </InputLabel>
           <Input type="date" id="startDate" />
           <br />
-          <InputLabel htmlFor="startDate">Finish date:</InputLabel>
+          <InputLabel htmlFor="startDate" sx={{ color: 'white' }}>
+            Finish date:
+          </InputLabel>
           <Input type="date" id="date" />
           <br />
           <Input placeholder="Price " id="price" startDecorator="$" />

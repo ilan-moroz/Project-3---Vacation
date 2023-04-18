@@ -9,7 +9,23 @@ import './Card.css'
 
 export default function BasicCard() {
   return (
-    <Card className="Card" variant="outlined" sx={{ width: 320 }}>
+    <Card
+      className="Card"
+      sx={{
+        width: 320,
+        backgroundColor: 'rgba(0,0,0,0.7)',
+        '& .MuiTypography-root': {
+          color: 'white',
+        },
+        '& .MuiButton-root': {
+          color: 'white',
+          borderColor: 'white',
+        },
+        '& .MuiIconButton-root': {
+          color: 'white',
+        },
+      }}
+    >
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
         Yosemite National Park
       </Typography>
