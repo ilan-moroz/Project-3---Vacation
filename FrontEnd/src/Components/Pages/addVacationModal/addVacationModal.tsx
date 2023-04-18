@@ -2,15 +2,25 @@ import './addVacationModal.css'
 
 import * as React from 'react'
 import Button from '@mui/material/Button'
-import TextField from '@mui/material/TextField'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
+import { Input, Textarea } from '@mui/joy'
+import { InputLabel } from '@mui/material'
+import { ChangeEvent, useState } from 'react'
 
 export default function AddVacationModal() {
   const [open, setOpen] = React.useState(false)
+  const [imageUrl, setImageUrl] = useState<string>('')
+  const [previewImage, setPreviewImage] = useState<string>('')
+
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const url = event.target.value
+    setImageUrl(url)
+    setPreviewImage(url)
+  }
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -26,21 +36,30 @@ export default function AddVacationModal() {
         Add Vacation
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Add Vacation</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            To add a vacation to this website, please fill up all the fields
+            below.
           </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
+          <br /> <br />
+          <Input placeholder="Destination " id="destination" />
+          <br />
+          <Textarea
+            minRows={2}
+            id="description"
+            variant="outlined"
+            placeholder="Description"
           />
+          <br />
+          <InputLabel htmlFor="startDate">Start date:</InputLabel>
+          <Input type="date" id="startDate" />
+          <br />
+          <InputLabel htmlFor="startDate">Finish date:</InputLabel>
+          <Input type="date" id="date" />
+          <br />
+          <Input placeholder="Price " id="price" startDecorator="$" />
+          <br />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
