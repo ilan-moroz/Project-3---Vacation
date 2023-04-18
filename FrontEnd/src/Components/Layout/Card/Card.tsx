@@ -5,10 +5,11 @@ import Card from '@mui/joy/Card'
 import IconButton from '@mui/joy/IconButton'
 import Typography from '@mui/joy/Typography'
 import { Favorite } from '@mui/icons-material'
+import './Card.css'
 
 export default function BasicCard() {
   return (
-    <Card variant="outlined" sx={{ width: 320 }}>
+    <Card className="Card" variant="outlined" sx={{ width: 320 }}>
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
         Yosemite National Park
       </Typography>
