@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Header from '../../Layout/Header/Header'
 import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import './Register.css'
-import { User } from '../../../../../BackEnd/Models/User'
+import { User } from '../../Model/User'
 import axios from 'axios'
 
 const addNewUser = (newUser: User) => {
