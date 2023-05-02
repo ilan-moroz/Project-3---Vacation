@@ -136,9 +136,7 @@ export default function Register() {
                 {...register('firstName', { required: true })}
                 name="firstName"
                 error={Boolean(errors.firstName)}
-                helperText={
-                  errors.firstName ? 'First name info is required' : ''
-                }
+                helperText={errors.firstName && 'First name is required'}
               />
               <TextField
                 margin="normal"
@@ -151,7 +149,7 @@ export default function Register() {
                 {...register('lastName', { required: true })}
                 name="lastName"
                 error={Boolean(errors.lastName)}
-                helperText={errors.lastName ? 'Last name info is required' : ''}
+                helperText={errors.lastName && 'Last name is required'}
               />
               <TextField
                 margin="normal"
@@ -164,7 +162,7 @@ export default function Register() {
                 {...register('email', { required: true })}
                 name="email"
                 error={Boolean(errors.email)}
-                helperText={errors.email ? 'Email is required' : ''}
+                helperText={errors.email && 'Email is required'}
               />
               <TextField
                 margin="normal"
@@ -177,7 +175,7 @@ export default function Register() {
                 {...register('password', { required: true })}
                 name="password"
                 error={Boolean(errors.password)}
-                helperText={errors.password ? 'Password is required' : ''}
+                helperText={errors.password && 'Password is required'}
               />
               <Button
                 type="submit"
