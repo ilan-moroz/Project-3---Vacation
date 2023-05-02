@@ -15,6 +15,8 @@ import './Register.css'
 import { User } from '../../Model/User'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
+import { InputAdornment } from '@mui/material'
+import { Email, Group, Password, Person } from '@mui/icons-material'
 
 const addNewUser = (newUser: User) => {
   axios
@@ -134,9 +136,16 @@ export default function Register() {
                 autoComplete="firstName"
                 autoFocus
                 {...register('firstName', { required: true })}
-                name="firstName"
                 error={Boolean(errors.firstName)}
                 helperText={errors.firstName && 'First name is required'}
+                placeholder="First Name"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Person />
+                    </InputAdornment>
+                  ),
+                }}
               />
               <TextField
                 margin="normal"
@@ -146,9 +155,16 @@ export default function Register() {
                 autoComplete="lastName"
                 autoFocus
                 {...register('lastName', { required: true })}
-                name="lastName"
                 error={Boolean(errors.lastName)}
                 helperText={errors.lastName && 'Last name is required'}
+                placeholder="Last Name"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Group />
+                    </InputAdornment>
+                  ),
+                }}
               />
               <TextField
                 margin="normal"
@@ -158,9 +174,16 @@ export default function Register() {
                 autoComplete="email"
                 autoFocus
                 {...register('email', { required: true })}
-                name="email"
                 error={Boolean(errors.email)}
                 helperText={errors.email && 'Email is required'}
+                placeholder="Email Address"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Email />
+                    </InputAdornment>
+                  ),
+                }}
               />
               <TextField
                 margin="normal"
@@ -170,9 +193,16 @@ export default function Register() {
                 id="password"
                 autoComplete="current-password"
                 {...register('password', { required: true })}
-                name="password"
                 error={Boolean(errors.password)}
                 helperText={errors.password && 'Password is required'}
+                placeholder="Password"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Password />
+                    </InputAdornment>
+                  ),
+                }}
               />
               <Button
                 type="submit"
