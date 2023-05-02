@@ -173,9 +173,15 @@ export default function Register() {
                 label="Email Address"
                 autoComplete="email"
                 autoFocus
-                {...register('email', { required: true })}
+                {...register('email', {
+                  required: true,
+                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                })}
                 error={Boolean(errors.email)}
-                helperText={errors.email && 'Email is required'}
+                helperText={
+                  errors.email &&
+                  'Email is required and must be a valid email address'
+                }
                 placeholder="Email Address"
                 InputProps={{
                   startAdornment: (
@@ -192,9 +198,16 @@ export default function Register() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                {...register('password', { required: true })}
+                {...register('password', {
+                  required: true,
+                  minLength: 4,
+                  maxLength: 8,
+                })}
                 error={Boolean(errors.password)}
-                helperText={errors.password && 'Password is required'}
+                helperText={
+                  errors.password &&
+                  'Password is required and must be between 4 and 8 characters'
+                }
                 placeholder="Password"
                 InputProps={{
                   startAdornment: (
