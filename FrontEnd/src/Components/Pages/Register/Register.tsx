@@ -14,6 +14,7 @@ import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import './Register.css'
 import { User } from '../../Model/User'
 import axios from 'axios'
+import { useForm } from 'react-hook-form'
 
 const addNewUser = (newUser: User) => {
   axios
@@ -52,18 +53,23 @@ const theme = createTheme({
   },
 })
 export default function Register() {
+  // use navigate for page navigate
   const navigate = useNavigate()
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    const email = data.get('email') as string
-    const password = data.get('password') as string
-    const isAdmin = email === 'admin@admin.admin' && password === 'Admin'
+  // use form for form validation
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (data: any) => {
+    const isAdmin =
+      data.email === 'admin@admin.admin' && data.password === 'Admin'
     const newUser: User = {
-      firstName: data.get('firstName') as string,
-      lastName: data.get('lastName') as string,
-      email: email,
-      password: password,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password,
       admin: isAdmin ? 1 : 0,
     }
     addNewUser(newUser)
@@ -119,21 +125,20 @@ export default function Register() {
             <Typography component="h1" variant="h5">
               Register
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
-            >
+            <form onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 margin="normal"
-                required
                 fullWidth
                 id="firstName"
                 label="First Name"
-                name="firstName"
                 autoComplete="firstName"
                 autoFocus
+                {...register('firstName', { required: true })}
+                name="firstName"
+                error={Boolean(errors.firstName)}
+                helperText={
+                  errors.firstName ? 'First name info is required' : ''
+                }
               />
               <TextField
                 margin="normal"
@@ -141,9 +146,12 @@ export default function Register() {
                 fullWidth
                 id="lastName"
                 label="Last Name"
-                name="lastName"
                 autoComplete="lastName"
                 autoFocus
+                {...register('lastName', { required: true })}
+                name="lastName"
+                error={Boolean(errors.lastName)}
+                helperText={errors.lastName ? 'Last name info is required' : ''}
               />
               <TextField
                 margin="normal"
@@ -151,19 +159,25 @@ export default function Register() {
                 fullWidth
                 id="email"
                 label="Email Address"
-                name="email"
                 autoComplete="email"
                 autoFocus
+                {...register('email', { required: true })}
+                name="email"
+                error={Boolean(errors.email)}
+                helperText={errors.email ? 'Email is required' : ''}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="password"
                 label="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                {...register('password', { required: true })}
+                name="password"
+                error={Boolean(errors.password)}
+                helperText={errors.password ? 'Password is required' : ''}
               />
               <Button
                 type="submit"
@@ -177,7 +191,7 @@ export default function Register() {
                 {'Already have an account? Login now!'}
               </RouterLink>
               <Copyright sx={{ mt: 5 }} />
-            </Box>
+            </form>
           </Box>
         </Grid>
       </Grid>
