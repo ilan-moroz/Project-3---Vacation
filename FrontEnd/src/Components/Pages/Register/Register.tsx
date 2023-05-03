@@ -204,7 +204,8 @@ export default function Register() {
                 })}
                 error={Boolean(errors.password)}
                 helperText={
-                  errors.password && 'Password must have minimum 4 characters'
+                  errors.password &&
+                  'Password must have a minimum of 4 characters'
                 }
                 placeholder="Password"
                 InputProps={{
