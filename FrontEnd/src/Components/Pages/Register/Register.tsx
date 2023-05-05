@@ -9,7 +9,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Header from '../../Layout/Header/Header'
-import { useNavigate, Link as RouterLink } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 import './Register.css'
 import { User } from '../../Model/User'
 import axios from 'axios'
@@ -223,9 +223,9 @@ export default function Register() {
               >
                 Register
               </Button>
-              <RouterLink to="/login" className="button">
+              <NavLink to="/login" className="button">
                 {'Already have an account? Login now!'}
-              </RouterLink>
+              </NavLink>
               <Copyright sx={{ mt: 5 }} />
             </form>
           </Box>
