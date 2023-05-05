@@ -79,7 +79,12 @@ export default function Register() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '96vh' }}>
+      <Grid
+        container
+        className="Register"
+        component="main"
+        sx={{ height: '96vh' }}
+      >
         <CssBaseline />
         <Grid
           item

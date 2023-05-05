@@ -55,7 +55,12 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '96vh' }}>
+      <Grid
+        className="Login"
+        container
+        component="main"
+        sx={{ height: '96vh' }}
+      >
         <CssBaseline />
         <Grid
           item

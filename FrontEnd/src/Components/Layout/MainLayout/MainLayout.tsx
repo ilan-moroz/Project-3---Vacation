@@ -11,11 +11,7 @@ function MainLayout(): JSX.Element {
 
   return (
     <div className="MainLayout">
-      {showNavbar && (
-        <header>
-          <NavBar />
-        </header>
-      )}
+      <header>{showNavbar && <NavBar />}</header>
       <main>
         <MainRoute />
       </main>
