@@ -6,6 +6,12 @@
   margin-top: 1.5rem;
 }
 
+/* FONT */
+@font-face {
+  font-family: "tiki";
+  src: url("../../../assets/fonts/tiki.ttf") format("truetype");
+}
+
 @media (max-width: 768px) {
   /* styles for smaller screens */
   .Header h1 {
