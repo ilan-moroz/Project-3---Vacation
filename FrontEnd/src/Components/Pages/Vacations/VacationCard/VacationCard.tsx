@@ -5,7 +5,7 @@ import Card from '@mui/joy/Card'
 import IconButton from '@mui/joy/IconButton'
 import Typography from '@mui/joy/Typography'
 import { Favorite } from '@mui/icons-material'
-import './Card.css'
+import './VacationCard.css'
 
 export default function BasicCard() {
   return (
