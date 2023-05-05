@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './Login.css'
 import Header from '../../Layout/Header/Header'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { InputAdornment } from '@mui/material'
 import { Email, Password } from '@mui/icons-material'
 
@@ -153,9 +153,9 @@ export default function Login() {
               >
                 Sign In
               </Button>
-              <RouterLink to="/register" className="button">
+              <Link to="/register" className="button">
                 {"Don't have an account? Register now!"}
-              </RouterLink>
+              </Link>
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
