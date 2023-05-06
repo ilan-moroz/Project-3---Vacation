@@ -18,11 +18,13 @@ export interface UserAction {
 }
 
 //which function will run when i will dispatch an action
+// set state as user if user is logged in
 export const userLoginAction = (): UserAction => {
   const user: User = new User("", "", "", "", 0);
   return { type: UserActionType.userLogin, payload: user };
 };
 
+// set state as admin if user is logged in
 export const adminLoginAction = (): UserAction => {
   const admin: User = new User("", "", "", "", 1);
   return { type: UserActionType.adminLogin, payload: admin };
