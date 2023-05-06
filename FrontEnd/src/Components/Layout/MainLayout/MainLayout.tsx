@@ -1,7 +1,7 @@
 import MainRoute from '../../Routes/MainRoute/MainRoute'
 import { useLocation } from 'react-router-dom'
 import Footer from '../Footer/Footer'
-import NavBar from '../NavBar/NavBar'
+import NavBar from '../Header/NavBar'
 import './MainLayout.css'
 
 function MainLayout(): JSX.Element {
