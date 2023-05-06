@@ -10,10 +10,13 @@ import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './Login.css'
 import Header from '../../Layout/Logo/Logo'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { InputAdornment } from '@mui/material'
 import { Email, Password } from '@mui/icons-material'
 import { useForm } from 'react-hook-form'
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
+import axios from 'axios'
 
 
 function Copyright(props: any) {
@@ -45,13 +48,34 @@ const theme = createTheme({
   },
 })
 export default function Login() {
-  const onSubmit = (data:any) => {
-
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
-  }
+    // use navigate for page navigate
+    const navigate = useNavigate()
+    // new notyf for checking if email exists in database
+    const notyf = new Notyf({
+      position: {
+        x: 'center',
+        y: 'top',
+      },
+    }); 
+  const onSubmit = async(data:any) => {
+    // checking if email and password exists in database
+    try {
+      const response = await axios.post('http://localhost:8080/api/v1/vacation/users/checkUser', { email: data.email ,password: data.password});
+      if (response.data) {
+        navigate('/vacations');
+        // if email or password don't exists give an error notyf 
+      } else {
+        // const user = ({
+        //   email: data.email,
+        //   password: data.password,
+        // })
+        notyf.error('Invalid email or password. Please check your credentials and try again');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
 
     // use form for form validation
     const {
