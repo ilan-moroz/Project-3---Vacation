@@ -29,7 +29,20 @@ const createVacationsTable = () => {
   dalMySQL.execute(SQLcommand)
 }
 
+// CREATE  FOLLOWING TABLE IF NOT EXISTS
+const createFollowTable = () => {
+  const SQLcommand = `
+  CREATE TABLE IF NOT EXISTS vacation.follow (
+  userKey INT NOT NULL,
+  vacationKey INT NOT NULL,
+  FOREIGN KEY (userKey) REFERENCES vacation.users(userKey),
+  FOREIGN KEY (vacationKey) REFERENCES vacation.vacations(vacationKey)
+  );`
+  dalMySQL.execute(SQLcommand)
+}
+
 export default {
   createUsersTable,
   createVacationsTable,
+  createFollowTable
 }

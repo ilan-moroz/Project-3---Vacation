@@ -30,6 +30,7 @@ server.use('/api/v1/vacation/users', userRouter)
 console.log('check if table exists...')
 logic.createUsersTable()
 logic.createVacationsTable()
+logic.createFollowTable()
 
 // Handle errors (route not found)
 server.use('*', ErrorHandler)
