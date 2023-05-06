@@ -157,7 +157,6 @@ export default function Register() {
                 fullWidth
                 id="firstName"
                 label="First Name"
-                autoComplete="firstName"
                 autoFocus
                 {...register('firstName', { required: true })}
                 error={Boolean(errors.firstName)}
@@ -176,7 +175,6 @@ export default function Register() {
                 fullWidth
                 id="lastName"
                 label="Last Name"
-                autoComplete="lastName"
                 autoFocus
                 {...register('lastName', { required: true })}
                 error={Boolean(errors.lastName)}
@@ -195,7 +193,6 @@ export default function Register() {
                 fullWidth
                 id="email"
                 label="Email Address"
-                autoComplete="email"
                 autoFocus
                 {...register('email', {
                   required: true,
@@ -221,7 +218,6 @@ export default function Register() {
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
                 {...register('password', {
                   required: true,
                   minLength: 4,

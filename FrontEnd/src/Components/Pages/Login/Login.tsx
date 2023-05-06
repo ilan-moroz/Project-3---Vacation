@@ -1,4 +1,3 @@
-import * as React from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -14,6 +13,8 @@ import Header from '../../Layout/Logo/Logo'
 import { NavLink } from 'react-router-dom'
 import { InputAdornment } from '@mui/material'
 import { Email, Password } from '@mui/icons-material'
+import { useForm } from 'react-hook-form'
+
 
 function Copyright(props: any) {
   return (
@@ -44,14 +45,20 @@ const theme = createTheme({
   },
 })
 export default function Login() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
+  const onSubmit = (data:any) => {
+
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     })
   }
+
+    // use form for form validation
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm()
 
   return (
     <ThemeProvider theme={theme}>
@@ -107,22 +114,23 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Login
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
-            >
+            <form onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 margin="normal"
-                required
                 fullWidth
                 id="email"
                 label="Email Address"
                 placeholder="Email Address"
-                name="email"
-                autoComplete="email"
                 autoFocus
+                {...register('email', {
+                  required: true,
+                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                })}
+                error={Boolean(errors.email)}
+                helperText={
+                  errors.email &&
+                  'Email is required and must be a valid email address'
+                }
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -134,14 +142,20 @@ export default function Login() {
 
               <TextField
                 margin="normal"
-                required
                 fullWidth
-                name="password"
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
                 placeholder="Password"
+                {...register('password', {
+                  required: true,
+                  minLength: 4,
+                })}
+                error={Boolean(errors.password)}
+                helperText={
+                  errors.password &&
+                  'Password must have a minimum of 4 characters'
+                }
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -162,7 +176,7 @@ export default function Login() {
                 {"Don't have an account? Register now!"}
               </NavLink>
               <Copyright sx={{ mt: 5 }} />
-            </Box>
+          </form>
           </Box>
         </Grid>
       </Grid>
