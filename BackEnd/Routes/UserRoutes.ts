@@ -13,6 +13,16 @@ userRouter.post(
   },
 )
 
+// CHECK IF EMAIL EXISTS IN DATABASE
+userRouter.post(
+  '/checkEmail',
+  async (request: Request, response: Response, next: NextFunction) => {
+    const email = request.body.email
+    console.log(email)
+    response.status(200).json(await logic.checkEmail(email))
+  }
+)
+
 // TEST ROUTE
 userRouter.get(
   '/',
