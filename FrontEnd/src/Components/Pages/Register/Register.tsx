@@ -18,12 +18,11 @@ import { InputAdornment } from "@mui/material";
 import { Email, Group, Password, Person } from "@mui/icons-material";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
-// import { vacation } from "../../Redux/VacationStore";
-// import { addNewUserAction } from "../../Redux/UserReducer";
+import { vacation } from "../../Redux/VacationStore";
+import { adminLoginAction, userLoginAction } from "../../Redux/UserReducer";
 
 // saves new user in the database and redux
 const addNewUser = (newUser: User) => {
-  // vacation.dispatch(addNewUserAction(newUser));
   axios
     .post("http://localhost:8080/api/v1/vacation/users/newUser", newUser)
     .then((response) => {
@@ -97,8 +96,15 @@ export default function Register() {
           password: data.password,
           admin: isAdmin ? 1 : 0,
         };
-        addNewUser(newUser);
-        navigate("/vacations");
+        if (isAdmin) {
+          vacation.dispatch(adminLoginAction());
+          addNewUser(newUser);
+          navigate("/vacations");
+        } else {
+          vacation.dispatch(userLoginAction());
+          addNewUser(newUser);
+          navigate("/vacations");
+        }
       }
     } catch (error) {
       console.error(error);
