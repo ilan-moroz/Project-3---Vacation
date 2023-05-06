@@ -75,18 +75,19 @@ export default function Register() {
     },
   });  
   const onSubmit = async (data: any) => {
+    // checking if email exists in database
     try {
       const response = await axios.post('http://localhost:8080/api/v1/vacation/users/checkEmail', { email: data.email });
       if (response.data) {
         notyf.error('This email is already registered, please try again');
+        // if email don't exists add new user to database
       } else {
-        const isAdmin = data.email === 'admin@admin.admin' && data.password === 'Admin';
         const newUser: User = {
           firstName: data.firstName,
           lastName: data.lastName,
           email: data.email,
           password: data.password,
-          admin: isAdmin ? 1 : 0,
+          admin: (data.email === 'admin@admin.admin' && data.password === 'Admin') ? 1 : 0,
         };
         addNewUser(newUser);
         navigate('/vacations');
