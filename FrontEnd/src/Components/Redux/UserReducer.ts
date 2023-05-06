@@ -43,8 +43,6 @@ export function UserReducer(
     case UserActionType.adminLogin:
       newState.currentUser = action.payload.admin;
       break;
-    default:
-      break;
   }
   return newState;
 }
