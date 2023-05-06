@@ -1,4 +1,4 @@
-import dalMySQL from '../Utils/dalMySQL'
+import dalMySQL from "../Utils/dalMySQL";
 
 // CREATE USERS TABLE IF NOT EXISTS
 const createUsersTable = () => {
@@ -10,9 +10,9 @@ const createUsersTable = () => {
     email VARCHAR(90) NOT NULL UNIQUE,
     password VARCHAR(45) NOT NULL,
     admin TINYINT NOT NULL,
-    PRIMARY KEY (userkey));`
-  dalMySQL.execute(SQLcommand)
-}
+    PRIMARY KEY (userkey));`;
+  dalMySQL.execute(SQLcommand);
+};
 
 // CREATE VACATIONS TABLE IF NOT EXISTS
 const createVacationsTable = () => {
@@ -25,9 +25,9 @@ const createVacationsTable = () => {
     vacationEnd VARCHAR(45) NOT NULL,
     price INT NOT NULL,
     photoFile VARCHAR(90) NOT NULL,
-    PRIMARY KEY (vacationKey));`
-  dalMySQL.execute(SQLcommand)
-}
+    PRIMARY KEY (vacationKey));`;
+  dalMySQL.execute(SQLcommand);
+};
 
 // CREATE  FOLLOWING TABLE IF NOT EXISTS
 const createFollowTable = () => {
@@ -37,12 +37,12 @@ const createFollowTable = () => {
   vacationKey INT NOT NULL,
   FOREIGN KEY (userKey) REFERENCES vacation.users(userKey),
   FOREIGN KEY (vacationKey) REFERENCES vacation.vacations(vacationKey)
-  );`
-  dalMySQL.execute(SQLcommand)
-}
+  );`;
+  dalMySQL.execute(SQLcommand);
+};
 
 export default {
   createUsersTable,
   createVacationsTable,
-  createFollowTable
-}
+  createFollowTable,
+};

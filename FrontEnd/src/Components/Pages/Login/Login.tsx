@@ -1,23 +1,22 @@
-import Avatar from '@mui/material/Avatar'
-import Button from '@mui/material/Button'
-import CssBaseline from '@mui/material/CssBaseline'
-import TextField from '@mui/material/TextField'
-import Paper from '@mui/material/Paper'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import Typography from '@mui/material/Typography'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import './Login.css'
-import Header from '../../Layout/Logo/Logo'
-import { NavLink, useNavigate } from 'react-router-dom'
-import { InputAdornment } from '@mui/material'
-import { Email, Password } from '@mui/icons-material'
-import { useForm } from 'react-hook-form'
-import { Notyf } from 'notyf';
-import 'notyf/notyf.min.css';
-import axios from 'axios'
-
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import "./Login.css";
+import Header from "../../Layout/Logo/Logo";
+import { NavLink, useNavigate } from "react-router-dom";
+import { InputAdornment } from "@mui/material";
+import { Email, Password } from "@mui/icons-material";
+import { useForm } from "react-hook-form";
+import { Notyf } from "notyf";
+import "notyf/notyf.min.css";
+import axios from "axios";
 
 function Copyright(props: any) {
   return (
@@ -27,62 +26,66 @@ function Copyright(props: any) {
       align="center"
       {...props}
     >
-      {'Copyright © '}
+      {"Copyright © "}
       Shnitzel Vacations {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
-  )
+  );
 }
 
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: "dark",
     background: {
-      default: '#000000',
-      paper: '#121212',
+      default: "#000000",
+      paper: "#121212",
     },
     text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
+      primary: "#ffffff",
+      secondary: "#b0bec5",
     },
   },
-})
+});
 export default function Login() {
-    // use navigate for page navigate
-    const navigate = useNavigate()
-    // new notyf for checking if email exists in database
-    const notyf = new Notyf({
-      position: {
-        x: 'center',
-        y: 'top',
-      },
-    }); 
-  const onSubmit = async(data:any) => {
+  // use navigate for page navigate
+  const navigate = useNavigate();
+  // new notyf for checking if email exists in database
+  const notyf = new Notyf({
+    position: {
+      x: "center",
+      y: "top",
+    },
+  });
+  const onSubmit = async (data: any) => {
     // checking if email and password exists in database
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/vacation/users/checkUser', { email: data.email ,password: data.password});
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/vacation/users/checkUser",
+        { email: data.email, password: data.password }
+      );
       if (response.data) {
-        navigate('/vacations');
-        // if email or password don't exists give an error notyf 
+        navigate("/vacations");
+        // if email or password don't exists give an error notyf
       } else {
         // const user = ({
         //   email: data.email,
         //   password: data.password,
         // })
-        notyf.error('Invalid email or password. Please check your credentials and try again');
+        notyf.error(
+          "Invalid email or password. Please check your credentials and try again"
+        );
       }
     } catch (error) {
       console.error(error);
     }
   };
-  
 
-    // use form for form validation
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm()
+  // use form for form validation
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   return (
     <ThemeProvider theme={theme}>
@@ -90,7 +93,7 @@ export default function Login() {
         className="Login"
         container
         component="main"
-        sx={{ height: '96vh' }}
+        sx={{ height: "96vh" }}
       >
         <CssBaseline />
         <Grid
@@ -100,14 +103,14 @@ export default function Login() {
           md={7}
           sx={{
             backgroundImage:
-              'url(https://source.unsplash.com/1920x1080/?landscape,travel)',
-            backgroundRepeat: 'no-repeat',
+              "url(https://source.unsplash.com/1920x1080/?landscape,travel)",
+            backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
-              t.palette.mode === 'dark'
+              t.palette.mode === "dark"
                 ? t.palette.grey[50]
                 : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         />
         <Grid
@@ -118,21 +121,21 @@ export default function Login() {
           component={Paper}
           elevation={6}
           square
-          sx={{ height: '100%' }}
+          sx={{ height: "100%" }}
         >
           <Header />
           <Box
             sx={{
-              height: '100%',
+              height: "100%",
               my: -10,
               mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
@@ -146,14 +149,14 @@ export default function Login() {
                 label="Email Address"
                 placeholder="Email Address"
                 autoFocus
-                {...register('email', {
+                {...register("email", {
                   required: true,
                   pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 })}
                 error={Boolean(errors.email)}
                 helperText={
                   errors.email &&
-                  'Email is required and must be a valid email address'
+                  "Email is required and must be a valid email address"
                 }
                 InputProps={{
                   startAdornment: (
@@ -171,14 +174,14 @@ export default function Login() {
                 type="password"
                 id="password"
                 placeholder="Password"
-                {...register('password', {
+                {...register("password", {
                   required: true,
                   minLength: 4,
                 })}
                 error={Boolean(errors.password)}
                 helperText={
                   errors.password &&
-                  'Password must have a minimum of 4 characters'
+                  "Password must have a minimum of 4 characters"
                 }
                 InputProps={{
                   startAdornment: (
@@ -200,10 +203,10 @@ export default function Login() {
                 {"Don't have an account? Register now!"}
               </NavLink>
               <Copyright sx={{ mt: 5 }} />
-          </form>
+            </form>
           </Box>
         </Grid>
       </Grid>
     </ThemeProvider>
-  )
+  );
 }

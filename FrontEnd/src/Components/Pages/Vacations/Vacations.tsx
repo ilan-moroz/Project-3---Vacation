@@ -1,6 +1,6 @@
-import Card from './VacationCard/VacationCard'
-import AddVacationModal from './addVacationModal/addVacationModal'
-import './Vacations.css'
+import Card from "./VacationCard/VacationCard";
+import AddVacationModal from "./addVacationModal/addVacationModal";
+import "./Vacations.css";
 
 function Vacations(): JSX.Element {
   return (
@@ -8,7 +8,7 @@ function Vacations(): JSX.Element {
       <AddVacationModal />
       <Card />
     </div>
-  )
+  );
 }
 
-export default Vacations
+export default Vacations;
