@@ -16,7 +16,10 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { InputAdornment } from '@mui/material'
 import { Email, Group, Password, Person } from '@mui/icons-material'
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
 
+// saves new user in the database
 const addNewUser = (newUser: User) => {
   axios
     .post('http://localhost:8080/api/v1/vacation/users/newUser', newUser)
@@ -40,6 +43,7 @@ function Copyright(props: any) {
   )
 }
 
+// theme for the register form
 const theme = createTheme({
   palette: {
     mode: 'dark',
@@ -63,19 +67,34 @@ export default function Register() {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data: any) => {
-    const isAdmin =
-      data.email === 'admin@admin.admin' && data.password === 'Admin'
-    const newUser: User = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      password: data.password,
-      admin: isAdmin ? 1 : 0,
+  // new notyf for checking if email exists in database
+  const notyf = new Notyf({
+    position: {
+      x: 'center',
+      y: 'top',
+    },
+  });  
+  const onSubmit = async (data: any) => {
+    try {
+      const response = await axios.post('http://localhost:8080/api/v1/vacation/users/checkEmail', { email: data.email });
+      if (response.data) {
+        notyf.error('This email is already registered, please try again');
+      } else {
+        const isAdmin = data.email === 'admin@admin.admin' && data.password === 'Admin';
+        const newUser: User = {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          password: data.password,
+          admin: isAdmin ? 1 : 0,
+        };
+        addNewUser(newUser);
+        navigate('/vacations');
+      }
+    } catch (error) {
+      console.error(error);
     }
-    addNewUser(newUser)
-    navigate('/vacations')
-  }
+  };
 
   return (
     <ThemeProvider theme={theme}>
