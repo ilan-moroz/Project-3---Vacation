@@ -7,7 +7,20 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { InputAdornment, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
-// import { Vacation } from "../../../Model/Vacation";
+import { Vacation } from "../../../Model/Vacation";
+import axios from "axios";
+
+// saves new user in the database and redux
+const addNewVacation = (newVacation: Vacation) => {
+  axios
+    .post(
+      "http://localhost:8080/api/v1/vacation/vacations/newVacation",
+      newVacation
+    )
+    .then((response) => {
+      console.log(response);
+    });
+};
 
 export default function AddVacationModal() {
   const [open, setOpen] = React.useState(false);
@@ -20,15 +33,17 @@ export default function AddVacationModal() {
     setOpen(false);
   };
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = (data: any) => {
     try {
-      // const newVacation: Vacation = {
-      //   destination: data.destination,
-      //   description: data.description,
-      //   vacationStart: data.startDate,
-      //   vacationEnd: data.finishDate,
-      //   price: data.price,
-      // };
+      const newVacation: Vacation = {
+        vacationDestiny: data.destination,
+        vacationDesc: data.description,
+        vacationStart: data.startDate,
+        vacationEnd: data.finishDate,
+        price: data.price,
+        photoFile: data.image[0].name,
+      };
+      addNewVacation(newVacation);
       handleClose();
     } catch (error) {
       console.error(error);

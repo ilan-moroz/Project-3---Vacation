@@ -1,23 +1,23 @@
 export class Vacation {
-  public destination: string;
-  public description: string;
+  public vacationDestiny: string;
+  public vacationDesc: string;
   public vacationStart: string;
   public vacationEnd: string;
   public price: number;
-  public imageFile: string;
+  public photoFile: string;
   constructor(
-    destination: string,
-    description: string,
+    vacationDestiny: string,
+    vacationDesc: string,
     vacationStart: string,
     vacationEnd: string,
     price: number,
-    imageFile: string
+    photoFile: string
   ) {
-    this.destination = destination;
-    this.description = description;
+    this.vacationDestiny = vacationDestiny;
+    this.vacationDesc = vacationDesc;
     this.vacationStart = vacationStart;
     this.vacationEnd = vacationEnd;
     this.price = price;
-    this.imageFile = imageFile;
+    this.photoFile = photoFile;
   }
 }
