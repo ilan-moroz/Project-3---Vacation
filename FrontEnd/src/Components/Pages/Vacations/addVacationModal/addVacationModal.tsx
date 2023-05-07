@@ -5,7 +5,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { InputAdornment, InputLabel, TextField } from "@mui/material";
+import { InputAdornment, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 // import { Vacation } from "../../../Model/Vacation";
 
@@ -92,9 +92,9 @@ export default function AddVacationModal() {
               helperText={errors.description && "Description is required"}
             />
             <br />
-            <InputLabel htmlFor="startDate" sx={{ color: "black" }}>
+            <label htmlFor="startDate" className="label-large">
               Start date:
-            </InputLabel>
+            </label>
             <TextField
               type="date"
               id="startDate"
@@ -106,9 +106,9 @@ export default function AddVacationModal() {
             />
             <br />
             <br />
-            <InputLabel htmlFor="finishDate" sx={{ color: "black" }}>
+            <label htmlFor="finishDate" className="label-large">
               Finish date:
-            </InputLabel>
+            </label>
             <TextField
               type="date"
               id="finishDate"
@@ -134,6 +134,20 @@ export default function AddVacationModal() {
                   <InputAdornment position="start">$</InputAdornment>
                 ),
               }}
+            />
+            <br />
+            <br />
+            <label htmlFor="image" className="label-large">
+              Image upload
+            </label>
+            <TextField
+              type="file"
+              id="image"
+              fullWidth
+              autoFocus
+              {...register("image", { required: true })}
+              error={Boolean(errors.image)}
+              helperText={errors.image && "Image is required"}
             />
             <Button onClick={handleClose}>Cancel</Button>
             <Button type="submit">Add Vacation</Button>
