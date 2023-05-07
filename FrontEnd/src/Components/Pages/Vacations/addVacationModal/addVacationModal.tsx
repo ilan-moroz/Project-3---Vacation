@@ -104,6 +104,9 @@ export default function AddVacationModal() {
               {...register("startDate", { required: true })}
               error={Boolean(errors.startDate)}
               helperText={errors.startDate && "Start date is required"}
+              inputProps={{
+                min: new Date().toISOString().slice(0, 10),
+              }}
             />
             <br />
             <br />
@@ -130,6 +133,9 @@ export default function AddVacationModal() {
                 errors.finishDate &&
                 "Finish date is required and must be later than start date"
               }
+              inputProps={{
+                min: new Date().toISOString().slice(0, 10),
+              }}
             />
             <br />
             <br />
