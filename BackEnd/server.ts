@@ -1,41 +1,42 @@
-import express from 'express'
-import cors from 'cors'
-import bodyParser from 'body-parser'
-import ErrorHandler from './MiddleWare/routeNotFound'
-import config from './Utils/Config'
-import logic from './Logic/tableLogicMYSQL'
-import userRouter from './Routes/UserRoutes'
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import ErrorHandler from "./MiddleWare/routeNotFound";
+import config from "./Utils/Config";
+import logic from "./Logic/tableLogicMYSQL";
+import userRouter from "./Routes/UserRoutes";
+import vacationRouter from "./Routes/VacationRoutes";
 
 // Create Server
-const server = express()
+const server = express();
 
 // Handle CORS
-server.use(cors())
+server.use(cors());
 
 //How we send the data back
-server.use(express.json())
+server.use(express.json());
 
 // Where to save the files
 
 //enable file uploading
 
 //Parse the body as JSON
-server.use(bodyParser.json())
+server.use(bodyParser.json());
 
 // How to use routes
-server.use('/api/v1/vacation/users', userRouter)
-// server.use('/api/v1/vacation/')
+server.use("/api/v1/vacation/users", userRouter);
+server.use("/api/v1/vacation/vacations", vacationRouter);
 
 //Create the tables if they not exists
-console.log('check if table exists...')
-logic.createUsersTable()
-logic.createVacationsTable()
-logic.createFollowTable()
+console.log("check if table exists...");
+logic.createUsersTable();
+logic.createVacationsTable();
+logic.createFollowTable();
 
 // Handle errors (route not found)
-server.use('*', ErrorHandler)
+server.use("*", ErrorHandler);
 
 // Start the server
 server.listen(config.WebPort, () => {
-  console.log(`listening on http://${config.mySQLhost}:${config.WebPort}`)
-})
+  console.log(`listening on http://${config.mySQLhost}:${config.WebPort}`);
+});
