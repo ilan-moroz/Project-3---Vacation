@@ -2,7 +2,6 @@ import "./addVacationModal.css";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -22,19 +21,18 @@ export default function AddVacationModal() {
   };
 
   const onSubmit = async (data: any) => {
-    // try {
-    // checking if email exists in database
-    // const newVacation: Vacation = {
-    //   //   firstName: data.firstName,
-    //   //   lastName: data.lastName,
-    //   //   email: data.email,
-    //   //   password: data.password,
-    //   //   admin: isAdmin ? 1 : 0,
-    // };
-    handleClose();
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      // const newVacation: Vacation = {
+      //   destination: data.destination,
+      //   description: data.description,
+      //   vacationStart: data.startDate,
+      //   vacationEnd: data.finishDate,
+      //   price: data.price,
+      // };
+      handleClose();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // use form for form validation
