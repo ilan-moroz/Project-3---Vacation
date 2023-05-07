@@ -229,6 +229,7 @@ export default function Register() {
               <TextField
                 margin="normal"
                 fullWidth
+                autoFocus
                 label="Password"
                 type="password"
                 id="password"
