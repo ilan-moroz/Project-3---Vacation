@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { InputAdornment, InputLabel, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { Vacation } from "../../../Model/Vacation";
+// import { Vacation } from "../../../Model/Vacation";
 
 export default function AddVacationModal() {
   const [open, setOpen] = React.useState(false);
