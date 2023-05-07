@@ -126,9 +126,12 @@ export default function AddVacationModal() {
               id="price"
               fullWidth
               autoFocus
-              {...register("price", { required: true })}
+              {...register("price", { required: true, min: 0, max: 10000 })}
               error={Boolean(errors.price)}
-              helperText={errors.price && "Price is required"}
+              helperText={
+                errors.price &&
+                "Price is required and must be between 0 and 10000"
+              }
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">$</InputAdornment>
