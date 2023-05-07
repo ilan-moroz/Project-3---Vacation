@@ -40,6 +40,7 @@ export default function AddVacationModal() {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm();
 
   return (
@@ -114,9 +115,21 @@ export default function AddVacationModal() {
               id="finishDate"
               fullWidth
               autoFocus
-              {...register("finishDate", { required: true })}
+              {...register("finishDate", {
+                required: true,
+                validate: {
+                  notEarlier: (value) => {
+                    const startDate = new Date(getValues("startDate")); // get start date from form values
+                    const finishDate = new Date(value); // convert finish date string to date object
+                    return finishDate >= startDate;
+                  },
+                },
+              })}
               error={Boolean(errors.finishDate)}
-              helperText={errors.finishDate && "Finish date is required"}
+              helperText={
+                errors.finishDate &&
+                "Finish date is required and must be later than start date"
+              }
             />
             <br />
             <br />
