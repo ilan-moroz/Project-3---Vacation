@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { UserReducer } from "./UserReducer";
+import { VacationReducer } from "./VacationReducer";
 
 //choose all reducers....
-const reducers = { users: UserReducer };
+const reducers = { users: UserReducer, vacations: VacationReducer };
 
 //combine reducers.
 export const vacation = configureStore({

@@ -22,7 +22,7 @@ export const userVacationAction = (newVacation: Vacation): VacationAction => {
 };
 
 //this is the reducer function
-export function UserReducer(
+export function VacationReducer(
   currentState: VacationsState = new VacationsState(),
   action: VacationAction
 ): VacationsState {
