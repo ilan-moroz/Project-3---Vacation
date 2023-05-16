@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { InputAdornment, TextField } from "@mui/material";
+import { InputAdornment, InputLabel, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { Vacation } from "../../../Model/Vacation";
 import axios from "axios";
@@ -100,7 +100,7 @@ export default function AddVacationModal() {
             To add a vacation to this website, please fill up all the fields
             below.
           </DialogContentText>
-          <br /> <br />
+          <br />
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
               margin="normal"
@@ -191,6 +191,7 @@ export default function AddVacationModal() {
             <label htmlFor="image" className="label-large">
               Image upload
             </label>
+            <InputLabel htmlFor="image">Choose/Change Image</InputLabel>
             <TextField
               type="file"
               id="image"
@@ -201,11 +202,11 @@ export default function AddVacationModal() {
             />
             <div className="container">
               <img className="preview" src={image} alt={image} />
-              {image && (
+              {/* {image && (
                 <Button className="btn" variant="contained" color="error">
                   Change Image
                 </Button>
-              )}
+              )} */}
             </div>
             <Button onClick={handleClose} color="error">
               Cancel
