@@ -30,7 +30,10 @@ export default function AddVacationModal() {
   const [image, setImage] = useState("");
 
   function handleChange(event: any) {
-    setImage(URL.createObjectURL(event.target.files[0]));
+    const file = event.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
+    }
   }
 
   const handleClickOpen = () => {
