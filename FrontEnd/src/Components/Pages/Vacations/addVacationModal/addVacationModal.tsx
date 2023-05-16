@@ -202,8 +202,12 @@ export default function AddVacationModal() {
                 Change Image
               </Button>
             </div>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button type="submit">Add Vacation</Button>
+            <Button onClick={handleClose} color="error">
+              Cancel
+            </Button>
+            <Button type="submit" color="success">
+              Add Vacation
+            </Button>
           </form>
         </DialogContent>
       </Dialog>
