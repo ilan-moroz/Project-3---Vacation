@@ -40,6 +40,7 @@ export default function AddVacationModal() {
 
   const handleClose = () => {
     reset();
+    setImage("");
     setOpen(false);
   };
 
@@ -198,9 +199,11 @@ export default function AddVacationModal() {
             />
             <div className="container">
               <img className="preview" src={image} alt={image} />
-              <Button className="btn" variant="contained" color="error">
-                Change Image
-              </Button>
+              {image && (
+                <Button className="btn" variant="contained" color="error">
+                  Change Image
+                </Button>
+              )}
             </div>
             <Button onClick={handleClose} color="error">
               Cancel
