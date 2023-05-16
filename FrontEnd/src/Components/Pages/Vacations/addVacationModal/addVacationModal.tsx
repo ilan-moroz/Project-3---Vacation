@@ -44,7 +44,7 @@ export default function AddVacationModal() {
         vacationStart: data.startDate,
         vacationEnd: data.finishDate,
         price: data.price,
-        photoFile: data.image[0].name,
+        photoFile: data.image[0] ? data.image[0].name : "",
       };
       addNewVacation(newVacation);
       handleClose();
@@ -185,9 +185,7 @@ export default function AddVacationModal() {
               id="image"
               fullWidth
               autoFocus
-              {...register("image", { required: true })}
-              error={Boolean(errors.image)}
-              helperText={errors.image && "Image is required"}
+              {...register("image")}
             />
             <Button onClick={handleClose}>Cancel</Button>
             <Button type="submit">Add Vacation</Button>
