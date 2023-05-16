@@ -1,5 +1,4 @@
 import "./addVacationModal.css";
-import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -11,6 +10,7 @@ import { Vacation } from "../../../Model/Vacation";
 import axios from "axios";
 import { vacation } from "../../../Redux/VacationStore";
 import { newVacationAction } from "../../../Redux/VacationReducer";
+import { useState } from "react";
 
 // saves new user in the database and redux
 const addNewVacation = (newVacation: Vacation) => {
@@ -26,7 +26,13 @@ const addNewVacation = (newVacation: Vacation) => {
 };
 
 export default function AddVacationModal() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [image, setImage] = useState("");
+
+  function handleChange(event: any) {
+    console.log(event.target.files);
+    setImage(URL.createObjectURL(event.target.files[0]));
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -188,7 +194,10 @@ export default function AddVacationModal() {
               fullWidth
               autoFocus
               {...register("image")}
+              onChange={handleChange}
             />
+            <img src={image} alt={image} />
+            <br />
             <Button onClick={handleClose}>Cancel</Button>
             <Button type="submit">Add Vacation</Button>
           </form>

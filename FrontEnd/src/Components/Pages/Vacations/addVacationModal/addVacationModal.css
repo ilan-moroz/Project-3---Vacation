@@ -2,3 +2,8 @@
   font-size: 1.1rem;
   font-weight: bold;
 }
+
+img {
+  margin-top: 1em;
+  width: 50%;
+}
