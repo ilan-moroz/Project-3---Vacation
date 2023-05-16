@@ -22,18 +22,15 @@ export const userVacationAction = (newVacation: Vacation): VacationAction => {
 };
 
 //this is the reducer function
-// export function UserReducer(
-//   currentState: UsersState = new UsersState(),
-//   action: UserAction
-// ): UsersState {
-//   const newState = { ...currentState };
-//   switch (action.type) {
-//     case UserActionType.userLogin:
-//       newState.currentUser = action.payload.admin;
-//       break;
-//     case UserActionType.adminLogin:
-//       newState.currentUser = action.payload.admin;
-//       break;
-//   }
-//   return newState;
-// }
+export function UserReducer(
+  currentState: VacationsState = new VacationsState(),
+  action: VacationAction
+): VacationsState {
+  const newState = { ...currentState };
+  switch (action.type) {
+    case VacationActionType.addVacation:
+      newState.vacations = [...currentState.vacations, action.payload];
+      break;
+  }
+  return newState;
+}
