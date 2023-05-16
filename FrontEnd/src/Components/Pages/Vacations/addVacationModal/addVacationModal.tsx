@@ -44,9 +44,10 @@ export default function AddVacationModal() {
         vacationStart: data.startDate,
         vacationEnd: data.finishDate,
         price: data.price,
-        photoFile: data.image[0] ? data.image[0].name : "",
+        photoFile: data.image[0]?.name || "",
       };
       addNewVacation(newVacation);
+      reset();
       handleClose();
     } catch (error) {
       console.error(error);
@@ -59,6 +60,7 @@ export default function AddVacationModal() {
     handleSubmit,
     formState: { errors },
     getValues,
+    reset,
   } = useForm();
 
   return (
