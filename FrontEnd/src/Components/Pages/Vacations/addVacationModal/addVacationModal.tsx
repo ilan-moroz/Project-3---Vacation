@@ -196,7 +196,7 @@ export default function AddVacationModal() {
               {...register("image")}
               onChange={handleChange}
             />
-            <img src={image} alt={image} />
+            <img className="preview" src={image} alt={image} />
             <br />
             <Button onClick={handleClose}>Cancel</Button>
             <Button type="submit">Add Vacation</Button>

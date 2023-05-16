@@ -3,7 +3,8 @@
   font-weight: bold;
 }
 
-img {
+.preview {
   margin-top: 1em;
   width: 50%;
+  border-radius: 20%;
 }
