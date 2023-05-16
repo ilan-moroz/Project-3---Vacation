@@ -10,6 +10,12 @@ const addVacation = async (newVacation: Vacation) => {
   dalMySQL.execute(SQLcommand);
 };
 
+const getAllVacations = async () => {
+  const SQLcommand = `SELECT * FROM vacation.Vacations`;
+  return await dalMySQL.execute(SQLcommand);
+};
+
 export default {
   addVacation,
+  getAllVacations,
 };

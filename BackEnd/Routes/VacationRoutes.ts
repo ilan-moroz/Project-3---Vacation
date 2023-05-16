@@ -13,6 +13,14 @@ vacationRouter.post(
   }
 );
 
+// GET ALL VACATIONS
+vacationRouter.get(
+  "/allVacations",
+  async (request: Request, response: Response, next: NextFunction) => {
+    response.status(200).json(await logic.getAllVacations());
+  }
+);
+
 // TEST ROUTE
 vacationRouter.get(
   "/",

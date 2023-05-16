@@ -8,6 +8,7 @@ export class VacationsState {
 //what action i will use
 export enum VacationActionType {
   addVacation = "addVacation",
+  allVacations = "allVacations",
 }
 
 //action data structure
@@ -21,6 +22,10 @@ export const userVacationAction = (newVacation: Vacation): VacationAction => {
   return { type: VacationActionType.addVacation, payload: newVacation };
 };
 
+export const allVacationsAction = (vacations: Vacation[]): VacationAction => {
+  return { type: VacationActionType.allVacations, payload: vacations };
+};
+
 //this is the reducer function
 export function VacationReducer(
   currentState: VacationsState = new VacationsState(),
@@ -30,6 +35,9 @@ export function VacationReducer(
   switch (action.type) {
     case VacationActionType.addVacation:
       newState.vacations = [...currentState.vacations, action.payload];
+      break;
+    case VacationActionType.allVacations:
+      newState.vacations = action.payload;
       break;
   }
   return newState;

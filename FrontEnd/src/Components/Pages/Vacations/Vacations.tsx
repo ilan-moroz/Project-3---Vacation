@@ -18,7 +18,6 @@ function Vacations(): JSX.Element {
       <AddVacationModal />
       <Card />
       <div>
-        {" "}
         {vacations.map((item) => {
           return <h3 key={item.vacationDesc}>{item.price}</h3>;
         })}
