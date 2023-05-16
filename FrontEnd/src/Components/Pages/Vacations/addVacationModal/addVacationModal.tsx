@@ -196,8 +196,12 @@ export default function AddVacationModal() {
               {...register("image")}
               onChange={handleChange}
             />
-            <img className="preview" src={image} alt={image} />
-            <br />
+            <div className="container">
+              <img className="preview" src={image} alt={image} />
+              <Button className="btn" variant="contained" color="error">
+                Change Image
+              </Button>
+            </div>
             <Button onClick={handleClose}>Cancel</Button>
             <Button type="submit">Add Vacation</Button>
           </form>

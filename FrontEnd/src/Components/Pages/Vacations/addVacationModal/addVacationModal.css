@@ -3,8 +3,24 @@
   font-weight: bold;
 }
 
-.preview {
-  margin-top: 1em;
-  width: 50%;
+.container img {
+  display: block;
+  width: 80%;
+  height: auto;
+  margin: 1em 0 0 6em;
   border-radius: 20%;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.container .btn {
+  position: absolute;
+  top: 80%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
