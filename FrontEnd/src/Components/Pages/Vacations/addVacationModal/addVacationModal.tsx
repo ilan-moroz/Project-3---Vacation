@@ -39,6 +39,7 @@ export default function AddVacationModal() {
   };
 
   const handleClose = () => {
+    reset();
     setOpen(false);
   };
 
@@ -53,7 +54,6 @@ export default function AddVacationModal() {
         photoFile: data.image[0]?.name || "",
       };
       addNewVacation(newVacation);
-      reset();
       handleClose();
     } catch (error) {
       console.error(error);
