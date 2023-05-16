@@ -10,11 +10,11 @@ import { useForm } from "react-hook-form";
 import { Vacation } from "../../../Model/Vacation";
 import axios from "axios";
 import { vacation } from "../../../Redux/VacationStore";
-import { userVacationAction } from "../../../Redux/VacationReducer";
+import { newVacationAction } from "../../../Redux/VacationReducer";
 
 // saves new user in the database and redux
 const addNewVacation = (newVacation: Vacation) => {
-  vacation.dispatch(userVacationAction(newVacation));
+  vacation.dispatch(newVacationAction(newVacation));
   axios
     .post(
       "http://localhost:8080/api/v1/vacation/vacations/newVacation",
