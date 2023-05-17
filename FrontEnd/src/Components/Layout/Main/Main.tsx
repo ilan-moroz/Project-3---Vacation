@@ -7,6 +7,7 @@ import { allVacationsAction } from "../../Redux/VacationReducer";
 function Main(): JSX.Element {
   useEffect(() => {
     //redux
+    // vacation.subscribe(() => {
     if (vacation.getState().vacations.vacations.length < 1) {
       console.log("getting data from backend....");
       axios
@@ -15,6 +16,7 @@ function Main(): JSX.Element {
           vacation.dispatch(allVacationsAction(response.data));
         });
     }
+    // });
   }, []);
   return <div className="Main"></div>;
 }
