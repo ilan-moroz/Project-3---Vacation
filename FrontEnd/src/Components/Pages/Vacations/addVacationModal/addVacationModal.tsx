@@ -47,14 +47,16 @@ export default function AddVacationModal() {
   };
 
   const onSubmit = (data: any) => {
+    const startDate = new Date(data.startDate);
+    const finishDate = new Date(data.finishDate);
     try {
       const newVacation: Vacation = {
         vacationDestiny: data.destination,
         vacationDesc: data.description,
-        vacationStart: data.startDate,
-        vacationEnd: data.finishDate,
+        vacationStart: startDate.toLocaleDateString("en-GB"),
+        vacationEnd: finishDate.toLocaleDateString("en-GB"),
         price: data.price,
-        photoFile: data.image[0]?.name || "",
+        photoFile: data.image[0].name,
       };
       addNewVacation(newVacation);
       handleClose();
