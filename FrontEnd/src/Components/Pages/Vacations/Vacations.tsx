@@ -27,6 +27,7 @@ function Vacations(): JSX.Element {
 
   return (
     <div className="Vacations">
+      {/* add new vacation */}
       <AddVacationModal />
       {/* get all vacations from redux and display all the vacations*/}
       <div className="vacationCards">
