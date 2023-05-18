@@ -23,6 +23,7 @@ function Vacations(): JSX.Element {
       setRefresh(!refresh);
     }
     setRefresh(!refresh);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
