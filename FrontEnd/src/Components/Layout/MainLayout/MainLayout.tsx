@@ -6,8 +6,10 @@ import "./MainLayout.css";
 
 function MainLayout(): JSX.Element {
   const location = useLocation();
+  // don't show the navbar on register and login pages
   const showNavbar =
     location.pathname !== "/register" && location.pathname !== "/login";
+  // don't show the footer on vacations page
   const showFooter = location.pathname !== "/vacations";
 
   return (
