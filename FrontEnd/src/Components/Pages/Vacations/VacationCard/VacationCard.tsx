@@ -21,7 +21,7 @@ export default function BasicCard(props: ItemProps) {
     <Card
       className="Card"
       sx={{
-        width: 320,
+        width: 290,
         backgroundColor: "rgba(0,0,0,0.7)",
         "& .MuiTypography-root": {
           color: "white",
