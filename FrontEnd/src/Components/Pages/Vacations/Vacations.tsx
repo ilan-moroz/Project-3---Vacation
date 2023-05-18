@@ -8,6 +8,8 @@ import { allVacationsAction } from "../../Redux/VacationReducer";
 
 function Vacations(): JSX.Element {
   // const [vacations, setVacations] = useState([]);
+  // refresh the page after get data
+  const [refresh, setRefresh] = useState(false);
 
   //get data from database and save in redux
   useEffect(() => {
@@ -17,14 +19,26 @@ function Vacations(): JSX.Element {
         .get("http://localhost:8080/api/v1/vacation/vacations/allVacations")
         .then((response) => {
           vacation.dispatch(allVacationsAction(response.data));
-          // (vacation. (() => {setVacations(response.data)}))
         });
+      setRefresh(!refresh);
     }
+    setRefresh(!refresh);
   }, []);
+
   return (
     <div className="Vacations">
       <AddVacationModal />
-      <Card />
+      {/* get all vacations from redux and display all the vacations*/}
+      {vacation.getState().vacations.vacations.map((item) => (
+        <Card
+          key={item["vacationDestiny"]}
+          vacationDestiny={item["vacationDestiny"]}
+          vacationDesc={item["vacationDesc"]}
+          vacationStart={item["vacationStart"]}
+          vacationEnd={item["vacationEnd"]}
+          price={item["price"]}
+        />
+      ))}
     </div>
   );
 }
