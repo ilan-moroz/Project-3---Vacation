@@ -15,14 +15,10 @@ import { useState } from "react";
 // saves new user in the database and redux
 const addNewVacation = (newVacation: Vacation) => {
   vacation.dispatch(newVacationAction(newVacation));
-  axios
-    .post(
-      "http://localhost:8080/api/v1/vacation/vacations/newVacation",
-      newVacation
-    )
-    .then((response) => {
-      console.log(response);
-    });
+  axios.post(
+    "http://localhost:8080/api/v1/vacation/vacations/newVacation",
+    newVacation
+  );
 };
 
 export default function AddVacationModal() {
