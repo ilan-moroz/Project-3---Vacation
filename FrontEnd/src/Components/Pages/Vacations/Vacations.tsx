@@ -7,7 +7,6 @@ import axios from "axios";
 import { allVacationsAction } from "../../Redux/VacationReducer";
 
 function Vacations(): JSX.Element {
-  // const [vacations, setVacations] = useState([]);
   // refresh the page after get data
   const [refresh, setRefresh] = useState(false);
 
@@ -30,16 +29,18 @@ function Vacations(): JSX.Element {
     <div className="Vacations">
       <AddVacationModal />
       {/* get all vacations from redux and display all the vacations*/}
-      {vacation.getState().vacations.vacations.map((item) => (
-        <Card
-          key={item["vacationDestiny"]}
-          vacationDestiny={item["vacationDestiny"]}
-          vacationDesc={item["vacationDesc"]}
-          vacationStart={item["vacationStart"]}
-          vacationEnd={item["vacationEnd"]}
-          price={item["price"]}
-        />
-      ))}
+      <div className="vacationCards">
+        {vacation.getState().vacations.vacations.map((item) => (
+          <Card
+            key={item["vacationDestiny"]}
+            vacationDestiny={item["vacationDestiny"]}
+            vacationDesc={item["vacationDesc"]}
+            vacationStart={item["vacationStart"]}
+            vacationEnd={item["vacationEnd"]}
+            price={item["price"]}
+          />
+        ))}
+      </div>
     </div>
   );
 }
