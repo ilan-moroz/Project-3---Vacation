@@ -32,7 +32,7 @@ vacationRouter.post(
       return response.status(400).send("No files were uploaded.");
     }
     sampleFile = request.files.sampleFile as UploadedFile;
-    uploadPath = "BackEnd/vacation_photos/" + sampleFile.name;
+    uploadPath = "./vacation_photos/" + sampleFile.name;
     sampleFile.mv(uploadPath, function (err: any) {
       if (err) return response.status(500).send(err);
       response.send("File uploaded!");
