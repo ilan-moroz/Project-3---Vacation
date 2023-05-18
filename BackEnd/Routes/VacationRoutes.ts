@@ -35,6 +35,7 @@ vacationRouter.post(
     uploadPath = "./vacation_photos/" + sampleFile.name;
     sampleFile.mv(uploadPath, function (err: any) {
       if (err) return response.status(500).send(err);
+      console.log("File saved at:", uploadPath); // Log the file path
       response.send("File uploaded!");
     });
   }

@@ -38,6 +38,7 @@ function Vacations(): JSX.Element {
             vacationStart={item["vacationStart"]}
             vacationEnd={item["vacationEnd"]}
             price={item["price"]}
+            photoFile={`http://localhost:8080/${item["photoFile"]}`}
           />
         ))}
       </div>
