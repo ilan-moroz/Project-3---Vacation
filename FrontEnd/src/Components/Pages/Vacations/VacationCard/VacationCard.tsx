@@ -58,7 +58,9 @@ export default function BasicCard(props: ItemProps) {
           alt=""
         />
       </AspectRatio>
-      <Typography gutterBottom>{props.vacationDesc}</Typography>
+      <Typography sx={{ overflowWrap: "break-word" }} gutterBottom>
+        {props.vacationDesc}
+      </Typography>
       <Box sx={{ display: "flex" }}>
         <div>
           <Typography level="body3">Total price:</Typography>
