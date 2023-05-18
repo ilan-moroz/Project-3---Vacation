@@ -10,16 +10,21 @@ function Vacations(): JSX.Element {
   // re render the page after get data
   const [refresh, setRefresh] = useState(false);
 
-  //get data from database and save in redux
+  // get data from database and save in redux
+  const fetchVacations = () => {
+    console.log("getting data from backend....");
+    axios
+      .get("http://localhost:8080/api/v1/vacation/vacations/allVacations")
+      .then((response) => {
+        vacation.dispatch(allVacationsAction(response.data));
+        setRefresh(!refresh);
+      });
+  };
+
+  //if state is get fetch all from database and save in redux
   useEffect(() => {
     if (vacation.getState().vacations.vacations.length < 1) {
-      console.log("getting data from backend....");
-      axios
-        .get("http://localhost:8080/api/v1/vacation/vacations/allVacations")
-        .then((response) => {
-          vacation.dispatch(allVacationsAction(response.data));
-          setRefresh(!refresh);
-        });
+      fetchVacations();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -27,7 +32,7 @@ function Vacations(): JSX.Element {
   return (
     <div className="Vacations">
       {/* add new vacation */}
-      <AddVacationModal />
+      <AddVacationModal fetchVacations={fetchVacations} />
       {/* get all vacations from redux and display all the vacations*/}
       <div className="vacationCards">
         {vacation.getState().vacations.vacations.map((item) => (

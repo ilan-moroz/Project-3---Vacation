@@ -13,12 +13,16 @@ import { newVacationAction } from "../../../../Redux/VacationReducer";
 import { useState } from "react";
 
 // saves new vacation in the database and redux
-const addNewVacation = (newVacation: Vacation) => {
+const addNewVacation = (newVacation: Vacation, fetchVacations: () => void) => {
   vacation.dispatch(newVacationAction(newVacation));
-  axios.post(
-    "http://localhost:8080/api/v1/vacation/vacations/newVacation",
-    newVacation
-  );
+  axios
+    .post(
+      "http://localhost:8080/api/v1/vacation/vacations/newVacation",
+      newVacation
+    )
+    .then(() => {
+      fetchVacations();
+    });
 };
 
 // save the image in the backend
@@ -37,7 +41,14 @@ const uploadImage = (newImage: any) => {
   );
 };
 
-export default function AddVacationModal() {
+// props to get the function from Vacations
+type AddVacationModalProps = {
+  fetchVacations: () => void;
+};
+
+export default function AddVacationModal({
+  fetchVacations,
+}: AddVacationModalProps) {
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState("");
 
@@ -70,7 +81,7 @@ export default function AddVacationModal() {
         price: data.price,
         photoFile: data.image[0].name,
       };
-      addNewVacation(newVacation);
+      addNewVacation(newVacation, fetchVacations);
       uploadImage(data.image[0]);
       handleClose();
     } catch (error) {
