@@ -7,7 +7,7 @@ import axios from "axios";
 import { allVacationsAction } from "../../Redux/VacationReducer";
 
 function Vacations(): JSX.Element {
-  // refresh the page after get data
+  // re render the page after get data
   const [refresh, setRefresh] = useState(false);
 
   //get data from database and save in redux
