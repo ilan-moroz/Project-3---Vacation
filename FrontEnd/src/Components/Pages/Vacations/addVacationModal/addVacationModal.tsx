@@ -21,6 +21,21 @@ const addNewVacation = (newVacation: Vacation) => {
   );
 };
 
+const uploadImage = (newImage: any) => {
+  console.log(newImage);
+  const image = new FormData();
+  image.append("sampleFile", newImage);
+  axios.post(
+    "http://localhost:8080/api/v1/vacation/vacations/uploadImage",
+    image,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+};
+
 export default function AddVacationModal() {
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState("");
@@ -55,6 +70,7 @@ export default function AddVacationModal() {
         photoFile: data.image[0].name,
       };
       addNewVacation(newVacation);
+      uploadImage(data.image[0]);
       handleClose();
     } catch (error) {
       console.error(error);
