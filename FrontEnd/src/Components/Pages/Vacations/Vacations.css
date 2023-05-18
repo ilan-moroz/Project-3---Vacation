@@ -7,3 +7,9 @@
 .Card {
   margin: 1.5rem;
 }
+
+.vacationCards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
