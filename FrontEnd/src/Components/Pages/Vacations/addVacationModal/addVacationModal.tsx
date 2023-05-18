@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { InputAdornment, InputLabel, TextField } from "@mui/material";
+import { InputAdornment, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { Vacation } from "../../../Model/Vacation";
 import axios from "axios";
@@ -191,22 +191,18 @@ export default function AddVacationModal() {
             <label htmlFor="image" className="label-large">
               Image upload
             </label>
-            <InputLabel htmlFor="image">Choose/Change Image</InputLabel>
             <TextField
               type="file"
               id="image"
               fullWidth
               autoFocus
-              {...register("image")}
+              {...register("image", { required: true })}
+              error={Boolean(errors.image)}
+              helperText={errors.image && "Image is required"}
               onChange={handleChange}
             />
             <div className="container">
               <img className="preview" src={image} alt={image} />
-              {/* {image && (
-                <Button className="btn" variant="contained" color="error">
-                  Change Image
-                </Button>
-              )} */}
             </div>
             <Button onClick={handleClose} color="error">
               Cancel
