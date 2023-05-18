@@ -18,10 +18,9 @@ function Vacations(): JSX.Element {
         .get("http://localhost:8080/api/v1/vacation/vacations/allVacations")
         .then((response) => {
           vacation.dispatch(allVacationsAction(response.data));
+          setRefresh(!refresh);
         });
-      setRefresh(!refresh);
     }
-    setRefresh(!refresh);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
