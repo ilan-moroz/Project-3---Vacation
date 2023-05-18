@@ -2,9 +2,9 @@ import Card from "./VacationCard/VacationCard";
 import AddVacationModal from "./addVacationModal/addVacationModal";
 import "./Vacations.css";
 import { useEffect, useState } from "react";
-import { vacation } from "../../Redux/VacationStore";
+import { vacation } from "../../../Redux/VacationStore";
 import axios from "axios";
-import { allVacationsAction } from "../../Redux/VacationReducer";
+import { allVacationsAction } from "../../../Redux/VacationReducer";
 
 function Vacations(): JSX.Element {
   // re render the page after get data

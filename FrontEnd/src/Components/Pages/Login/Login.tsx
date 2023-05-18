@@ -17,8 +17,8 @@ import { useForm } from "react-hook-form";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import axios from "axios";
-import { vacation } from "../../Redux/VacationStore";
-import { adminLoginAction, userLoginAction } from "../../Redux/UserReducer";
+import { vacation } from "../../../Redux/VacationStore";
+import { adminLoginAction, userLoginAction } from "../../../Redux/UserReducer";
 
 function Copyright(props: any) {
   return (

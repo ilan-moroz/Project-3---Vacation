@@ -1,4 +1,4 @@
-import MainRoute from "../../Routes/MainRoute/MainRoute";
+import MainRoute from "../../../Routes/MainRoute/MainRoute";
 import { useLocation } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import NavBar from "../Header/NavBar";

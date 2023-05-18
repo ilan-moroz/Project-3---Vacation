@@ -6,13 +6,13 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { InputAdornment, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { Vacation } from "../../../Model/Vacation";
+import { Vacation } from "../../../../Model/Vacation";
 import axios from "axios";
-import { vacation } from "../../../Redux/VacationStore";
-import { newVacationAction } from "../../../Redux/VacationReducer";
+import { vacation } from "../../../../Redux/VacationStore";
+import { newVacationAction } from "../../../../Redux/VacationReducer";
 import { useState } from "react";
 
-// saves new user in the database and redux
+// saves new vacation in the database and redux
 const addNewVacation = (newVacation: Vacation) => {
   vacation.dispatch(newVacationAction(newVacation));
   axios.post(
@@ -21,6 +21,7 @@ const addNewVacation = (newVacation: Vacation) => {
   );
 };
 
+// save the image in the backend
 const uploadImage = (newImage: any) => {
   console.log(newImage);
   const image = new FormData();

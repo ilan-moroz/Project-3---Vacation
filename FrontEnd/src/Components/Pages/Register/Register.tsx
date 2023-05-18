@@ -11,15 +11,15 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Header from "../../Layout/Logo/Logo";
 import { useNavigate, NavLink } from "react-router-dom";
 import "./Register.css";
-import { User } from "../../Model/User";
+import { User } from "../../../Model/User";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { InputAdornment } from "@mui/material";
 import { Email, Group, Password, Person } from "@mui/icons-material";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
-import { vacation } from "../../Redux/VacationStore";
-import { adminLoginAction, userLoginAction } from "../../Redux/UserReducer";
+import { vacation } from "../../../Redux/VacationStore";
+import { adminLoginAction, userLoginAction } from "../../../Redux/UserReducer";
 
 // saves new user in the database and redux
 const addNewUser = (newUser: User) => {

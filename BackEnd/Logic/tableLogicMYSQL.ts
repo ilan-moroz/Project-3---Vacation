@@ -20,7 +20,7 @@ const createVacationsTable = () => {
   CREATE TABLE IF NOT EXISTS vacation.vacations (
     vacationKey INT NOT NULL AUTO_INCREMENT,
     vacationDestiny VARCHAR(45) NOT NULL,
-    vacationDesc VARCHAR(180) NOT NULL,
+    vacationDesc VARCHAR(400) NOT NULL,
     vacationStart VARCHAR(45) NOT NULL,
     vacationEnd VARCHAR(45) NOT NULL,
     price INT NOT NULL,
