@@ -9,7 +9,7 @@ const createUsersTable = () => {
     lastName VARCHAR(45) NOT NULL,
     email VARCHAR(90) NOT NULL UNIQUE,
     password VARCHAR(45) NOT NULL,
-    admin TINYINT NOT NULL,
+    role VARCHAR(45) NOT NULL,
     PRIMARY KEY (userkey));`;
   dalMySQL.execute(SQLcommand);
 };
