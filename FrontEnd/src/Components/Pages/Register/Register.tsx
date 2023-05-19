@@ -85,8 +85,6 @@ export default function Register() {
         notyf.error("This email is already registered, please try again");
         // if email don't exists add new user to database
       } else {
-        const isAdmin =
-          data.email === "admin@admin.admin" && data.password === "Admin";
         const newUser: User = {
           firstName: data.firstName,
           lastName: data.lastName,
@@ -94,13 +92,8 @@ export default function Register() {
           password: data.password,
           role: "user",
         };
-        if (isAdmin) {
-          addNewUser(newUser);
-          navigate("/vacations");
-        } else {
-          addNewUser(newUser);
-          navigate("/vacations");
-        }
+        addNewUser(newUser);
+        navigate("/vacations");
       }
     } catch (error) {
       console.error(error);
