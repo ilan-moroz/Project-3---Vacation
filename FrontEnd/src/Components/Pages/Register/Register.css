@@ -6,3 +6,17 @@
 .Register {
   margin-top: -6%;
 }
+
+@media (max-width: 500px) {
+  /* styles for smaller screens */
+  .Register {
+    margin-top: -22%;
+  }
+}
+
+@media (max-width: 1000px) {
+  /* styles for smaller screens */
+  .Register {
+    margin-top: -15%;
+  }
+}
