@@ -5,9 +5,9 @@ import dalMySQL from "../Utils/dalMySQL";
 const addUser = async (newUser: User) => {
   const SQLcommand = `
     INSERT INTO vacation.users 
-    (firstName, lastName, email, password, admin)
+    (firstName, lastName, email, password, role)
     VALUES ('${newUser.firstName}', '${newUser.lastName}', 
-    '${newUser.email}', '${newUser.password}', '${newUser.admin}');`;
+    '${newUser.email}', '${newUser.password}', '${newUser.role}');`;
   dalMySQL.execute(SQLcommand);
 };
 
