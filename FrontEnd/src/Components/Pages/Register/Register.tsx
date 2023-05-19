@@ -18,8 +18,6 @@ import { InputAdornment } from "@mui/material";
 import { Email, Group, Password, Person } from "@mui/icons-material";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
-import { vacation } from "../../../Redux/VacationStore";
-import { adminLoginAction, userLoginAction } from "../../../Redux/UserReducer";
 
 // saves new user in the database and redux
 const addNewUser = (newUser: User) => {
@@ -94,14 +92,12 @@ export default function Register() {
           lastName: data.lastName,
           email: data.email,
           password: data.password,
-          admin: isAdmin ? 1 : 0,
+          role: "user",
         };
         if (isAdmin) {
-          vacation.dispatch(adminLoginAction());
           addNewUser(newUser);
           navigate("/vacations");
         } else {
-          vacation.dispatch(userLoginAction());
           addNewUser(newUser);
           navigate("/vacations");
         }

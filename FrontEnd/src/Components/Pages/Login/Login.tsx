@@ -17,8 +17,6 @@ import { useForm } from "react-hook-form";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import axios from "axios";
-import { vacation } from "../../../Redux/VacationStore";
-import { adminLoginAction, userLoginAction } from "../../../Redux/UserReducer";
 
 function Copyright(props: any) {
   return (
@@ -69,10 +67,8 @@ export default function Login() {
         const isAdmin =
           data.email === "admin@admin.admin" && data.password === "Admin";
         if (isAdmin) {
-          vacation.dispatch(adminLoginAction());
           navigate("/vacations");
         } else {
-          vacation.dispatch(userLoginAction());
           navigate("/vacations");
         }
         // if email or password don't exists give an error notyf
