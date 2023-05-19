@@ -16,3 +16,11 @@
   overflow: auto;
   max-height: 80vh;
 }
+
+.Pagination {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 0.2em;
+  left: 50%;
+  transform: translateX(-50%);
+}

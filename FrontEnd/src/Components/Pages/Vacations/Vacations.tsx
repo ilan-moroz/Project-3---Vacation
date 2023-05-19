@@ -69,6 +69,7 @@ function Vacations(): JSX.Element {
         onChange={handleChange}
         color="primary"
         className="Pagination"
+        shape="rounded"
       />
     </div>
   );
