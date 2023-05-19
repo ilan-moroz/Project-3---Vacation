@@ -31,10 +31,10 @@ export function UserReducer(
   const newState = { ...currentState };
   switch (action.type) {
     case UserActionType.userLogin:
-      newState.currentUser = action.payload.admin;
+      newState.currentUser = action.payload.role;
       break;
     case UserActionType.adminLogin:
-      newState.currentUser = action.payload.admin;
+      newState.currentUser = action.payload.role;
       break;
   }
   return newState;
