@@ -8,6 +8,7 @@ import { Favorite } from "@mui/icons-material";
 import "./VacationCard.css";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
+import axios from "axios";
 
 // props for getting info from another component
 interface ItemProps {
@@ -18,6 +19,10 @@ interface ItemProps {
   price: number;
   photoFile: string;
 }
+
+const deleteVacation = (key: number) => {
+  axios.delete(`http://localhost:8080/api/v1/vacation/vacations/delete/${key}`);
+};
 
 export default function BasicCard(props: ItemProps) {
   return (
