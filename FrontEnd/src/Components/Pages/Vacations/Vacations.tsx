@@ -6,6 +6,8 @@ import { vacation } from "../../../Redux/VacationStore";
 import axios from "axios";
 import { allVacationsAction } from "../../../Redux/VacationReducer";
 import Pagination from "@mui/material/Pagination";
+import moment from "moment";
+import { sortBy } from "lodash";
 
 function Vacations(): JSX.Element {
   // re render the page after get data
@@ -37,19 +39,24 @@ function Vacations(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // sort the vacations by date
+  const vacations = vacation.getState().vacations.vacations;
+  const sortedVacations = sortBy(
+    vacations,
+    (vacation: { vacationStart: any }) => {
+      return moment(vacation.vacationStart, "DD/MM/YYYY");
+    }
+  );
+
   return (
     <div className="Vacations">
       {/* add new vacation */}
       <AddVacationModal fetchVacations={fetchVacations} />
       {/* get all vacations from redux and display all the vacations*/}
       <div className="vacationCards">
-        {vacation
-          .getState()
-          .vacations.vacations.slice(
-            (page - 1) * itemsPerPage,
-            page * itemsPerPage
-          )
-          .map((item) => (
+        {sortedVacations
+          .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+          .map((item: any) => (
             <Card
               key={item["vacationDestiny"]}
               vacationDestiny={item["vacationDestiny"]}
