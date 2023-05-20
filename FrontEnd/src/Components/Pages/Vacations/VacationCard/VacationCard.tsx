@@ -6,6 +6,8 @@ import IconButton from "@mui/joy/IconButton";
 import Typography from "@mui/joy/Typography";
 import { Favorite } from "@mui/icons-material";
 import "./VacationCard.css";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
 
 // props for getting info from another component
 interface ItemProps {
@@ -36,6 +38,14 @@ export default function BasicCard(props: ItemProps) {
         },
       }}
     >
+      <div style={{ display: "flex" }}>
+        <Button color="danger" sx={{ width: "3px" }}>
+          <DeleteForeverIcon />
+        </Button>
+        <Button sx={{ width: "3px", marginLeft: "6px" }}>
+          <EditIcon />
+        </Button>
+      </div>
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
         {props.vacationDestiny}
       </Typography>
