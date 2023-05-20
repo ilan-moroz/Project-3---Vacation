@@ -41,6 +41,16 @@ vacationRouter.post(
   }
 );
 
+//delete song by id
+vacationRouter.delete(
+  "/delete/:id",
+  async (request: Request, response: Response, next: NextFunction) => {
+    const id = +request.params.id;
+    logic.deleteVacation(id);
+    response.status(204).json();
+  }
+);
+
 // TEST ROUTE
 vacationRouter.get(
   "/",

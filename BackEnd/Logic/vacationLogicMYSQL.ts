@@ -15,7 +15,14 @@ const getAllVacations = async () => {
   return await dalMySQL.execute(SQLcommand);
 };
 
+const deleteVacation = (id: number) => {
+  const SQLcommand = `DELETE FROM vacation.Vacations WHERE vacationKey=${id}`;
+  dalMySQL.execute(SQLcommand);
+  return true;
+};
+
 export default {
   addVacation,
   getAllVacations,
+  deleteVacation,
 };
