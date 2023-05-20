@@ -31,7 +31,7 @@ function Vacations(): JSX.Element {
       });
   };
 
-  //if state is get fetch all from database and save in redux
+  //if vacations is empty get all vacations from database and save in redux
   useEffect(() => {
     if (vacation.getState().vacations.vacations.length < 1) {
       fetchVacations();
