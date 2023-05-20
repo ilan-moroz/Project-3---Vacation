@@ -139,6 +139,8 @@ export default function AddVacationModal({
               helperText={errors.destination && "Destination is required"}
             />
             <TextField
+              multiline
+              rows={3}
               fullWidth
               autoFocus
               id="description"
