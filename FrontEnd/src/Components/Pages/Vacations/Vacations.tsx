@@ -14,6 +14,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
+import { Vacation } from "../../../Model/Vacation";
 
 function Vacations(): JSX.Element {
   // re render the page after get data
@@ -50,12 +51,9 @@ function Vacations(): JSX.Element {
 
   // sort the vacations by date
   const vacations = vacation.getState().vacations.vacations;
-  const sortedVacations = sortBy(
-    vacations,
-    (vacation: { vacationStart: any }) => {
-      return moment(vacation.vacationStart, "DD/MM/YYYY");
-    }
-  );
+  const sortedVacations = sortBy(vacations, (vacation: Vacation) => {
+    return moment(vacation.vacationStart, "DD/MM/YYYY");
+  });
 
   // make sure only one checkbox is checked
   const [selected, setSelected] = useState("");
@@ -69,7 +67,7 @@ function Vacations(): JSX.Element {
             icon={<FavoriteBorder />}
             checkedIcon={<Favorite />}
             checked={selected === "follow"}
-            onChange={() => setSelected("follow")}
+            onChange={() => setSelected(selected === "follow" ? "" : "follow")}
           />
         }
         label="Vacations you follow"
@@ -80,7 +78,9 @@ function Vacations(): JSX.Element {
             icon={<AccessTimeIcon />}
             checkedIcon={<AccessTimeFilledIcon />}
             checked={selected === "notStarted"}
-            onChange={() => setSelected("notStarted")}
+            onChange={() =>
+              setSelected(selected === "notStarted" ? "" : "notStarted")
+            }
           />
         }
         label="Vacations that didn't start"
@@ -91,7 +91,7 @@ function Vacations(): JSX.Element {
             icon={<PlayCircleOutlineIcon />}
             checkedIcon={<PlayCircleFilledIcon />}
             checked={selected === "active"}
-            onChange={() => setSelected("active")}
+            onChange={() => setSelected(selected === "active" ? "" : "active")}
           />
         }
         label="Vacations that are active now"
