@@ -13,9 +13,12 @@ import { newVacationAction } from "../../../../Redux/VacationReducer";
 import { useState } from "react";
 
 // saves new vacation in the database and redux
-const addNewVacation = (newVacation: Vacation, fetchVacations: () => void) => {
+const addNewVacation = async (
+  newVacation: Vacation,
+  fetchVacations: () => void
+) => {
   vacation.dispatch(newVacationAction(newVacation));
-  axios
+  await axios
     .post(
       "http://localhost:8080/api/v1/vacation/vacations/newVacation",
       newVacation
