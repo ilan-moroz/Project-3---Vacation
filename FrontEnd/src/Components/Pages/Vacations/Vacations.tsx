@@ -51,12 +51,30 @@ function Vacations(): JSX.Element {
 
   // sort the vacations by date
   const vacations = vacation.getState().vacations.vacations;
-  const sortedVacations = sortBy(vacations, (vacation: Vacation) => {
+  let sortedVacations = sortBy(vacations, (vacation: Vacation) => {
     return moment(vacation.vacationStart, "DD/MM/YYYY");
   });
 
   // make sure only one checkbox is checked
   const [selected, setSelected] = useState("");
+
+  // switch for the checkboxes
+  switch (selected) {
+    case "follow":
+      console.log("not working yet");
+      break;
+    case "notStarted":
+      sortedVacations = sortedVacations.filter((vacation) => {
+        // Parsing vacationStart from string to moment object
+        const vacationStartDate = moment(vacation.vacationStart, "DD/MM/YYYY");
+        // Comparing it to the current date
+        return vacationStartDate.isAfter(moment());
+      });
+      break;
+    case "active":
+      console.log("active");
+      break;
+  }
 
   return (
     <div className="Vacations">
