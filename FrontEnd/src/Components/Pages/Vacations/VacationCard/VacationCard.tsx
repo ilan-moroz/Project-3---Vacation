@@ -11,19 +11,35 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Vacation } from "../../../../Model/Vacation";
 import axios from "axios";
 
-const deleteVacation = async (destiny: string) => {
+const deleteVacation = async (destiny: string, fetchVacations: () => void) => {
   // get the vacation key
   const key = await axios.get(
     `http://localhost:8080/api/v1/vacation/vacations/getVacationKey/${destiny}`
   );
   // delete the vacation
-  axios.delete(
-    `http://localhost:8080/api/v1/vacation/vacations/delete/${key.data[0].vacationKey}`
-  );
+  axios
+    .delete(
+      `http://localhost:8080/api/v1/vacation/vacations/delete/${key.data[0].vacationKey}`
+    )
+    // after the delete operation fetch the vacations and refresh the page
+    .then(() => {
+      fetchVacations();
+    });
 };
 
+// props to get the function from Vacations
+type AddVacationModalProps = {
+  fetchVacations: () => void;
+};
+
+// combine both props into 1
+type BasicCardProps = Vacation & AddVacationModalProps;
+
 // props for getting info from another component
-export default function BasicCard(props: Vacation) {
+export default function BasicCard({
+  fetchVacations,
+  ...props
+}: BasicCardProps) {
   return (
     <Card
       className="Card"
@@ -46,7 +62,7 @@ export default function BasicCard(props: Vacation) {
         <Button
           color="danger"
           sx={{ width: "3px" }}
-          onClick={() => deleteVacation(props.vacationDestiny)}
+          onClick={() => deleteVacation(props.vacationDestiny, fetchVacations)}
         >
           <DeleteForeverIcon />
         </Button>

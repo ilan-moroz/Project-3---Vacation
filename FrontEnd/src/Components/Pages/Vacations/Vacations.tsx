@@ -58,6 +58,7 @@ function Vacations(): JSX.Element {
           .slice((page - 1) * itemsPerPage, page * itemsPerPage)
           .map((item: any) => (
             <Card
+              fetchVacations={fetchVacations}
               key={item["vacationDestiny"]}
               vacationDestiny={item["vacationDestiny"]}
               vacationDesc={item["vacationDesc"]}
