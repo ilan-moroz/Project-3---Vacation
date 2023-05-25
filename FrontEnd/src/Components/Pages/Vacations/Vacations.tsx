@@ -34,6 +34,9 @@ function Vacations(): JSX.Element {
       .then((response) => {
         vacation.dispatch(allVacationsAction(response.data));
         setRefresh(!refresh);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
       });
   };
 
