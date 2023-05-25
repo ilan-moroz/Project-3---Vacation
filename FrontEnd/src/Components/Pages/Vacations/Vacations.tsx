@@ -9,6 +9,11 @@ import Pagination from "@mui/material/Pagination";
 import moment from "moment";
 import { sortBy } from "lodash";
 import { Checkbox, FormControlLabel } from "@mui/material";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 
 function Vacations(): JSX.Element {
   // re render the page after get data
@@ -52,13 +57,28 @@ function Vacations(): JSX.Element {
   return (
     <div className="Vacations">
       {/* Checkboxes for user filter */}
-      <FormControlLabel control={<Checkbox />} label="Vacations you follow" />
       <FormControlLabel
-        control={<Checkbox />}
+        control={
+          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+        }
+        label="Vacations you follow"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            icon={<AccessTimeIcon />}
+            checkedIcon={<AccessTimeFilledIcon />}
+          />
+        }
         label="Vacations that didn't start"
       />
       <FormControlLabel
-        control={<Checkbox />}
+        control={
+          <Checkbox
+            icon={<PlayCircleOutlineIcon />}
+            checkedIcon={<PlayCircleFilledIcon />}
+          />
+        }
         label="Vacations that are active now"
       />
       {/* add new vacation */}
