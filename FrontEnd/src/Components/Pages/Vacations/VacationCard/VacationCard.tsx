@@ -16,7 +16,7 @@ const deleteVacation = async (destiny: string, fetchVacations: () => void) => {
   const key = await axios.get(
     `http://localhost:8080/api/v1/vacation/vacations/getVacationKey/${destiny}`
   );
-  // delete the vacation
+  // delete the vacation from mysql and image from backend
   axios
     .delete(
       `http://localhost:8080/api/v1/vacation/vacations/delete/${key.data[0].vacationKey}`

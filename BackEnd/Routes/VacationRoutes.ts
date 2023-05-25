@@ -41,7 +41,7 @@ vacationRouter.post(
   }
 );
 
-//delete song by id
+//delete vacation by key
 vacationRouter.delete(
   "/delete/:key",
   async (request: Request, response: Response, next: NextFunction) => {
