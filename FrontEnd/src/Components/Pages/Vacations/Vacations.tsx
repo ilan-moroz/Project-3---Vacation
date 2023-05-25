@@ -8,6 +8,7 @@ import { allVacationsAction } from "../../../Redux/VacationReducer";
 import Pagination from "@mui/material/Pagination";
 import moment from "moment";
 import { sortBy } from "lodash";
+import { Checkbox, FormControlLabel } from "@mui/material";
 
 function Vacations(): JSX.Element {
   // re render the page after get data
@@ -50,6 +51,16 @@ function Vacations(): JSX.Element {
 
   return (
     <div className="Vacations">
+      {/* Checkboxes for user filter */}
+      <FormControlLabel control={<Checkbox />} label="Vacations you follow" />
+      <FormControlLabel
+        control={<Checkbox />}
+        label="Vacations that didn't start"
+      />
+      <FormControlLabel
+        control={<Checkbox />}
+        label="Vacations that are active now"
+      />
       {/* add new vacation */}
       <AddVacationModal fetchVacations={fetchVacations} />
       {/* get all vacations from redux and display all the vacations*/}
