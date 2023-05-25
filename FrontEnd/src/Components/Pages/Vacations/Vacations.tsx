@@ -54,12 +54,20 @@ function Vacations(): JSX.Element {
     }
   );
 
+  // make sure only one checkbox is checked
+  const [selected, setSelected] = useState("");
+
   return (
     <div className="Vacations">
       {/* Checkboxes for user filter */}
       <FormControlLabel
         control={
-          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+          <Checkbox
+            icon={<FavoriteBorder />}
+            checkedIcon={<Favorite />}
+            checked={selected === "follow"}
+            onChange={() => setSelected("follow")}
+          />
         }
         label="Vacations you follow"
       />
@@ -68,6 +76,8 @@ function Vacations(): JSX.Element {
           <Checkbox
             icon={<AccessTimeIcon />}
             checkedIcon={<AccessTimeFilledIcon />}
+            checked={selected === "notStarted"}
+            onChange={() => setSelected("notStarted")}
           />
         }
         label="Vacations that didn't start"
@@ -77,6 +87,8 @@ function Vacations(): JSX.Element {
           <Checkbox
             icon={<PlayCircleOutlineIcon />}
             checkedIcon={<PlayCircleFilledIcon />}
+            checked={selected === "active"}
+            onChange={() => setSelected("active")}
           />
         }
         label="Vacations that are active now"
