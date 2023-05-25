@@ -10,22 +10,14 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { Vacation } from "../../../../Model/Vacation";
 import axios from "axios";
-
-const deleteVacation = async (destiny: string, fetchVacations: () => void) => {
-  // get the vacation key
-  const key = await axios.get(
-    `http://localhost:8080/api/v1/vacation/vacations/getVacationKey/${destiny}`
-  );
-  // delete the vacation from mysql and image from backend
-  await axios
-    .delete(
-      `http://localhost:8080/api/v1/vacation/vacations/delete/${key.data[0].vacationKey}`
-    )
-    // after the delete operation fetch the vacations and refresh the page
-    .then(() => {
-      fetchVacations();
-    });
-};
+import { useState } from "react";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 
 // props to get the function from Vacations
 type AddVacationModalProps = {
@@ -40,6 +32,37 @@ export default function BasicCard({
   fetchVacations,
   ...props
 }: BasicCardProps) {
+  //for the alert if to delete the vacation
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const deleteVacation = async (
+    destiny: string,
+    fetchVacations: () => void
+  ) => {
+    // get the vacation key
+    const key = await axios.get(
+      `http://localhost:8080/api/v1/vacation/vacations/getVacationKey/${destiny}`
+    );
+    // delete the vacation from mysql and image from backend
+    await axios
+      .delete(
+        `http://localhost:8080/api/v1/vacation/vacations/delete/${key.data[0].vacationKey}`
+      )
+      // after the delete operation fetch the vacations and refresh the page
+      .then(() => {
+        handleClose();
+        fetchVacations();
+      });
+  };
+
   return (
     <Card
       className="Card"
@@ -59,11 +82,7 @@ export default function BasicCard({
       }}
     >
       <div style={{ display: "flex" }}>
-        <Button
-          color="danger"
-          sx={{ width: "3px" }}
-          onClick={() => deleteVacation(props.vacationDestiny, fetchVacations)}
-        >
+        <Button color="danger" sx={{ width: "3px" }} onClick={handleClickOpen}>
           <DeleteForeverIcon />
         </Button>
         <Button sx={{ width: "3px", marginLeft: "6px" }}>
@@ -108,6 +127,36 @@ export default function BasicCard({
           Order
         </Button>
       </Box>
+      {/* dialog for confirmation of delete */}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Are you sure u want to delete this vacation?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            If you are sure that you want to delete this vacation, click
+            "Delete."
+            <br />
+            Otherwise, click "Cancel."
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button
+            onClick={() =>
+              deleteVacation(props.vacationDestiny, fetchVacations)
+            }
+            autoFocus
+          >
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Card>
   );
 }
