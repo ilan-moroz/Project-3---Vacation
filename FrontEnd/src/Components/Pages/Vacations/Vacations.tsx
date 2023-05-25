@@ -72,7 +72,18 @@ function Vacations(): JSX.Element {
       });
       break;
     case "active":
-      console.log("active");
+      sortedVacations = sortedVacations.filter((vacation) => {
+        // Parsing vacationStart and vacationEnd from string to moment object
+        const vacationStartDate = moment(vacation.vacationStart, "DD/MM/YYYY");
+        const vacationEndDate = moment(vacation.vacationEnd, "DD/MM/YYYY");
+        // Getting current date
+        const currentDate = moment();
+        // Comparing if current date is between start and end dates
+        return (
+          currentDate.isSameOrAfter(vacationStartDate) &&
+          currentDate.isSameOrBefore(vacationEndDate)
+        );
+      });
       break;
   }
 
