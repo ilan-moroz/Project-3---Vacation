@@ -8,23 +8,21 @@ import { Favorite } from "@mui/icons-material";
 import "./VacationCard.css";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
-// import axios from "axios";
+import { Vacation } from "../../../../Model/Vacation";
+import axios from "axios";
+
+const deleteVacation = async (destiny: string) => {
+  // get the vacation key
+  const key = await axios.get(
+    `http://localhost:8080/api/v1/vacation/vacations/getVacationKey/${destiny}`
+  );
+  axios.delete(
+    `http://localhost:8080/api/v1/vacation/vacations/delete/${key.data[0].vacationKey}`
+  );
+};
 
 // props for getting info from another component
-interface ItemProps {
-  vacationDestiny: string;
-  vacationDesc: string;
-  vacationStart: string;
-  vacationEnd: string;
-  price: number;
-  photoFile: string;
-}
-
-// const deleteVacation = (key: number) => {
-//   axios.delete(`http://localhost:8080/api/v1/vacation/vacations/delete/${key}`);
-// };
-
-export default function BasicCard(props: ItemProps) {
+export default function BasicCard(props: Vacation) {
   return (
     <Card
       className="Card"
@@ -44,7 +42,11 @@ export default function BasicCard(props: ItemProps) {
       }}
     >
       <div style={{ display: "flex" }}>
-        <Button color="danger" sx={{ width: "3px" }}>
+        <Button
+          color="danger"
+          sx={{ width: "3px" }}
+          onClick={() => deleteVacation(props.vacationDestiny)}
+        >
           <DeleteForeverIcon />
         </Button>
         <Button sx={{ width: "3px", marginLeft: "6px" }}>

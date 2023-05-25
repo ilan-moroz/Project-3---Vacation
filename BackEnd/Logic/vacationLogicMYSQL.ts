@@ -21,8 +21,15 @@ const deleteVacation = (key: number) => {
   return true;
 };
 
+const getVacationKey = async (destiny: string) => {
+  const SQLcommand = `SELECT vacationKey FROM vacation.Vacations WHERE vacationDestiny = '${destiny}';`;
+  const key = await dalMySQL.execute(SQLcommand);
+  return key;
+};
+
 export default {
   addVacation,
   getAllVacations,
   deleteVacation,
+  getVacationKey,
 };

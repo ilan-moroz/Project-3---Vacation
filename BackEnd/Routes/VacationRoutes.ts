@@ -51,6 +51,15 @@ vacationRouter.delete(
   }
 );
 
+// find vacation key base on destination
+vacationRouter.get(
+  "/getVacationKey/:destiny",
+  async (request: Request, response: Response, next: NextFunction) => {
+    const destiny = request.params.destiny;
+    response.status(200).json(await logic.getVacationKey(destiny));
+  }
+);
+
 // TEST ROUTE
 vacationRouter.get(
   "/",
