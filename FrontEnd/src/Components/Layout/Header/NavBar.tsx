@@ -13,18 +13,21 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Header from "../Logo/Logo";
 import "./NavBar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState, vacation } from "../../../Redux/VacationStore";
 import { userLogoutAction } from "../../../Redux/UserReducer";
-
-const pages = ["Vacations", "Favorites", "login", "register"];
-const settings = ["Logout"];
 
 function ResponsiveAppBar() {
   // check if user or admin is logged in
   const role = useSelector((state: RootState) => state.users.role);
   console.log(role);
+
+  // conditional rendering if user is logged in or not
+  const pages = role ? ["Vacations", "Favorites"] : ["login", "register"];
+  const settings = ["Logout"];
+
+  const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -52,6 +55,7 @@ function ResponsiveAppBar() {
   const handleLogout = () => {
     vacation.dispatch(userLogoutAction());
     setAnchorElUser(null);
+    navigate("/");
   };
 
   return (
