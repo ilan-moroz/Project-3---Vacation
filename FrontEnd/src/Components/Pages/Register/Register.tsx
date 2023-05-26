@@ -94,7 +94,9 @@ export default function Register() {
           password: data.password,
           role: "user",
         };
-        vacation.dispatch(userLoginAction(newUser));
+        vacation.dispatch(
+          userLoginAction(data.firstName, data.lastName, "user")
+        );
         addNewUser(newUser);
         navigate("/vacations");
       }

@@ -71,7 +71,7 @@ export default function Login() {
         if (isAdmin) {
           vacation.dispatch(adminLoginAction(response.data)); // Dispatch admin login
         } else {
-          vacation.dispatch(userLoginAction(response.data));
+          // vacation.dispatch(userLoginAction(response.data));
           navigate("/vacations");
         }
         navigate("/vacations");

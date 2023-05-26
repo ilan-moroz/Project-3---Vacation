@@ -21,8 +21,15 @@ export interface UserAction {
 
 //which function will run when i will dispatch an action
 // set state as user if user is logged in
-export const userLoginAction = (user: User): UserAction => {
-  return { type: UserActionType.userLogin, payload: user };
+export const userLoginAction = (
+  firstName: string,
+  lastName: string,
+  role: string
+) => {
+  return {
+    type: UserActionType.userLogin,
+    payload: { firstName, lastName, role },
+  };
 };
 
 // set state as user if user is logged in
@@ -43,9 +50,14 @@ export function UserReducer(
   const newState = { ...currentState };
   switch (action.type) {
     case UserActionType.userLogin:
-      newState.currentUser = action.payload;
-      newState.role = "user";
+      newState.currentUser = {
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
+        role: action.payload.role,
+      };
+      newState.role = action.payload.role;
       break;
+
     case UserActionType.adminLogin:
       newState.currentUser = action.payload;
       newState.role = "admin";
