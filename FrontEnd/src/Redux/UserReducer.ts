@@ -3,6 +3,7 @@ import { User } from "../Model/User";
 //initial state
 export class UsersState {
   public currentUser: User | null = null;
+  public role: string | null = null;
 }
 
 //what action i will use...
@@ -23,6 +24,11 @@ export const userLoginAction = (user: User): UserAction => {
   return { type: UserActionType.userLogin, payload: user };
 };
 
+// set state as user if user is logged in
+export const adminLoginAction = (admin: User): UserAction => {
+  return { type: UserActionType.adminLogin, payload: admin };
+};
+
 //this is the reducer function
 export function UserReducer(
   currentState: UsersState = new UsersState(),
@@ -31,10 +37,12 @@ export function UserReducer(
   const newState = { ...currentState };
   switch (action.type) {
     case UserActionType.userLogin:
-      newState.currentUser = action.payload.role;
+      newState.currentUser = action.payload;
+      newState.role = "user";
       break;
     case UserActionType.adminLogin:
-      newState.currentUser = action.payload.role;
+      newState.currentUser = action.payload;
+      newState.role = "admin";
       break;
   }
   return newState;
