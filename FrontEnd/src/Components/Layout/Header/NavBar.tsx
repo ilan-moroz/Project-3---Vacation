@@ -14,21 +14,16 @@ import MenuItem from "@mui/material/MenuItem";
 import Header from "../Logo/Logo";
 import "./NavBar.css";
 import { NavLink } from "react-router-dom";
-// import { vacation } from "../../Redux/VacationStore";
-// import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../Redux/VacationStore";
 
 const pages = ["Vacations", "Favorites", "login", "register"];
 const settings = ["Profile", "Logout"];
 
 function ResponsiveAppBar() {
   // check if user or admin is logged in
-  // const [userOrAdmin, setUserOrAdmin] = useState(vacation.getState());
-
-  // vacation.subscribe(() => {
-  //   setUserOrAdmin(vacation.getState());
-  // });
-
-  // console.log(userOrAdmin.users.currentUser);
+  const role = useSelector((state: RootState) => state.users.role);
+  console.log(role);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null

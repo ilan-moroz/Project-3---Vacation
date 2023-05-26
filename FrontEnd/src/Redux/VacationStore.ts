@@ -27,4 +27,6 @@ const vacation = configureStore({
 
 let persistor = persistStore(vacation);
 
+export type RootState = ReturnType<typeof vacation.getState>;
+
 export { vacation, persistor };
