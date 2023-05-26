@@ -10,6 +10,7 @@ export class UsersState {
 export enum UserActionType {
   userLogin = "userLogin",
   adminLogin = "adminLogin",
+  userLogout = "userLogout",
 }
 
 //action data structure
@@ -29,6 +30,11 @@ export const adminLoginAction = (admin: User): UserAction => {
   return { type: UserActionType.adminLogin, payload: admin };
 };
 
+// Log out the user
+export const userLogoutAction = (): UserAction => {
+  return { type: UserActionType.userLogout };
+};
+
 //this is the reducer function
 export function UserReducer(
   currentState: UsersState = new UsersState(),
@@ -43,6 +49,10 @@ export function UserReducer(
     case UserActionType.adminLogin:
       newState.currentUser = action.payload;
       newState.role = "admin";
+      break;
+    case UserActionType.userLogout: // handle logout
+      newState.currentUser = null;
+      newState.role = null;
       break;
   }
   return newState;

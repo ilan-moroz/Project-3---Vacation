@@ -15,10 +15,11 @@ import Header from "../Logo/Logo";
 import "./NavBar.css";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../Redux/VacationStore";
+import { RootState, vacation } from "../../../Redux/VacationStore";
+import { userLogoutAction } from "../../../Redux/UserReducer";
 
 const pages = ["Vacations", "Favorites", "login", "register"];
-const settings = ["Profile", "Logout"];
+const settings = ["Logout"];
 
 function ResponsiveAppBar() {
   // check if user or admin is logged in
@@ -44,6 +45,12 @@ function ResponsiveAppBar() {
   };
 
   const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  // logout user
+  const handleLogout = () => {
+    vacation.dispatch(userLogoutAction());
     setAnchorElUser(null);
   };
 
@@ -130,7 +137,7 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleLogout}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
