@@ -21,7 +21,6 @@ import { userLogoutAction } from "../../../Redux/UserReducer";
 function ResponsiveAppBar() {
   // check if user or admin is logged in
   const role = useSelector((state: RootState) => state.users.role);
-  console.log(role);
 
   // conditional rendering if user is logged in or not
   const pages = role ? ["Vacations", "Favorites"] : ["login", "register"];
