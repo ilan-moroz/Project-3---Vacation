@@ -65,13 +65,24 @@ export default function Login() {
         "http://localhost:8080/api/v1/vacation/users/checkUser",
         { email: data.email, password: data.password }
       );
+      // get the first and last name by email
+      const firstLastName = await axios.get(
+        `http://localhost:8080/api/v1/vacation/users/getFirstLastName/${data.email}`
+      );
+      console.log(firstLastName.data);
       if (response.data) {
         const isAdmin =
           data.email === "admin@admin.admin" && data.password === "Admin";
         if (isAdmin) {
           vacation.dispatch(adminLoginAction(response.data)); // Dispatch admin login
         } else {
-          // vacation.dispatch(userLoginAction(response.data));
+          vacation.dispatch(
+            userLoginAction(
+              firstLastName.data.firstName,
+              firstLastName.data.lastName,
+              firstLastName.data.role
+            )
+          );
           navigate("/vacations");
         }
         navigate("/vacations");
@@ -172,7 +183,6 @@ export default function Login() {
                   ),
                 }}
               />
-
               <TextField
                 margin="normal"
                 fullWidth

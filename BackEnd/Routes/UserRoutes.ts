@@ -33,6 +33,20 @@ userRouter.post(
   }
 );
 
+// GET FIRST AND LAST NAME FOR LOGIN BY EMAIL
+userRouter.get(
+  "/getFirstLastName/:email",
+  async (request: Request, response: Response, next: NextFunction) => {
+    const email = request.params.email;
+    const user = await logic.getFirstLastName(email);
+    if (user) {
+      response.status(200).json(user);
+    } else {
+      response.status(404).json({ message: "User not found" });
+    }
+  }
+);
+
 // TEST ROUTE
 userRouter.get(
   "/",
