@@ -2,7 +2,7 @@ import Card from "./VacationCard/VacationCard";
 import AddVacationModal from "./addVacationModal/addVacationModal";
 import "./Vacations.css";
 import { useEffect, useState } from "react";
-import { vacation } from "../../../Redux/VacationStore";
+import { RootState, vacation } from "../../../Redux/VacationStore";
 import axios from "axios";
 import { allVacationsAction } from "../../../Redux/VacationReducer";
 import Pagination from "@mui/material/Pagination";
@@ -15,6 +15,7 @@ import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import { Vacation } from "../../../Model/Vacation";
+import { useSelector } from "react-redux";
 
 function Vacations(): JSX.Element {
   // re render the page after get data
@@ -54,6 +55,10 @@ function Vacations(): JSX.Element {
   let sortedVacations = sortBy(vacations, (vacation: Vacation) => {
     return moment(vacation.vacationStart, "DD/MM/YYYY");
   });
+
+  // check if user or admin is logged in
+  const role = useSelector((state: RootState) => state.users.role);
+  console.log(role);
 
   // make sure only one checkbox is checked
   const [selected, setSelected] = useState("");
@@ -125,8 +130,8 @@ function Vacations(): JSX.Element {
         }
         label="Vacations that are active now"
       />
-      {/* add new vacation */}
-      <AddVacationModal fetchVacations={fetchVacations} />
+      {/* add new vacation  only for admin*/}
+      {role === "admin" && <AddVacationModal fetchVacations={fetchVacations} />}
       {/* get all vacations from redux and display all the vacations*/}
       <div className="vacationCards">
         {sortedVacations

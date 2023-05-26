@@ -18,6 +18,8 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../Redux/VacationStore";
 
 // props to get the function from Vacations
 type AddVacationModalProps = {
@@ -63,6 +65,9 @@ export default function BasicCard({
       });
   };
 
+  // check if user or admin is logged in
+  const role = useSelector((state: RootState) => state.users.role);
+
   return (
     <Card
       className="Card"
@@ -81,14 +86,21 @@ export default function BasicCard({
         },
       }}
     >
-      <div style={{ display: "flex" }}>
-        <Button color="danger" sx={{ width: "3px" }} onClick={handleClickOpen}>
-          <DeleteForeverIcon />
-        </Button>
-        <Button sx={{ width: "3px", marginLeft: "6px" }}>
-          <EditIcon />
-        </Button>
-      </div>
+      {/* only for admin */}
+      {role === "admin" && (
+        <div style={{ display: "flex" }}>
+          <Button
+            color="danger"
+            sx={{ width: "3px" }}
+            onClick={handleClickOpen}
+          >
+            <DeleteForeverIcon />
+          </Button>
+          <Button sx={{ width: "3px", marginLeft: "6px" }}>
+            <EditIcon />
+          </Button>
+        </div>
+      )}
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
         {props.vacationDestiny}
       </Typography>
@@ -102,7 +114,8 @@ export default function BasicCard({
         size="sm"
         sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
       >
-        <Favorite />
+        {/* only for user */}
+        {role === "user" && <Favorite />}
       </IconButton>
       <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
         <img src={props.photoFile} loading="lazy" alt={props.photoFile} />
