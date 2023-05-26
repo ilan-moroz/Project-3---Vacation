@@ -25,7 +25,7 @@ export const userLoginAction = (
   firstName: string,
   lastName: string,
   role: string
-) => {
+): UserAction => {
   return {
     type: UserActionType.userLogin,
     payload: { firstName, lastName, role },
@@ -33,8 +33,15 @@ export const userLoginAction = (
 };
 
 // set state as user if user is logged in
-export const adminLoginAction = (admin: User): UserAction => {
-  return { type: UserActionType.adminLogin, payload: admin };
+export const adminLoginAction = (
+  firstName: string,
+  lastName: string,
+  role: string
+): UserAction => {
+  return {
+    type: UserActionType.adminLogin,
+    payload: { firstName, lastName, role },
+  };
 };
 
 // Log out the user

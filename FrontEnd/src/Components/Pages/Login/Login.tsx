@@ -74,7 +74,15 @@ export default function Login() {
         const isAdmin =
           data.email === "admin@admin.admin" && data.password === "Admin";
         if (isAdmin) {
-          vacation.dispatch(adminLoginAction(response.data)); // Dispatch admin login
+          // Dispatch admin login
+          vacation.dispatch(
+            adminLoginAction(
+              firstLastName.data.firstName,
+              firstLastName.data.lastName,
+              firstLastName.data.role
+            )
+          );
+          // Dispatch user login
         } else {
           vacation.dispatch(
             userLoginAction(
@@ -83,7 +91,6 @@ export default function Login() {
               firstLastName.data.role
             )
           );
-          navigate("/vacations");
         }
         navigate("/vacations");
         // if email or password don't exists give an error notyf
