@@ -35,6 +35,7 @@ function Copyright(props: any) {
   );
 }
 
+// theme for the login
 const theme = createTheme({
   palette: {
     mode: "dark",
