@@ -10,10 +10,10 @@ function MainRoute(): JSX.Element {
   return (
     <div className="MainRoute">
       <Routes>
+        <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/vacations" element={<Vacations />} />
-        <Route path="/" element={<Main />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
