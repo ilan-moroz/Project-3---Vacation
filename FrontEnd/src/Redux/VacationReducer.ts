@@ -9,6 +9,7 @@ export class VacationsState {
 export enum VacationActionType {
   addVacation = "addVacation",
   allVacations = "allVacations",
+  deleteVacation = "deleteVacation",
   editVacation = "editVacation",
 }
 
@@ -33,6 +34,12 @@ export const editVacationsAction = (
   return { type: VacationActionType.editVacation, payload: updatedVacations };
 };
 
+export const deleteVacationAction = (
+  vacationToDelete: Vacation
+): VacationAction => {
+  return { type: VacationActionType.deleteVacation, payload: vacationToDelete };
+};
+
 //this is the reducer function
 export function VacationReducer(
   currentState: VacationsState = new VacationsState(),
@@ -51,6 +58,12 @@ export function VacationReducer(
         (item) => item.vacationDestiny !== action.payload.vacationDestiny
       );
       newState.vacations = [...newState.vacations, action.payload];
+      break;
+    case VacationActionType.deleteVacation:
+      newState.vacations = newState.vacations.filter(
+        (vacation) =>
+          vacation.vacationDestiny !== action.payload.vacationDestiny
+      );
       break;
   }
   return newState;
