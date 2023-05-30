@@ -51,7 +51,9 @@ function Vacations(): JSX.Element {
   }, []);
 
   // sort the vacations by date
-  const vacations = vacation.getState().vacations.vacations;
+  const vacations = useSelector(
+    (state: RootState) => state.vacations.vacations
+  );
   let sortedVacations = sortBy(vacations, (vacation: Vacation) => {
     return moment(vacation.vacationStart, "DD/MM/YYYY");
   });
@@ -138,7 +140,6 @@ function Vacations(): JSX.Element {
           .slice((page - 1) * itemsPerPage, page * itemsPerPage)
           .map((item: any) => (
             <Card
-              fetchVacations={fetchVacations}
               key={item["vacationDestiny"]}
               vacationDestiny={item["vacationDestiny"]}
               vacationDesc={item["vacationDesc"]}

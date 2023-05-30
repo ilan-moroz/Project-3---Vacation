@@ -19,21 +19,11 @@ import {
   DialogTitle,
 } from "@mui/material";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../Redux/VacationStore";
-
-// props to get the function from Vacations
-type AddVacationModalProps = {
-  fetchVacations: () => void;
-};
-
-// combine both props into 1
-type BasicCardProps = Vacation & AddVacationModalProps;
+import { RootState, vacation } from "../../../../Redux/VacationStore";
+import { deleteVacationAction } from "../../../../Redux/VacationReducer";
 
 // props for getting info from another component
-export default function BasicCard({
-  fetchVacations,
-  ...props
-}: BasicCardProps) {
+export default function BasicCard(props: Vacation) {
   //for the alert if to delete the vacation
   const [open, setOpen] = useState(false);
 
@@ -45,10 +35,7 @@ export default function BasicCard({
     setOpen(false);
   };
 
-  const deleteVacation = async (
-    destiny: string,
-    fetchVacations: () => void
-  ) => {
+  const deleteVacation = async (destiny: string) => {
     // get the vacation key
     const key = await axios.get(
       `http://localhost:8080/api/v1/vacation/vacations/getVacationKey/${destiny}`
@@ -61,7 +48,8 @@ export default function BasicCard({
       // after the delete operation fetch the vacations and refresh the page
       .then(() => {
         handleClose();
-        fetchVacations();
+        // dispatch the delete action to Redux store
+        vacation.dispatch(deleteVacationAction(destiny));
       });
   };
 
@@ -161,9 +149,7 @@ export default function BasicCard({
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button
-            onClick={() =>
-              deleteVacation(props.vacationDestiny, fetchVacations)
-            }
+            onClick={() => deleteVacation(props.vacationDestiny)}
             autoFocus
           >
             Delete
