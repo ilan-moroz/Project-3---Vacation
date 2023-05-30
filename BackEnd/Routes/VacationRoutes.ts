@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import logic from "../Logic/vacationLogicMYSQL";
 import { UploadedFile } from "express-fileupload";
+import fs from "fs";
 
 const vacationRouter = express.Router();
 
@@ -46,6 +47,22 @@ vacationRouter.post(
       if (err) return response.status(500).send(err);
       console.log("File saved at:", uploadPath); // Log the file path
       response.send("File uploaded!");
+    });
+  }
+);
+
+// delete image when deleting a vacation
+vacationRouter.delete(
+  "/deleteImage/:image",
+  async (request: Request, response: Response, next: NextFunction) => {
+    const imageName = request.params.image;
+    fs.unlink(`./vacation_photos/${imageName}`, (err: any) => {
+      if (err) {
+        console.error("Error when deleting the image: ", err);
+        response.status(500).send("There was an error deleting the image");
+      } else {
+        response.send("Image successfully deleted");
+      }
     });
   }
 );

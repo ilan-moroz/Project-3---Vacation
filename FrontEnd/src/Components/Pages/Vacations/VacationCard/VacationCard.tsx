@@ -35,7 +35,7 @@ export default function BasicCard(props: Vacation) {
     setOpen(false);
   };
 
-  const deleteVacation = async (destiny: string) => {
+  const deleteVacation = async (destiny: string, image: string) => {
     // get the vacation key
     const key = await axios.get(
       `http://localhost:8080/api/v1/vacation/vacations/getVacationKey/${destiny}`
@@ -50,6 +50,21 @@ export default function BasicCard(props: Vacation) {
         handleClose();
         // dispatch the delete action to Redux store
         vacation.dispatch(deleteVacationAction(destiny));
+        // delete the image from the backend
+        const imageName = new URL(image).pathname.split("/").pop();
+        axios
+          .delete(
+            `http://localhost:8080/api/v1/vacation/vacations/deleteImage/${imageName}`
+          )
+
+          .then(() => {
+            console.log(
+              `Image for vacation ${image} was successfully deleted.`
+            );
+          })
+          .catch((error) => {
+            console.error("There was an error deleting the image:", error);
+          });
       });
   };
 
@@ -149,7 +164,9 @@ export default function BasicCard(props: Vacation) {
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button
-            onClick={() => deleteVacation(props.vacationDestiny)}
+            onClick={() =>
+              deleteVacation(props.vacationDestiny, props.photoFile)
+            }
             autoFocus
           >
             Delete
