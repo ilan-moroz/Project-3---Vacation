@@ -124,53 +124,44 @@ export default function AddVacationModal() {
         open={open}
         onClose={handleClose}
         sx={{
-          backgroundColor: "rgba(0,0,0,0.4)",
-        }}
-        PaperProps={{
-          sx: {
-            backgroundColor: "rgba(255,255,255,0.9)",
-            color: "black",
-          },
+          backgroundColor: "rgba(0,0,0,0.5)",
         }}
       >
         <DialogTitle>Add New Vacation</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{ color: "black" }}>
+          <DialogContentText>
             To add a vacation to this website, please fill up all the fields
             below.
           </DialogContentText>
-          <br />
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
-              margin="normal"
+              margin="dense"
               fullWidth
-              autoFocus
-              placeholder="Destination "
+              label="Destination "
               id="destination"
               {...register("destination", { required: true })}
               error={Boolean(errors.destination)}
               helperText={errors.destination && "Destination is required"}
             />
             <TextField
+              margin="dense"
               multiline
               rows={3}
               fullWidth
-              autoFocus
               id="description"
-              placeholder="Description"
+              label="Description"
               {...register("description", { required: true })}
               error={Boolean(errors.description)}
               helperText={errors.description && "Description is required"}
             />
-            <br />
             <label htmlFor="startDate" className="label-large">
               Start date:
             </label>
             <TextField
+              margin="dense"
               type="date"
               id="startDate"
               fullWidth
-              autoFocus
               {...register("startDate", { required: true })}
               error={Boolean(errors.startDate)}
               helperText={errors.startDate && "Start date is required"}
@@ -178,16 +169,14 @@ export default function AddVacationModal() {
                 min: new Date().toISOString().slice(0, 10),
               }}
             />
-            <br />
-            <br />
             <label htmlFor="finishDate" className="label-large">
               Finish date:
             </label>
             <TextField
+              margin="dense"
               type="date"
               id="finishDate"
               fullWidth
-              autoFocus
               {...register("finishDate", {
                 required: true,
                 validate: {
@@ -207,14 +196,13 @@ export default function AddVacationModal() {
                 min: new Date().toISOString().slice(0, 10),
               }}
             />
-            <br />
-            <br />
             <TextField
+              margin="dense"
               placeholder="Price"
+              label="Price"
               type="number"
               id="price"
               fullWidth
-              autoFocus
               {...register("price", { required: true, min: 0, max: 10000 })}
               error={Boolean(errors.price)}
               helperText={
@@ -227,16 +215,14 @@ export default function AddVacationModal() {
                 ),
               }}
             />
-            <br />
-            <br />
             <label htmlFor="image" className="label-large">
               Image upload
             </label>
             <TextField
+              margin="dense"
               type="file"
               id="image"
               fullWidth
-              autoFocus
               {...register("image", { required: true })}
               error={Boolean(errors.image)}
               helperText={errors.image && "Image is required"}

@@ -7,7 +7,6 @@ import Typography from "@mui/joy/Typography";
 import { Favorite } from "@mui/icons-material";
 import "./VacationCard.css";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import EditIcon from "@mui/icons-material/Edit";
 import { Vacation } from "../../../../Model/Vacation";
 import axios from "axios";
 import { useState } from "react";
@@ -21,6 +20,7 @@ import {
 import { useSelector } from "react-redux";
 import { RootState, vacation } from "../../../../Redux/VacationStore";
 import { deleteVacationAction } from "../../../../Redux/VacationReducer";
+import EditVacation from "../EditVacation/EditVacation";
 
 // props for getting info from another component
 export default function BasicCard(props: Vacation) {
@@ -99,9 +99,7 @@ export default function BasicCard(props: Vacation) {
           >
             <DeleteForeverIcon />
           </Button>
-          <Button sx={{ width: "3px", marginLeft: "6px" }}>
-            <EditIcon />
-          </Button>
+          <EditVacation vacation={props} />
         </div>
       )}
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
