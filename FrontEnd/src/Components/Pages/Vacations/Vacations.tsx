@@ -18,8 +18,6 @@ import { Vacation } from "../../../Model/Vacation";
 import { useSelector } from "react-redux";
 
 function Vacations(): JSX.Element {
-  // re render the page after get data
-  const [refresh, setRefresh] = useState(false);
   // for Pagination
   const [page, setPage] = useState(1);
   const itemsPerPage = 8;
@@ -35,7 +33,6 @@ function Vacations(): JSX.Element {
       .get("http://localhost:8080/api/v1/vacation/vacations/allVacations")
       .then((response) => {
         vacation.dispatch(allVacationsAction(response.data));
-        setRefresh(!refresh);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
@@ -50,10 +47,11 @@ function Vacations(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // sort the vacations by date
+  // fetch vacations from redux store
   const vacations = useSelector(
     (state: RootState) => state.vacations.vacations
   );
+  // sort the vacations by date
   let sortedVacations = sortBy(vacations, (vacation: Vacation) => {
     return moment(vacation.vacationStart, "DD/MM/YYYY");
   });
