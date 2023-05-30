@@ -21,6 +21,14 @@ const addNewVacation = async (newVacation: Vacation) => {
   );
 };
 
+// check if destiny exist in database if it exists cancel the upload
+const checkDestiny = async (destiny: string): Promise<boolean> => {
+  const response = await axios.get(
+    `http://localhost:8080/api/v1/vacation/vacations/checkDestination/${destiny}`
+  );
+  return response.data;
+};
+
 // save the image in the backend
 const uploadImage = (newImage: any) => {
   console.log(newImage);
@@ -58,7 +66,7 @@ export default function AddVacationModal() {
     setOpen(false);
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     const startDate = new Date(data.startDate);
     const finishDate = new Date(data.finishDate);
     try {
@@ -70,9 +78,15 @@ export default function AddVacationModal() {
         price: data.price,
         photoFile: data.image[0].name,
       };
-      addNewVacation(newVacation);
-      uploadImage(data.image[0]);
-      handleClose();
+      // check if destiny exist in database if it exists cancel the upload and notyf
+      const destinyExists = await checkDestiny(data.destination);
+      if (destinyExists) {
+        alert("You can't add two vacations with similar destinations");
+      } else {
+        addNewVacation(newVacation);
+        uploadImage(data.image[0]);
+        handleClose();
+      }
     } catch (error) {
       console.error(error);
     }

@@ -14,6 +14,15 @@ vacationRouter.post(
   }
 );
 
+// check if destination exists in database
+vacationRouter.get(
+  "/checkDestination/:destiny",
+  async (request: Request, response: Response, next: NextFunction) => {
+    const destiny = request.params.destiny;
+    response.status(200).json(await logic.checkDestiny(destiny));
+  }
+);
+
 // GET ALL VACATIONS
 vacationRouter.get(
   "/allVacations",
