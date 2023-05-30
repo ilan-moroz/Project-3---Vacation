@@ -131,7 +131,7 @@ function Vacations(): JSX.Element {
         label="Vacations that are active now"
       />
       {/* add new vacation  only for admin*/}
-      {role === "admin" && <AddVacationModal fetchVacations={fetchVacations} />}
+      {role === "admin" && <AddVacationModal />}
       {/* get all vacations from redux and display all the vacations*/}
       <div className="vacationCards">
         {sortedVacations
