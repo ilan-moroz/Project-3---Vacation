@@ -38,7 +38,9 @@ export default function BasicCard(props: Vacation) {
       {/* only for admin */}
       {role === "admin" && (
         <div style={{ display: "flex" }}>
+          {/* delete vacation comp and pass the vacation as props */}
           <DeleteVacation vacationToDelete={props} />
+          {/* edit vacation comp and pass the vacation as props */}
           <EditVacation vacation={props} />
         </div>
       )}
