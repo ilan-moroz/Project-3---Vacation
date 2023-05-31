@@ -59,7 +59,7 @@ function VacationsReport(): JSX.Element {
   return (
     <div className="VacationsReport">
       <div className="VacationsReportContainer">
-        <ResponsiveContainer width="50%" height="30%">
+        <ResponsiveContainer width="50%" height="40%" className="chart">
           <BarChart
             width={500}
             height={300}
