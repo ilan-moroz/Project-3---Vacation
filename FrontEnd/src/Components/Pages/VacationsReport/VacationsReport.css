@@ -1,3 +1,12 @@
 .VacationsReport {
-	
+  background-image: url("../../../assets/images/travel.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+
+.VacationsReportContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
