@@ -5,6 +5,7 @@ import Register from "../../Components/Pages/Register/Register";
 import Main from "../../Components/Layout/Main/Main";
 import Page404 from "../../Components/Pages/Page404/Page404";
 import Vacations from "../../Components/Pages/Vacations/Vacations";
+import VacationsReport from "../../Components/Pages/VacationsReport/VacationsReport";
 
 function MainRoute(): JSX.Element {
   return (
@@ -14,6 +15,7 @@ function MainRoute(): JSX.Element {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/vacations" element={<Vacations />} />
+        <Route path="/vacationsreports" element={<VacationsReport />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </div>

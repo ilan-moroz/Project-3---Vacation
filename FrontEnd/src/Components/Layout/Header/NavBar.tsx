@@ -28,7 +28,9 @@ function ResponsiveAppBar() {
   // console.log(user);
 
   // conditional rendering if user is logged in or not
-  const pages = role ? ["Vacations", "Favorites"] : ["login", "register"];
+  const pages = role
+    ? ["Vacations", "Favorites", "Vacations Reports"]
+    : ["login", "register"];
   const settings = ["Logout"];
 
   const navigate = useNavigate();
@@ -111,7 +113,10 @@ function ResponsiveAppBar() {
             }}
           >
             {pages.map((page) => (
-              <NavLink key={page} to={`/${page.toLowerCase()}`}>
+              <NavLink
+                key={page}
+                to={`/${page.replace(/\s/g, "").toLowerCase()}`}
+              >
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
