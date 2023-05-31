@@ -3,10 +3,12 @@ import { Vacation } from "../Models/Vacation";
 
 // add new vacation
 const addVacation = async (newVacation: Vacation) => {
+  // prevent crush when using single quotes
+  const VacationDesc = newVacation.vacationDesc.replace(/'/g, "''");
   const SQLcommand = `
       INSERT INTO vacation.Vacations 
       (vacationDestiny, vacationDesc, vacationStart, vacationEnd, price, photoFile)
-      VALUES ('${newVacation.vacationDestiny}', '${newVacation.vacationDesc}', 
+      VALUES ('${newVacation.vacationDestiny}', '${VacationDesc}', 
       '${newVacation.vacationStart}', '${newVacation.vacationEnd}', '${newVacation.price}', '${newVacation.photoFile}');`;
   dalMySQL.execute(SQLcommand);
 };
