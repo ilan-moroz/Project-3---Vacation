@@ -15,7 +15,7 @@ function MainRoute(): JSX.Element {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/vacations" element={<Vacations />} />
-        <Route path="/vacationsreports" element={<VacationsReport />} />
+        <Route path="/vacationreports" element={<VacationsReport />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
