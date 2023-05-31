@@ -65,10 +65,16 @@ const updateVacation = async (
     updatedValues.push(`vacationDesc = '${updatedVacation.vacationDesc}'`);
   }
   if (updatedVacation.vacationStart !== currentVacation.vacationStart) {
-    updatedValues.push(`vacationStart = '${updatedVacation.vacationStart}'`);
+    let dateStart = new Date(updatedVacation.vacationStart);
+    updatedValues.push(
+      `vacationStart = '${dateStart.toLocaleDateString("en-GB")}'`
+    );
   }
   if (updatedVacation.vacationEnd !== currentVacation.vacationEnd) {
-    updatedValues.push(`vacationEnd = '${updatedVacation.vacationEnd}'`);
+    let dateEnd = new Date(updatedVacation.vacationEnd);
+    updatedValues.push(
+      `vacationEnd = '${dateEnd.toLocaleDateString("en-GB")}'`
+    );
   }
   if (updatedVacation.price !== currentVacation.price) {
     updatedValues.push(`price = '${updatedVacation.price}'`);
