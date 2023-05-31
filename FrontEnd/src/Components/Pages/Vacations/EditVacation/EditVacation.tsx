@@ -177,9 +177,6 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
                 errors.vacationEnd &&
                 "Finish date is required and must be later than start date"
               }
-              inputProps={{
-                min: new Date().toISOString().slice(0, 10),
-              }}
             />
             <TextField
               margin="dense"
