@@ -153,9 +153,6 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
               {...register("vacationStart", { required: true })}
               error={Boolean(errors.vacationStart)}
               helperText={errors.vacationStart && "Start date is required"}
-              inputProps={{
-                min: new Date().toISOString().slice(0, 10),
-              }}
             />
             <label htmlFor="finishDate" className="label-large">
               Finish date:
