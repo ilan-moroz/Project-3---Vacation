@@ -79,6 +79,9 @@ const updateVacation = async (
   if (updatedVacation.price !== currentVacation.price) {
     updatedValues.push(`price = '${updatedVacation.price}'`);
   }
+  console.log(updatedVacation.photoFile.split("/").pop());
+  console.log(currentVacation.photoFile);
+
   if (updatedVacation.photoFile !== currentVacation.photoFile) {
     updatedValues.push(`photoFile = '${updatedVacation.photoFile}'`);
   }
