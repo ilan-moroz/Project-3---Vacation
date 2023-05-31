@@ -25,10 +25,13 @@ function ResponsiveAppBar() {
   const user = useSelector((state: RootState) => state.users.currentUser);
 
   // conditional rendering if user is logged in or not
-  const pages = user
-    ? ["Vacations", "Favorites", "Vacations Reports"]
-    : ["login", "register"];
+  const pages = user ? ["Vacations", "Favorites"] : ["login", "register"];
   const settings = ["Logout"];
+
+  //Vacation Reports only for admin
+  if (role === "admin") {
+    pages.push("Vacation Reports");
+  }
 
   const navigate = useNavigate();
 
