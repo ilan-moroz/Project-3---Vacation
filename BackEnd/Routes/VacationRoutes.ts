@@ -32,6 +32,15 @@ vacationRouter.get(
   }
 );
 
+// get single VACATION
+vacationRouter.get(
+  "/singleVacation/:vacationKey",
+  async (request: Request, response: Response, next: NextFunction) => {
+    const vacationKey = +request.params.vacationKey;
+    response.status(200).json(await logic.getSingleVacation(vacationKey));
+  }
+);
+
 // UPLOAD IMAGE
 vacationRouter.post(
   "/uploadImage",
@@ -83,6 +92,24 @@ vacationRouter.get(
   async (request: Request, response: Response, next: NextFunction) => {
     const destiny = request.params.destiny;
     response.status(200).json(await logic.getVacationKey(destiny));
+  }
+);
+
+// edit vacation
+vacationRouter.put(
+  "/editVacation/:vacationKey",
+  async (request: Request, response: Response, next: NextFunction) => {
+    const vacationKey = +request.params.vacationKey;
+    const updateVacation = request.body;
+    try {
+      const updatedVacation = await logic.updateVacation(
+        vacationKey,
+        updateVacation
+      );
+      response.status(200).json(updatedVacation);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 

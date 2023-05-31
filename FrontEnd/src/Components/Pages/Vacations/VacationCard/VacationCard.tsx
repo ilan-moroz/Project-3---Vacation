@@ -41,7 +41,7 @@ export default function BasicCard(props: Vacation) {
           {/* delete vacation comp and pass the vacation as props */}
           <DeleteVacation vacationToDelete={props} />
           {/* edit vacation comp and pass the vacation as props */}
-          <EditVacation vacation={props} />
+          <EditVacation editVacation={props} />
         </div>
       )}
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>

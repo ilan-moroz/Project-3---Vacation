@@ -5,6 +5,7 @@ import MaterialButton from "@mui/material/Button";
 import { Vacation } from "../../../../Model/Vacation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { vacation } from "../../../../Redux/VacationStore";
 import {
   Dialog,
   DialogContent,
@@ -13,16 +14,18 @@ import {
   InputAdornment,
   TextField,
 } from "@mui/material";
+import axios from "axios";
+import { editVacationsAction } from "../../../../Redux/VacationReducer";
 
 // props to get vacation information from VacationCard component
 type EditVacationProps = {
-  vacation: Vacation;
+  editVacation: Vacation;
 };
 
-function EditVacation({ vacation }: EditVacationProps): JSX.Element {
+function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
   const [open, setOpen] = useState(false);
   // set the image
-  const [image, setImage] = useState(vacation.photoFile);
+  const [image, setImage] = useState(editVacation.photoFile);
   // handle the image change
   function handleChange(event: any) {
     const file = event.target.files[0];
@@ -30,6 +33,39 @@ function EditVacation({ vacation }: EditVacationProps): JSX.Element {
       setImage(URL.createObjectURL(file));
     }
   }
+
+  const updateVacation = async (updatedVacation: Vacation) => {
+    // get the vacation key
+    const key = await axios.get(
+      `http://localhost:8080/api/v1/vacation/vacations/getVacationKey/${updatedVacation.vacationDestiny}`
+    );
+    // edit the vacation
+    await axios
+      .put(
+        `http://localhost:8080/api/v1/vacation/vacations/editVacation/${key.data[0].vacationKey}`,
+        updatedVacation
+      )
+      // after the delete operation fetch the vacations and refresh the page
+      .then(() => {
+        handleClose();
+        // dispatch the delete action to Redux store
+        vacation.dispatch(editVacationsAction(updatedVacation));
+        //   // delete the image from the backend
+        //   const imageName = new URL(image).pathname.split("/").pop();
+        //   axios
+        //     .delete(
+        //       `http://localhost:8080/api/v1/vacation/vacations/deleteImage/${imageName}`
+        //     )
+        //     .then(() => {
+        //       console.log(
+        //         `Image for vacation ${image} was successfully deleted.`
+        //       );
+        //     })
+        //     .catch((error) => {
+        //       console.error("There was an error deleting the image:", error);
+        //     });
+      });
+  };
 
   // converts a date from the format dd/mm/yyyy to yyyy-mm-dd.
   function transformDate(dateStr: string) {
@@ -45,9 +81,9 @@ function EditVacation({ vacation }: EditVacationProps): JSX.Element {
     reset,
   } = useForm<Vacation>({
     defaultValues: {
-      ...vacation,
-      vacationStart: transformDate(vacation.vacationStart),
-      vacationEnd: transformDate(vacation.vacationEnd),
+      ...editVacation,
+      vacationStart: transformDate(editVacation.vacationStart),
+      vacationEnd: transformDate(editVacation.vacationEnd),
     },
   });
 
@@ -62,6 +98,7 @@ function EditVacation({ vacation }: EditVacationProps): JSX.Element {
 
   const onSubmit = () => {
     console.log(vacation);
+    updateVacation(getValues());
   };
   return (
     <div className="EditVacation">
