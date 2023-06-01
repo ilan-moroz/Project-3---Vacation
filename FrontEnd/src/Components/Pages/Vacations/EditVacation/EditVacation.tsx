@@ -67,10 +67,16 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
       });
   };
 
-  // converts a date from the format dd/mm/yyyy to yyyy-mm-dd.
+  // converts a date from the format dd/mm/yyyy to yyyy-mm-dd for edit.
   function transformDate(dateStr: string) {
     const [day, month, year] = dateStr.split("/");
     return `${year}-${month}-${day}`;
+  }
+
+  //  converts a date from the format yyyy-mm-dd to dd/mm/yyyy after edit.
+  function reverseTransformDate(dateStr: string) {
+    const [year, month, day] = dateStr.split("-");
+    return `${day}/${month}/${year}`;
   }
 
   const {
@@ -97,8 +103,15 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
   };
 
   const onSubmit = () => {
-    console.log(vacation);
-    updateVacation(getValues());
+    // get the values of the input fields
+    const formValues = getValues();
+    // Transform dates back to dd/mm/yyyy format
+    const updatedValues = {
+      ...formValues,
+      vacationStart: reverseTransformDate(formValues.vacationStart),
+      vacationEnd: reverseTransformDate(formValues.vacationEnd),
+    };
+    updateVacation(updatedValues);
   };
   return (
     <div className="EditVacation">
