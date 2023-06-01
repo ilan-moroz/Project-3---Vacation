@@ -113,6 +113,7 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
     };
     updateVacation(updatedValues);
   };
+
   return (
     <div className="EditVacation">
       <Button
