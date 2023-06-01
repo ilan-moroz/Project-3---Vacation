@@ -16,10 +16,15 @@ followRouter.post(
 // REMOVE FOLLOW FROM VACATION
 followRouter.delete(
   "/removeFollow/:vacationKey/:userKey",
-  (request: Request, response: Response, next: NextFunction) => {
+  async (request: Request, response: Response, next: NextFunction) => {
     const vacationKey = +request.params.vacationKey;
     const userKey = +request.params.userKey;
-    response.status(204).json(logic.removeFollower(vacationKey, userKey));
+    try {
+      await logic.removeFollower(vacationKey, userKey);
+      response.status(204).send();
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
