@@ -24,11 +24,12 @@ export interface UserAction {
 export const userLoginAction = (
   firstName: string,
   lastName: string,
-  role: string
+  role: string,
+  userKey: number
 ): UserAction => {
   return {
     type: UserActionType.userLogin,
-    payload: { firstName, lastName, role },
+    payload: { firstName, lastName, role, userKey },
   };
 };
 

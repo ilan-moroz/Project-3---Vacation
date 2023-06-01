@@ -8,7 +8,7 @@ const addUser = async (newUser: User) => {
     (firstName, lastName, email, password, role)
     VALUES ('${newUser.firstName}', '${newUser.lastName}', 
     '${newUser.email}', '${newUser.password}', '${newUser.role}');`;
-  dalMySQL.execute(SQLcommand);
+  return await dalMySQL.execute(SQLcommand);
 };
 
 // CHECK IF EMAIL EXISTS IN DATABASE FOR REGISTER

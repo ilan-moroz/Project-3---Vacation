@@ -26,7 +26,14 @@ const addNewUser = (newUser: User) => {
   axios
     .post("http://localhost:8080/api/v1/vacation/users/newUser", newUser)
     .then((response) => {
-      console.log(response);
+      vacation.dispatch(
+        userLoginAction(
+          newUser.firstName,
+          newUser.lastName,
+          "user",
+          response.data.insertId
+        )
+      );
     });
 };
 
@@ -94,9 +101,6 @@ export default function Register() {
           password: data.password,
           role: "user",
         };
-        vacation.dispatch(
-          userLoginAction(data.firstName, data.lastName, "user")
-        );
         addNewUser(newUser);
         navigate("/vacations");
       }
