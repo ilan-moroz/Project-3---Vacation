@@ -26,7 +26,7 @@ const checkUser = async (email: string, password: string): Promise<boolean> => {
 };
 
 const getFirstLastName = async (email: string): Promise<string> => {
-  const SQLcommand = `SELECT firstName, lastName, role FROM vacation.users WHERE email = '${email}';`;
+  const SQLcommand = `SELECT firstName, lastName, role,userKey FROM vacation.users WHERE email = '${email}';`;
   const result = await dalMySQL.execute(SQLcommand);
   return result[0] || null;
 };

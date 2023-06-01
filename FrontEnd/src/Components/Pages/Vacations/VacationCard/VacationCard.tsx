@@ -11,11 +11,16 @@ import { RootState } from "../../../../Redux/VacationStore";
 import EditVacation from "../EditVacation/EditVacation";
 import DeleteVacation from "../DeleteVacation/DeleteVacation";
 import { VacationWithKey } from "../../../../Model/VacationWithKey";
+// import axios from "axios";
 
 // props for getting info from another component
 export default function BasicCard(props: VacationWithKey) {
   // check if user or admin is logged in
   const role = useSelector((state: RootState) => state.users.role);
+
+  // const addFollow=(vacationKey:number,userKey:number)=>{
+  //   axios.post(`http://localhost:8080/api/v1/vacation/followers/removeFollow/${userKey}/${vacationKey}`)
+  // }
 
   return (
     <Card
