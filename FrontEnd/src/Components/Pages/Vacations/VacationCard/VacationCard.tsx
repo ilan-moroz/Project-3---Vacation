@@ -72,9 +72,6 @@ export default function BasicCard(props: VacationWithKey) {
           color: "white",
           borderColor: "white",
         },
-        "& .MuiIconButton-root": {
-          color: "white",
-        },
       }}
     >
       {/* only for admin */}
@@ -95,9 +92,13 @@ export default function BasicCard(props: VacationWithKey) {
       <IconButton
         aria-label="favorite"
         variant="plain"
-        color="neutral"
         size="sm"
-        sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
+        sx={{
+          position: "absolute",
+          top: "0.5rem",
+          right: "0.5rem",
+          color: isFollowing ? "red" : "white",
+        }}
         onClick={() => {
           if (user && user.userKey !== undefined) {
             if (isFollowing) {
