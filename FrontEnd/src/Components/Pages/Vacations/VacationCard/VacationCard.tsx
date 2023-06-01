@@ -25,9 +25,16 @@ export default function BasicCard(props: VacationWithKey) {
       console.error("User key is null");
       return;
     }
-    axios.post(
-      `http://localhost:8080/api/v1/vacation/followers/follow/${userKey}/${vacationKey}`
-    );
+    axios
+      .post(
+        `http://localhost:8080/api/v1/vacation/followers/follow/${userKey}/${vacationKey}`
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (

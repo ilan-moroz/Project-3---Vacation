@@ -1,12 +1,12 @@
 import dalMySQL from "../Utils/dalMySQL";
 
 // add follow to vacation
-const addFollower = (userKey: number, vacationKey: number) => {
+const addFollower = async (userKey: number, vacationKey: number) => {
   const SQLcommand = `
     INSERT INTO vacation.follow
     (userKey, vacationKey)
     VALUES ('${userKey}', '${vacationKey}')`;
-  dalMySQL.execute(SQLcommand);
+  return await dalMySQL.execute(SQLcommand);
 };
 
 // remove follow from vacation

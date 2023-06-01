@@ -6,10 +6,15 @@ const followRouter = express.Router();
 // ADD FOLLOW TO VACATION
 followRouter.post(
   "/follow/:vacationKey/:userKey",
-  (request: Request, response: Response, next: NextFunction) => {
-    const vacationKey = +request.params.vacationKey;
-    const userKey = +request.params.userKey;
-    response.status(201).json(logic.addFollower(vacationKey, userKey));
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const vacationKey = +request.params.vacationKey;
+      const userKey = +request.params.userKey;
+      const result = await logic.addFollower(vacationKey, userKey);
+      response.status(201).json({ message: "Follow added", result: result });
+    } catch (err) {
+      next(err);
+    }
   }
 );
 
