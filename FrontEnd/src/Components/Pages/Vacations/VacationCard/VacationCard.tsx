@@ -11,16 +11,23 @@ import { RootState } from "../../../../Redux/VacationStore";
 import EditVacation from "../EditVacation/EditVacation";
 import DeleteVacation from "../DeleteVacation/DeleteVacation";
 import { VacationWithKey } from "../../../../Model/VacationWithKey";
-// import axios from "axios";
+import axios from "axios";
 
 // props for getting info from another component
 export default function BasicCard(props: VacationWithKey) {
   // check if user or admin is logged in
   const role = useSelector((state: RootState) => state.users.role);
+  const user = useSelector((state: RootState) => state.users.currentUser);
 
-  // const addFollow=(vacationKey:number,userKey:number)=>{
-  //   axios.post(`http://localhost:8080/api/v1/vacation/followers/removeFollow/${userKey}/${vacationKey}`)
-  // }
+  const addFollow = (vacationKey: number, userKey: number | null) => {
+    if (userKey === null) {
+      console.error("User key is null");
+      return;
+    }
+    axios.post(
+      `http://localhost:8080/api/v1/vacation/followers/follow/${userKey}/${vacationKey}`
+    );
+  };
 
   return (
     <Card
@@ -61,6 +68,11 @@ export default function BasicCard(props: VacationWithKey) {
         color="neutral"
         size="sm"
         sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
+        onClick={() => {
+          if (user && user.userKey !== undefined) {
+            addFollow(props.vacationKey, user.userKey);
+          }
+        }}
       >
         {/* only for user */}
         {role === "user" && <Favorite />}

@@ -62,6 +62,7 @@ export function UserReducer(
         firstName: action.payload.firstName,
         lastName: action.payload.lastName,
         role: action.payload.role,
+        userKey: action.payload.userKey,
       };
       newState.role = action.payload.role;
       break;
