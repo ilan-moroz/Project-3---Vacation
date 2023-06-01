@@ -7,6 +7,7 @@ import logic from "./Logic/tableLogicMYSQL";
 import userRouter from "./Routes/UserRoutes";
 import vacationRouter from "./Routes/VacationRoutes";
 import fileUpload from "express-fileupload";
+import followRouter from "./Routes/FollowRoutes";
 
 // Create Server
 const server = express();
@@ -29,6 +30,7 @@ server.use(bodyParser.json());
 // How to use routes
 server.use("/api/v1/vacation/users", userRouter);
 server.use("/api/v1/vacation/vacations", vacationRouter);
+server.use("/api/v1/vacation/followers", followRouter);
 
 //Create the tables if they not exists
 console.log("check if table exists...");
