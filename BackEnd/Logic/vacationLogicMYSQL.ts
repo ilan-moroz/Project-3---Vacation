@@ -1,3 +1,4 @@
+import { VacationWithKey } from "./../../FrontEnd/src/Model/VacationWithKey";
 import dalMySQL from "../Utils/dalMySQL";
 import { Vacation } from "../Models/Vacation";
 
@@ -14,7 +15,7 @@ const addVacation = async (newVacation: Vacation) => {
 };
 
 // get all Vacations
-const getAllVacations = async () => {
+const getAllVacations = async (): Promise<VacationWithKey> => {
   const SQLcommand = `SELECT * FROM vacation.Vacations`;
   return await dalMySQL.execute(SQLcommand);
 };
