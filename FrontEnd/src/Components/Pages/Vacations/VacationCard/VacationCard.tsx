@@ -4,7 +4,7 @@ import Button from "@mui/joy/Button";
 import Card from "@mui/joy/Card";
 import IconButton from "@mui/joy/IconButton";
 import Typography from "@mui/joy/Typography";
-import { Favorite } from "@mui/icons-material";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import "./VacationCard.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../Redux/VacationStore";
@@ -12,12 +12,16 @@ import EditVacation from "../EditVacation/EditVacation";
 import DeleteVacation from "../DeleteVacation/DeleteVacation";
 import { VacationWithKey } from "../../../../Model/VacationWithKey";
 import axios from "axios";
+import { useState } from "react";
 
 // props for getting info from another component
 export default function BasicCard(props: VacationWithKey) {
   // check if user or admin is logged in
   const role = useSelector((state: RootState) => state.users.role);
   const user = useSelector((state: RootState) => state.users.currentUser);
+
+  // change the icon if follow or not
+  const [isFollowing, setIsFollowing] = useState(false);
 
   // add follow to database
   const addFollow = (vacationKey: number, userKey: number | null) => {
@@ -28,6 +32,24 @@ export default function BasicCard(props: VacationWithKey) {
     axios
       .post(
         `http://localhost:8080/api/v1/vacation/followers/follow/${userKey}/${vacationKey}`
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  // remove follow to database
+  const removeFollow = (vacationKey: number, userKey: number | null) => {
+    if (userKey === null) {
+      console.error("User key is null");
+      return;
+    }
+    axios
+      .delete(
+        `http://localhost:8080/api/v1/vacation/followers/RemoveFollow/${userKey}/${vacationKey}`
       )
       .then((response) => {
         console.log(response.data);
@@ -78,12 +100,20 @@ export default function BasicCard(props: VacationWithKey) {
         sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
         onClick={() => {
           if (user && user.userKey !== undefined) {
-            addFollow(props.vacationKey, user.userKey);
+            if (isFollowing) {
+              // Call remove follow function
+              removeFollow(props.vacationKey, user.userKey);
+            } else {
+              // Call add follow function
+              addFollow(props.vacationKey, user.userKey);
+            }
+            // Toggle following state
+            setIsFollowing(!isFollowing);
           }
         }}
       >
-        {/* only for user */}
-        {role === "user" && <Favorite />}
+        {/* Switch icon based on following state */}
+        {role === "user" && (isFollowing ? <Favorite /> : <FavoriteBorder />)}
       </IconButton>
       <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
         <img src={props.photoFile} loading="lazy" alt={props.photoFile} />

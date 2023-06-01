@@ -25,8 +25,8 @@ followRouter.delete(
     const vacationKey = +request.params.vacationKey;
     const userKey = +request.params.userKey;
     try {
-      await logic.removeFollower(vacationKey, userKey);
-      response.status(204).send();
+      const result = await logic.removeFollower(vacationKey, userKey);
+      response.status(200).json({ message: "Follow removed", result: result });
     } catch (error) {
       next(error);
     }

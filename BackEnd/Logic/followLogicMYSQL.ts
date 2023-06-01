@@ -12,7 +12,7 @@ const addFollower = async (userKey: number, vacationKey: number) => {
 // remove follow from vacation
 const removeFollower = async (userKey: number, vacationKey: number) => {
   const SQLcommand = `DELETE FROM vacation.follow WHERE userKey=${userKey} AND vacationKey=${vacationKey} `;
-  await dalMySQL.execute(SQLcommand);
+  return await dalMySQL.execute(SQLcommand);
 };
 
 export default {
