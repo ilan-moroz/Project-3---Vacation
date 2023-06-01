@@ -1,12 +1,12 @@
 // Initial state
 export class FollowState {
-  followers: number[] = [];
+  followers: { userKey: number; VacationKey: number }[] = [];
 }
 
 //what action i will use
 export enum FollowActionType {
   addFollow = "addFollow",
-  removeFollow = "allVacations",
+  removeFollow = "removeFollow",
 }
 
 //action data structure
@@ -15,7 +15,7 @@ export interface FollowAction {
   payload?: any;
 }
 
-//which function will run when i will dispatch an action
+// Functions to dispatch actions
 export const addFollowAction = (
   userKey: number,
   VacationKey: number
@@ -44,10 +44,21 @@ export function FollowReducer(
   const newState = { ...currentState };
   switch (action.type) {
     case FollowActionType.addFollow:
-      break;
-
+      // Add new follow to the array
+      return {
+        ...currentState,
+        followers: [...currentState.followers, action.payload],
+      };
     case FollowActionType.removeFollow:
-      break;
+      // Remove the specific follow from the array
+      return {
+        ...currentState,
+        followers: currentState.followers.filter(
+          (follow) =>
+            follow.userKey !== action.payload.userKey ||
+            follow.VacationKey !== action.payload.VacationKey
+        ),
+      };
   }
   return newState;
 }

@@ -7,23 +7,29 @@ import Typography from "@mui/joy/Typography";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import "./VacationCard.css";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../Redux/VacationStore";
+import { RootState, vacation } from "../../../../Redux/VacationStore";
 import EditVacation from "../EditVacation/EditVacation";
 import DeleteVacation from "../DeleteVacation/DeleteVacation";
 import { VacationWithKey } from "../../../../Model/VacationWithKey";
 import axios from "axios";
 import { useState } from "react";
+import {
+  addFollowAction,
+  removeFollowAction,
+} from "../../../../Redux/FollowReducer";
 
 // props for getting info from another component
 export default function BasicCard(props: VacationWithKey) {
   // check if user or admin is logged in
   const role = useSelector((state: RootState) => state.users.role);
   const user = useSelector((state: RootState) => state.users.currentUser);
+  const followers = useSelector((state: RootState) => state.follower.followers);
+  console.log(followers);
 
   // change the icon if follow or not
   const [isFollowing, setIsFollowing] = useState(false);
 
-  // add follow to database
+  // add follow to database and redux
   const addFollow = (vacationKey: number, userKey: number | null) => {
     if (userKey === null) {
       console.error("User key is null");
@@ -35,13 +41,15 @@ export default function BasicCard(props: VacationWithKey) {
       )
       .then((response) => {
         console.log(response.data);
+        // dispatch the followed vacation to redux
+        vacation.dispatch(addFollowAction(userKey, vacationKey));
       })
       .catch((error) => {
         console.error(error);
       });
   };
 
-  // remove follow from database
+  // remove follow from database and redux
   const removeFollow = (vacationKey: number, userKey: number | null) => {
     if (userKey === null) {
       console.error("User key is null");
@@ -53,6 +61,8 @@ export default function BasicCard(props: VacationWithKey) {
       )
       .then((response) => {
         console.log(response.data);
+        // remove the followed vacation from redux
+        vacation.dispatch(removeFollowAction(userKey, vacationKey));
       })
       .catch((error) => {
         console.error(error);

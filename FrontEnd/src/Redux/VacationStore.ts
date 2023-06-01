@@ -3,6 +3,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { UserReducer } from "./UserReducer";
 import { VacationReducer } from "./VacationReducer";
+import { FollowReducer } from "./FollowReducer";
 
 const persistConfig = {
   key: "root",
@@ -11,10 +12,12 @@ const persistConfig = {
 
 const persistedUserReducer = persistReducer(persistConfig, UserReducer);
 const persistedVacationReducer = persistReducer(persistConfig, VacationReducer);
+const persistedFollowReducer = persistReducer(persistConfig, FollowReducer);
 
 const reducers = {
   users: persistedUserReducer,
   vacations: persistedVacationReducer,
+  follower: persistedFollowReducer,
 };
 
 const vacation = configureStore({
