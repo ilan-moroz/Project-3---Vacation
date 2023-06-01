@@ -116,7 +116,7 @@ export default function BasicCard(props: VacationWithKey) {
         sx={{
           position: "absolute",
           top: "0.5rem",
-          right: "0.5rem",
+          left: "0.5rem",
           color: isFollowing ? "red" : "white",
         }}
         onClick={() => {
