@@ -7,7 +7,7 @@ const addVacation = async (newVacation: Vacation) => {
   // prevent crush when using single quotes
   const VacationDesc = newVacation.vacationDesc.replace(/'/g, "''");
   const SQLcommand = `
-      INSERT INTO vacation.Vacations 
+      INSERT INTO vacation.vacations 
       (vacationDestiny, vacationDesc, vacationStart, vacationEnd, price, photoFile)
       VALUES ('${newVacation.vacationDestiny}', '${VacationDesc}', 
       '${newVacation.vacationStart}', '${newVacation.vacationEnd}', '${newVacation.price}', '${newVacation.photoFile}');`;
@@ -16,20 +16,20 @@ const addVacation = async (newVacation: Vacation) => {
 
 // get all Vacations
 const getAllVacations = async (): Promise<VacationWithKey> => {
-  const SQLcommand = `SELECT * FROM vacation.Vacations`;
+  const SQLcommand = `SELECT * FROM vacation.vacations`;
   return await dalMySQL.execute(SQLcommand);
 };
 
 // get single Vacation
 const getSingleVacation = async (vacationKey: number): Promise<Vacation> => {
-  const SQLcommand = `SELECT * FROM vacation.Vacations WHERE vacationKey=${vacationKey}`;
+  const SQLcommand = `SELECT * FROM vacation.vacations WHERE vacationKey=${vacationKey}`;
   const singleVacation = await dalMySQL.execute(SQLcommand);
   return singleVacation[0];
 };
 
 // delete vacation
 const deleteVacation = (key: number): Promise<boolean> => {
-  const SQLcommand = `DELETE FROM vacation.Vacations WHERE vacationKey=${key}`;
+  const SQLcommand = `DELETE FROM vacation.vacations WHERE vacationKey=${key}`;
   return dalMySQL.execute(SQLcommand);
 };
 
@@ -49,7 +49,7 @@ const updateVacation = async (
   const currentVacation: Vacation = await getSingleVacation(vacationKey); // Implement this function to fetch current data
   // all the updated values will be stored here
   let updatedValues = [];
-  let SQLcommand = `UPDATE vacation.Vacations SET `;
+  let SQLcommand = `UPDATE vacation.vacations SET `;
   // check what values changed and push the changed ones to the array
   if (updatedVacation.vacationDestiny !== currentVacation.vacationDestiny) {
     updatedValues.push(
