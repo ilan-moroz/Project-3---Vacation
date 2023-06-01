@@ -39,10 +39,8 @@ export const editVacationsAction = (
   return { type: VacationActionType.editVacation, payload: updatedVacations };
 };
 
-export const deleteVacationAction = (
-  vacationDestiny: string
-): VacationAction => {
-  return { type: VacationActionType.deleteVacation, payload: vacationDestiny };
+export const deleteVacationAction = (vacationKey: number): VacationAction => {
+  return { type: VacationActionType.deleteVacation, payload: vacationKey };
 };
 
 //this is the reducer function
@@ -66,7 +64,7 @@ export function VacationReducer(
       break;
     case VacationActionType.deleteVacation:
       newState.vacations = newState.vacations.filter(
-        (vacation) => vacation.vacationDestiny !== action.payload
+        (vacation) => vacation.vacationKey !== action.payload
       );
       break;
   }

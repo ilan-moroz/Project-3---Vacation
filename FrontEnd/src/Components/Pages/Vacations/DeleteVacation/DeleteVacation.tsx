@@ -12,11 +12,11 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import { Vacation } from "../../../../Model/Vacation";
+import { VacationWithKey } from "../../../../Model/VacationWithKey";
 
 // props to get vacation information from VacationCard component
 type DeleteVacationProps = {
-  vacationToDelete: Vacation;
+  vacationToDelete: VacationWithKey;
 };
 
 function DeleteVacation({
@@ -33,21 +33,17 @@ function DeleteVacation({
     setOpen(false);
   };
 
-  const deleteVacation = async (destiny: string, image: string) => {
-    // get the vacation key
-    const key = await axios.get(
-      `http://localhost:8080/api/v1/vacation/vacations/getVacationKey/${destiny}`
-    );
+  const deleteVacation = async (vacationKey: number, image: string) => {
     // delete the vacation from mysql and image from backend
     await axios
       .delete(
-        `http://localhost:8080/api/v1/vacation/vacations/delete/${key.data[0].vacationKey}`
+        `http://localhost:8080/api/v1/vacation/vacations/delete/${vacationKey}`
       )
       // after the delete operation fetch the vacations and refresh the page
       .then(() => {
         handleClose();
         // dispatch the delete action to Redux store
-        vacation.dispatch(deleteVacationAction(destiny));
+        vacation.dispatch(deleteVacationAction(vacationKey));
         // delete the image from the backend
         const imageName = new URL(image).pathname.split("/").pop();
         axios
@@ -94,7 +90,7 @@ function DeleteVacation({
           <Button
             onClick={() =>
               deleteVacation(
-                vacationToDelete.vacationDestiny,
+                vacationToDelete.vacationKey,
                 vacationToDelete.photoFile
               )
             }
