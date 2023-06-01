@@ -118,8 +118,8 @@ export default function BasicCard(props: VacationWithKey) {
         <Box
           sx={{
             position: "absolute",
-            top: "0.5rem",
-            left: "0.5rem",
+            top: "0.1rem",
+            left: "0.1rem",
             display: "flex",
             alignItems: "center",
             backgroundColor: "rgba(255,255,255,0.4)",
