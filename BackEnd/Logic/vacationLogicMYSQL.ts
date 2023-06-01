@@ -28,10 +28,9 @@ const getSingleVacation = async (vacationKey: number): Promise<Vacation> => {
 };
 
 // delete vacation
-const deleteVacation = (key: number) => {
+const deleteVacation = (key: number): Promise<boolean> => {
   const SQLcommand = `DELETE FROM vacation.Vacations WHERE vacationKey=${key}`;
-  dalMySQL.execute(SQLcommand);
-  return true;
+  return dalMySQL.execute(SQLcommand);
 };
 
 // CHECK IF EMAIL EXISTS IN DATABASE FOR REGISTER
