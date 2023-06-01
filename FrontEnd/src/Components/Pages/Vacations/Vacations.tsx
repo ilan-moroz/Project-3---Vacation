@@ -16,6 +16,7 @@ import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import { Vacation } from "../../../Model/Vacation";
 import { useSelector } from "react-redux";
+import { VacationWithKey } from "../../../Model/VacationWithKey";
 
 function Vacations(): JSX.Element {
   // for Pagination
@@ -48,7 +49,7 @@ function Vacations(): JSX.Element {
   }, []);
 
   // fetch vacations from redux store
-  const vacations = useSelector(
+  const vacations: VacationWithKey[] = useSelector(
     (state: RootState) => state.vacations.vacations
   );
   // sort the vacations by date
@@ -138,13 +139,14 @@ function Vacations(): JSX.Element {
           .slice((page - 1) * itemsPerPage, page * itemsPerPage)
           .map((item: any) => (
             <Card
-              key={item["vacationDestiny"]}
-              vacationDestiny={item["vacationDestiny"]}
-              vacationDesc={item["vacationDesc"]}
-              vacationStart={item["vacationStart"]}
-              vacationEnd={item["vacationEnd"]}
-              price={item["price"]}
-              photoFile={`http://localhost:8080/${item["photoFile"]}`}
+              key={item.vacationKey}
+              vacationDestiny={item.vacationDestiny}
+              vacationDesc={item.vacationDesc}
+              vacationStart={item.vacationStart}
+              vacationEnd={item.vacationEnd}
+              price={item.price}
+              photoFile={`http://localhost:8080/${item.photoFile}`}
+              vacationKey={item.vacationKey}
             />
           ))}
       </div>

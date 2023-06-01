@@ -6,14 +6,14 @@ import IconButton from "@mui/joy/IconButton";
 import Typography from "@mui/joy/Typography";
 import { Favorite } from "@mui/icons-material";
 import "./VacationCard.css";
-import { Vacation } from "../../../../Model/Vacation";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../Redux/VacationStore";
 import EditVacation from "../EditVacation/EditVacation";
 import DeleteVacation from "../DeleteVacation/DeleteVacation";
+import { VacationWithKey } from "../../../../Model/VacationWithKey";
 
 // props for getting info from another component
-export default function BasicCard(props: Vacation) {
+export default function BasicCard(props: VacationWithKey) {
   // check if user or admin is logged in
   const role = useSelector((state: RootState) => state.users.role);
 

@@ -1,8 +1,9 @@
 import { Vacation } from "../Model/Vacation";
+import { VacationWithKey } from "../Model/VacationWithKey";
 
 //initial state
 export class VacationsState {
-  public vacations: Vacation[] = [];
+  public vacations: VacationWithKey[] = [];
 }
 
 //what action i will use
@@ -24,7 +25,9 @@ export const newVacationAction = (newVacation: Vacation): VacationAction => {
   return { type: VacationActionType.addVacation, payload: newVacation };
 };
 
-export const allVacationsAction = (vacations: Vacation[]): VacationAction => {
+export const allVacationsAction = (
+  vacations: VacationWithKey[]
+): VacationAction => {
   return { type: VacationActionType.allVacations, payload: vacations };
 };
 
