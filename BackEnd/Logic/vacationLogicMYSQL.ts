@@ -1,4 +1,4 @@
-import { VacationWithKey } from "./../../FrontEnd/src/Model/VacationWithKey";
+import { VacationWithKey } from "../Models/VacationWithKey";
 import dalMySQL from "../Utils/dalMySQL";
 import { Vacation } from "../Models/Vacation";
 
