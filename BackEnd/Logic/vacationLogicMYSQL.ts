@@ -11,7 +11,7 @@ const addVacation = async (newVacation: Vacation) => {
       (vacationDestiny, vacationDesc, vacationStart, vacationEnd, price, photoFile)
       VALUES ('${newVacation.vacationDestiny}', '${VacationDesc}', 
       '${newVacation.vacationStart}', '${newVacation.vacationEnd}', '${newVacation.price}', '${newVacation.photoFile}');`;
-  dalMySQL.execute(SQLcommand);
+  return await dalMySQL.execute(SQLcommand);
 };
 
 // get all Vacations

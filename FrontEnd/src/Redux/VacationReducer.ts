@@ -21,7 +21,9 @@ export interface VacationAction {
 }
 
 //which function will run when i will dispatch an action
-export const newVacationAction = (newVacation: Vacation): VacationAction => {
+export const newVacationAction = (
+  newVacation: VacationWithKey
+): VacationAction => {
   return { type: VacationActionType.addVacation, payload: newVacation };
 };
 

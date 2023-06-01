@@ -16,10 +16,13 @@ import "notyf/notyf.min.css";
 
 // saves new vacation in the database and redux
 const addNewVacation = async (newVacation: Vacation) => {
-  vacation.dispatch(newVacationAction(newVacation));
-  await axios.post(
+  const response = await axios.post(
     "http://localhost:8080/api/v1/vacation/vacations/newVacation",
     newVacation
+  );
+  const vacationKey = response.data.insertId;
+  vacation.dispatch(
+    newVacationAction({ ...newVacation, vacationKey: vacationKey })
   );
 };
 
