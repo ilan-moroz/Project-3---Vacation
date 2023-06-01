@@ -41,7 +41,7 @@ export default function BasicCard(props: VacationWithKey) {
       });
   };
 
-  // remove follow to database
+  // remove follow from database
   const removeFollow = (vacationKey: number, userKey: number | null) => {
     if (userKey === null) {
       console.error("User key is null");
