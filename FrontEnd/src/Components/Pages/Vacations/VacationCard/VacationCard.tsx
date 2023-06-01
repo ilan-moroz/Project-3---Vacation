@@ -19,6 +19,7 @@ export default function BasicCard(props: VacationWithKey) {
   const role = useSelector((state: RootState) => state.users.role);
   const user = useSelector((state: RootState) => state.users.currentUser);
 
+  // add follow to database
   const addFollow = (vacationKey: number, userKey: number | null) => {
     if (userKey === null) {
       console.error("User key is null");
