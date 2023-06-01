@@ -74,6 +74,11 @@ export default function BasicCard(props: VacationWithKey) {
       });
   };
 
+  // Count the followers for this vacation
+  const followerCount = followers.filter(
+    (follow) => follow.VacationKey === props.vacationKey
+  ).length;
+
   return (
     <Card
       className="Card"
@@ -130,6 +135,9 @@ export default function BasicCard(props: VacationWithKey) {
       >
         {/* Switch icon based on following state */}
         {role === "user" && (isFollowing ? <Favorite /> : <FavoriteBorder />)}
+        <Typography sx={{ ml: 1, color: "white" }}>
+          followers: {followerCount}
+        </Typography>
       </IconButton>
       <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
         <img src={props.photoFile} loading="lazy" alt={props.photoFile} />
