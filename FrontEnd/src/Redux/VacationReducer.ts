@@ -1,4 +1,3 @@
-import { Vacation } from "../Model/Vacation";
 import { VacationWithKey } from "../Model/VacationWithKey";
 
 //initial state
@@ -34,7 +33,7 @@ export const allVacationsAction = (
 };
 
 export const editVacationsAction = (
-  updatedVacations: Vacation
+  updatedVacations: VacationWithKey
 ): VacationAction => {
   return { type: VacationActionType.editVacation, payload: updatedVacations };
 };
@@ -58,7 +57,7 @@ export function VacationReducer(
       break;
     case VacationActionType.editVacation:
       newState.vacations = [...newState.vacations].filter(
-        (item) => item.vacationDestiny !== action.payload.vacationDestiny
+        (item) => item.vacationKey !== action.payload.vacationKey
       );
       newState.vacations = [...newState.vacations, action.payload];
       break;

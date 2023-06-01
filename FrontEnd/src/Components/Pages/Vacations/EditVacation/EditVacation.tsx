@@ -16,10 +16,11 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { editVacationsAction } from "../../../../Redux/VacationReducer";
+import { VacationWithKey } from "../../../../Model/VacationWithKey";
 
 // props to get vacation information from VacationCard component
 type EditVacationProps = {
-  editVacation: Vacation;
+  editVacation: VacationWithKey;
 };
 
 function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
@@ -35,21 +36,22 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
   }
 
   const updateVacation = async (updatedVacation: Vacation) => {
-    // get the vacation key
-    const key = await axios.get(
-      `http://localhost:8080/api/v1/vacation/vacations/getVacationKey/${updatedVacation.vacationDestiny}`
-    );
     // edit the vacation
     await axios
       .put(
-        `http://localhost:8080/api/v1/vacation/vacations/editVacation/${key.data[0].vacationKey}`,
+        `http://localhost:8080/api/v1/vacation/vacations/editVacation/${editVacation.vacationKey}`,
         updatedVacation
       )
       // after the delete operation fetch the vacations and refresh the page
       .then(() => {
         handleClose();
         // dispatch the delete action to Redux store
-        vacation.dispatch(editVacationsAction(updatedVacation));
+        vacation.dispatch(
+          editVacationsAction({
+            ...updatedVacation,
+            vacationKey: editVacation.vacationKey,
+          })
+        );
         //   // delete the image from the backend
         //   const imageName = new URL(image).pathname.split("/").pop();
         //   axios
