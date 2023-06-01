@@ -34,13 +34,6 @@ const deleteVacation = (key: number) => {
   return true;
 };
 
-// get vacation key
-const getVacationKey = async (destiny: string): Promise<number> => {
-  const SQLcommand = `SELECT vacationKey FROM vacation.Vacations WHERE vacationDestiny = '${destiny}';`;
-  const key = await dalMySQL.execute(SQLcommand);
-  return key;
-};
-
 // CHECK IF EMAIL EXISTS IN DATABASE FOR REGISTER
 const checkDestiny = async (destiny: string): Promise<boolean> => {
   const SQLcommand = `SELECT COUNT(*) AS count FROM vacation.vacations WHERE vacationDestiny = '${destiny}';`;
@@ -99,7 +92,6 @@ export default {
   addVacation,
   getAllVacations,
   deleteVacation,
-  getVacationKey,
   checkDestiny,
   updateVacation,
   getSingleVacation,
