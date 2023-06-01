@@ -24,10 +24,15 @@ export default function BasicCard(props: VacationWithKey) {
   const role = useSelector((state: RootState) => state.users.role);
   const user = useSelector((state: RootState) => state.users.currentUser);
   const followers = useSelector((state: RootState) => state.follower.followers);
-  console.log(followers);
 
   // change the icon if follow or not
-  const [isFollowing, setIsFollowing] = useState(false);
+  const isVacationFollowed = followers.some(
+    (follow) =>
+      follow.VacationKey === props.vacationKey &&
+      follow.userKey === user?.userKey
+  );
+
+  const [isFollowing, setIsFollowing] = useState(isVacationFollowed);
 
   // add follow to database and redux
   const addFollow = (vacationKey: number, userKey: number | null) => {
