@@ -59,7 +59,10 @@ function Vacations(): JSX.Element {
 
   // check if user or admin is logged in
   const role = useSelector((state: RootState) => state.users.role);
-  console.log(role);
+  // get followers state
+  const followers = useSelector((state: RootState) => state.follower.followers);
+  //  get the logged in user state
+  const user = useSelector((state: RootState) => state.users.currentUser);
 
   // make sure only one checkbox is checked
   const [selected, setSelected] = useState("");
@@ -67,7 +70,14 @@ function Vacations(): JSX.Element {
   // switch for the checkboxes
   switch (selected) {
     case "follow":
-      console.log("not working yet");
+      // Get the ids of the vacations that the logged-in user follows
+      const followedVacationKeys = followers
+        .filter((follower) => follower.userKey === user?.userKey)
+        .map((follower) => follower.VacationKey);
+
+      sortedVacations = sortedVacations.filter((vacation) =>
+        followedVacationKeys.includes(vacation.vacationKey)
+      );
       break;
     case "notStarted":
       sortedVacations = sortedVacations.filter((vacation) => {
