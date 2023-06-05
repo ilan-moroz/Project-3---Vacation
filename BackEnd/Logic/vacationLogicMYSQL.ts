@@ -48,7 +48,7 @@ const updateVacation = async (
   // get the current vacation data for comparison
   const currentVacation: Vacation = await getSingleVacation(vacationKey); // Implement this function to fetch current data
   // all the updated values will be stored here
-  let updatedValues = [];
+  let updatedValues: any = [];
   let SQLcommand = `UPDATE vacation.vacations SET `;
   // check what values changed and push the changed ones to the array
   if (updatedVacation.vacationDestiny !== currentVacation.vacationDestiny) {
@@ -60,16 +60,12 @@ const updateVacation = async (
     updatedValues.push(`vacationDesc = '${updatedVacation.vacationDesc}'`);
   }
   if (updatedVacation.vacationStart !== currentVacation.vacationStart) {
-    let dateStart = new Date(updatedVacation.vacationStart);
-    updatedValues.push(
-      `vacationStart = '${dateStart.toLocaleDateString("en-GB")}'`
-    );
+    // let dateStart = new Date(updatedVacation.vacationStart);
+    updatedValues.push(`vacationStart = '${updatedVacation.vacationStart}'`);
   }
   if (updatedVacation.vacationEnd !== currentVacation.vacationEnd) {
-    let dateEnd = new Date(updatedVacation.vacationEnd);
-    updatedValues.push(
-      `vacationEnd = '${dateEnd.toLocaleDateString("en-GB")}'`
-    );
+    // let dateEnd = new Date(updatedVacation.vacationEnd);
+    updatedValues.push(`vacationEnd = '${updatedVacation.vacationEnd}'`);
   }
   if (updatedVacation.price !== currentVacation.price) {
     updatedValues.push(`price = '${updatedVacation.price}'`);
