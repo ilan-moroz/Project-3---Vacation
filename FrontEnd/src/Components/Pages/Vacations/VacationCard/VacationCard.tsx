@@ -115,46 +115,48 @@ export default function BasicCard(props: VacationWithKey) {
         sx={{ my: 2, position: "relative" }}
       >
         <img src={props.photoFile} loading="lazy" alt={props.photoFile} />
-        <Box
-          sx={{
-            position: "absolute",
-            top: "0.1rem",
-            left: "0.1rem",
-            display: "flex",
-            alignItems: "center",
-            backgroundColor: "rgba(255,255,255,0.4)",
-            borderRadius: "5px",
-            padding: "0.5rem",
-            zIndex: 2,
-          }}
-        >
-          <IconButton
-            aria-label="favorite"
-            variant="plain"
-            className="icon-favorite"
-            size="sm"
-            onClick={() => {
-              if (user && user.userKey !== undefined) {
-                if (isFollowing) {
-                  // Call remove follow function
-                  removeFollow(props.vacationKey, user.userKey);
-                } else {
-                  // Call add follow function
-                  addFollow(props.vacationKey, user.userKey);
-                }
-                // Toggle following state
-                setIsFollowing(!isFollowing);
-              }
+        {/* only for user */}
+        {role === "user" && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: "0.1rem",
+              left: "0.1rem",
+              display: "flex",
+              alignItems: "center",
+              backgroundColor: "rgba(255,255,255,0.4)",
+              borderRadius: "5px",
+              padding: "0.5rem",
+              zIndex: 2,
             }}
           >
-            {/* Switch icon based on following state */}
-            {role === "user" &&
-              (isFollowing ? <Favorite /> : <FavoriteBorder />)}
-          </IconButton>
-          <Typography sx={{ ml: 1 }} className="black-text">
-            followers: {followerCount}
-          </Typography>
-        </Box>
+            <IconButton
+              aria-label="favorite"
+              variant="plain"
+              className="icon-favorite"
+              size="sm"
+              onClick={() => {
+                if (user && user.userKey !== undefined) {
+                  if (isFollowing) {
+                    // Call remove follow function
+                    removeFollow(props.vacationKey, user.userKey);
+                  } else {
+                    // Call add follow function
+                    addFollow(props.vacationKey, user.userKey);
+                  }
+                  // Toggle following state
+                  setIsFollowing(!isFollowing);
+                }
+              }}
+            >
+              {/* Switch icon based on following state */}
+              (isFollowing ? <Favorite /> : <FavoriteBorder />)
+            </IconButton>
+            <Typography sx={{ ml: 1 }} className="black-text">
+              followers: {followerCount}
+            </Typography>
+          </Box>
+        )}
       </AspectRatio>
       <Typography sx={{ overflowWrap: "break-word" }} gutterBottom>
         {props.vacationDesc}
