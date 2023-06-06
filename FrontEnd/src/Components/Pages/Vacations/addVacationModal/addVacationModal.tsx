@@ -11,8 +11,6 @@ import axios from "axios";
 import { vacation } from "../../../../Redux/VacationStore";
 import { newVacationAction } from "../../../../Redux/VacationReducer";
 import { useState } from "react";
-import { Notyf } from "notyf";
-import "notyf/notyf.min.css";
 
 // saves new vacation in the database and redux
 const addNewVacation = async (newVacation: Vacation) => {
@@ -24,14 +22,6 @@ const addNewVacation = async (newVacation: Vacation) => {
   vacation.dispatch(
     newVacationAction({ ...newVacation, vacationKey: vacationKey })
   );
-};
-
-// check if destiny exist in database if it exists cancel the upload
-const checkDestiny = async (destiny: string): Promise<boolean> => {
-  const response = await axios.get(
-    `http://localhost:8080/api/v1/vacation/vacations/checkDestination/${destiny}`
-  );
-  return response.data;
 };
 
 // save the image in the backend
@@ -49,14 +39,6 @@ const uploadImage = (newImage: any) => {
     }
   );
 };
-
-// new notyf for checking if destination exists in database
-const notyf = new Notyf({
-  position: {
-    x: "center",
-    y: "top",
-  },
-});
 
 export default function AddVacationModal() {
   const [open, setOpen] = useState(false);
@@ -92,14 +74,9 @@ export default function AddVacationModal() {
         photoFile: data.image[0].name,
       };
       // check if destiny exist in database if it exists cancel the upload and notyf
-      const destinyExists = await checkDestiny(data.destination);
-      if (destinyExists) {
-        notyf.error("You can't add two vacations with similar destinations");
-      } else {
-        addNewVacation(newVacation);
-        uploadImage(data.image[0]);
-        handleClose();
-      }
+      addNewVacation(newVacation);
+      uploadImage(data.image[0]);
+      handleClose();
     } catch (error) {
       console.error(error);
     }
