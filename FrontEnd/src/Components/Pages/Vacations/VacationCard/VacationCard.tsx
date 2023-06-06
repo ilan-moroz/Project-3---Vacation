@@ -150,7 +150,7 @@ export default function BasicCard(props: VacationWithKey) {
               }}
             >
               {/* Switch icon based on following state */}
-              (isFollowing ? <Favorite /> : <FavoriteBorder />)
+              {isFollowing ? <Favorite /> : <FavoriteBorder />}
             </IconButton>
             <Typography sx={{ ml: 1 }} className="black-text">
               followers: {followerCount}
