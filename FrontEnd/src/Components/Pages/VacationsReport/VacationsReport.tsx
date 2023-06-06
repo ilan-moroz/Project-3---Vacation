@@ -1,3 +1,5 @@
+import React from "react";
+import { useSelector } from "react-redux";
 import "./VacationsReport.css";
 import {
   BarChart,
@@ -9,53 +11,34 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+import { RootState } from "../../../Redux/VacationStore";
 
 function VacationsReport(): JSX.Element {
+  const followers = useSelector((state: RootState) => state.follower.followers);
+  const vacations = useSelector(
+    (state: RootState) => state.vacations.vacations
+  );
+
+  // Map vacationKey to followers count
+  const followersCount = vacations.map((vacation) => ({
+    vacationKey: vacation.vacationKey,
+    followers: followers.filter(
+      (follower) => follower.VacationKey === vacation.vacationKey
+    ).length,
+  }));
+
+  // Create the data array for the chart
+  const data = vacations.map((vacation) => ({
+    name: vacation.vacationDestiny.split("-")[0],
+    followers:
+      followersCount.find(
+        (follower) => follower.vacationKey === vacation.vacationKey
+      )?.followers || 0,
+  }));
+
+  // Calculate the maximum number of followers
+  const maxFollowers = Math.max(...data.map((item) => item.followers));
+
   return (
     <div className="VacationsReport">
       <div className="VacationsReportContainer">
@@ -72,16 +55,16 @@ function VacationsReport(): JSX.Element {
             }}
             barSize={20}
           >
-            <XAxis
-              dataKey="name"
-              scale="point"
-              padding={{ left: 10, right: 10 }}
-            />
-            <YAxis />
+            <XAxis dataKey="name" interval={0} angle={-20} textAnchor="end" />
+            <YAxis domain={[0, maxFollowers]} tickCount={maxFollowers + 1} />
             <Tooltip />
             <Legend />
             <CartesianGrid strokeDasharray="3 3" />
-            <Bar dataKey="pv" fill="#d18884" background={{ fill: "#eee" }} />
+            <Bar
+              dataKey="followers"
+              fill="#d18884"
+              background={{ fill: "#eee" }}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>
