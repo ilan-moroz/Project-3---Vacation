@@ -74,6 +74,8 @@ export default function BasicCard(props: VacationWithKey) {
       });
   };
 
+  // if followers state is empty get all followers from database and save in redux
+
   // Count the followers for this vacation
   const followerCount = followers.filter(
     (follow) => follow.VacationKey === props.vacationKey
