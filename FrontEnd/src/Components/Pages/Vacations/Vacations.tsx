@@ -121,42 +121,50 @@ function Vacations(): JSX.Element {
 
   return (
     <div className="Vacations">
-      {/* Checkboxes for user filter */}
-      <FormControlLabel
-        control={
-          <Checkbox
-            icon={<FavoriteBorder />}
-            checkedIcon={<Favorite />}
-            checked={selected === "follow"}
-            onChange={() => setSelected(selected === "follow" ? "" : "follow")}
-          />
-        }
-        label="Vacations you follow"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            icon={<AccessTimeIcon />}
-            checkedIcon={<AccessTimeFilledIcon />}
-            checked={selected === "notStarted"}
-            onChange={() =>
-              setSelected(selected === "notStarted" ? "" : "notStarted")
+      {/* Checkboxes for user filter only for user*/}
+      {role === "user" && (
+        <div>
+          <FormControlLabel
+            control={
+              <Checkbox
+                icon={<FavoriteBorder />}
+                checkedIcon={<Favorite />}
+                checked={selected === "follow"}
+                onChange={() =>
+                  setSelected(selected === "follow" ? "" : "follow")
+                }
+              />
             }
+            label="Vacations you follow"
           />
-        }
-        label="Vacations that didn't start"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            icon={<PlayCircleOutlineIcon />}
-            checkedIcon={<PlayCircleFilledIcon />}
-            checked={selected === "active"}
-            onChange={() => setSelected(selected === "active" ? "" : "active")}
+          <FormControlLabel
+            control={
+              <Checkbox
+                icon={<AccessTimeIcon />}
+                checkedIcon={<AccessTimeFilledIcon />}
+                checked={selected === "notStarted"}
+                onChange={() =>
+                  setSelected(selected === "notStarted" ? "" : "notStarted")
+                }
+              />
+            }
+            label="Vacations that didn't start"
           />
-        }
-        label="Vacations that are active now"
-      />
+          <FormControlLabel
+            control={
+              <Checkbox
+                icon={<PlayCircleOutlineIcon />}
+                checkedIcon={<PlayCircleFilledIcon />}
+                checked={selected === "active"}
+                onChange={() =>
+                  setSelected(selected === "active" ? "" : "active")
+                }
+              />
+            }
+            label="Vacations that are active now"
+          />
+        </div>
+      )}
       {/* add new vacation  only for admin*/}
       {role === "admin" && <AddVacationModal />}
       {/* get all vacations from redux and display all the vacations*/}
