@@ -103,6 +103,9 @@ export default function Login() {
       }
     } catch (error) {
       console.error(error);
+      notyf.error(
+        "Invalid email or password. Please check your credentials and try again"
+      );
     }
   };
 
