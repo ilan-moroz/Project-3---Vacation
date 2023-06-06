@@ -37,7 +37,7 @@ followRouter.delete(
 followRouter.get(
   "/allFollowers",
   async (request: Request, response: Response, next: NextFunction) => {
-    response.status(200).json(await logic.getAllVacations());
+    response.status(200).json(await logic.getAllFollowers());
   }
 );
 

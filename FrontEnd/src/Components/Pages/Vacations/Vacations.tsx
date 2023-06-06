@@ -17,6 +17,7 @@ import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import { Vacation } from "../../../Model/Vacation";
 import { useSelector } from "react-redux";
 import { VacationWithKey } from "../../../Model/VacationWithKey";
+// import { allFollowersAction } from "../../../Redux/FollowReducer";
 
 function Vacations(): JSX.Element {
   // for Pagination
@@ -47,6 +48,21 @@ function Vacations(): JSX.Element {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  //if followers is empty get all followers from database and save in redux
+  // useEffect(() => {
+  //   if (vacation.getState().follower.followers.length < 1) {
+  //     console.log("getting data from backend....");
+  //     axios
+  //       .get("http://localhost:8080/api/v1/vacation/followers/allFollowers")
+  //       .then((response) => {
+  //         vacation.dispatch(allFollowersAction(response.data));
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching data: ", error);
+  //       });
+  //   }
+  // }, []);
 
   // fetch vacations from redux store
   const vacations: VacationWithKey[] = useSelector(

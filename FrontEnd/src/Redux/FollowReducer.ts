@@ -69,7 +69,7 @@ export function FollowReducer(
         ...currentState,
         followers: currentState.followers.filter(
           (follow) =>
-            follow.userKey !== action.payload.userKey &&
+            follow.userKey !== action.payload.userKey ||
             follow.VacationKey !== action.payload.VacationKey
         ),
       };

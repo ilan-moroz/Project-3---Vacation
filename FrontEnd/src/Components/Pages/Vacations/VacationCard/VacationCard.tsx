@@ -12,10 +12,9 @@ import EditVacation from "../EditVacation/EditVacation";
 import DeleteVacation from "../DeleteVacation/DeleteVacation";
 import { VacationWithKey } from "../../../../Model/VacationWithKey";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   addFollowAction,
-  allFollowersAction,
   removeFollowAction,
 } from "../../../../Redux/FollowReducer";
 
@@ -74,21 +73,6 @@ export default function BasicCard(props: VacationWithKey) {
         console.error(error);
       });
   };
-
-  // if followers state is empty get all followers from database and save in redux
-  // useEffect(() => {
-  //   if (vacation.getState().follower.followers.length < 1) {
-  //     console.log("getting followers data from backend....");
-  //     axios
-  //       .get("http://localhost:8080/api/v1/vacation/followers/allFollowers")
-  //       .then((response) => {
-  //         vacation.dispatch(allFollowersAction(response.data));
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching data: ", error);
-  //       });
-  //   }
-  // }, []);
 
   // Count the followers for this vacation
   const followerCount = followers.filter(

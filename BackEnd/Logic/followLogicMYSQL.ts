@@ -16,7 +16,7 @@ const removeFollower = async (userKey: number, vacationKey: number) => {
 };
 
 // get all followers
-const getAllVacations = async (): Promise<[]> => {
+const getAllFollowers = async (): Promise<[]> => {
   const SQLcommand = `SELECT * FROM vacation.follow`;
   return await dalMySQL.execute(SQLcommand);
 };
@@ -24,5 +24,5 @@ const getAllVacations = async (): Promise<[]> => {
 export default {
   addFollower,
   removeFollower,
-  getAllVacations,
+  getAllFollowers,
 };
