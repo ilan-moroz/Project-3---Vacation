@@ -89,7 +89,7 @@ function Vacations(): JSX.Element {
       // Get the ids of the vacations that the logged-in user follows
       const followedVacationKeys = followers
         .filter((follower) => follower.userKey === user?.userKey)
-        .map((follower) => follower.VacationKey);
+        .map((follower) => follower.vacationKey);
 
       sortedVacations = sortedVacations.filter((vacation) =>
         followedVacationKeys.includes(vacation.vacationKey)

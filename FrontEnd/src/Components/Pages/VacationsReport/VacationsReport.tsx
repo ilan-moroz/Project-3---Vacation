@@ -23,7 +23,7 @@ function VacationsReport(): JSX.Element {
   const followersCount = vacations.map((vacation) => ({
     vacationKey: vacation.vacationKey,
     followers: followers.filter(
-      (follower) => follower.VacationKey === vacation.vacationKey
+      (follower) => follower.vacationKey === vacation.vacationKey
     ).length,
   }));
 

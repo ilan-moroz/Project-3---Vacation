@@ -1,7 +1,7 @@
 // interface for followers
 interface Followers {
   userKey: number;
-  VacationKey: number;
+  vacationKey: number;
 }
 
 // Initial state
@@ -29,21 +29,21 @@ export const allFollowersAction = (followers: Followers[]): FollowAction => {
 
 export const addFollowAction = (
   userKey: number,
-  VacationKey: number
+  vacationKey: number
 ): FollowAction => {
   return {
     type: FollowActionType.addFollow,
-    payload: { userKey, VacationKey },
+    payload: { userKey, vacationKey },
   };
 };
 
 export const removeFollowAction = (
   userKey: number,
-  VacationKey: number
+  vacationKey: number
 ): FollowAction => {
   return {
     type: FollowActionType.removeFollow,
-    payload: { userKey, VacationKey },
+    payload: { userKey, vacationKey },
   };
 };
 
@@ -70,7 +70,7 @@ export function FollowReducer(
         followers: currentState.followers.filter(
           (follow) =>
             follow.userKey !== action.payload.userKey ||
-            follow.VacationKey !== action.payload.VacationKey
+            follow.vacationKey !== action.payload.vacationKey
         ),
       };
   }

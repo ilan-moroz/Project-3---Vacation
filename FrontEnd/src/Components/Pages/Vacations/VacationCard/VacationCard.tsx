@@ -24,12 +24,11 @@ export default function BasicCard(props: VacationWithKey) {
   const role = useSelector((state: RootState) => state.users.role);
   const user = useSelector((state: RootState) => state.users.currentUser);
   const followers = useSelector((state: RootState) => state.follower.followers);
-  // console.log(followers);
 
   // change the icon if follow or not
   const isVacationFollowed = followers.some(
     (follow) =>
-      follow.VacationKey === props.vacationKey &&
+      follow.vacationKey === props.vacationKey &&
       follow.userKey === user?.userKey
   );
 
@@ -77,7 +76,7 @@ export default function BasicCard(props: VacationWithKey) {
 
   // Count the followers for this vacation
   const followerCount = followers.filter(
-    (follow) => follow.VacationKey === props.vacationKey
+    (follow) => follow.vacationKey === props.vacationKey
   ).length;
 
   return (
