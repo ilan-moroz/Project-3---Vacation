@@ -90,7 +90,6 @@ function Vacations(): JSX.Element {
       const followedVacationKeys = followers
         .filter((follower) => follower.userKey === user?.userKey)
         .map((follower) => follower.vacationKey);
-
       sortedVacations = sortedVacations.filter((vacation) =>
         followedVacationKeys.includes(vacation.vacationKey)
       );
