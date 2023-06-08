@@ -129,9 +129,10 @@ function Vacations(): JSX.Element {
                 icon={<FavoriteBorder />}
                 checkedIcon={<Favorite />}
                 checked={selected === "follow"}
-                onChange={() =>
-                  setSelected(selected === "follow" ? "" : "follow")
-                }
+                onChange={() => {
+                  setSelected(selected === "follow" ? "" : "follow");
+                  setPage(1);
+                }}
               />
             }
             label="Vacations you follow"
@@ -142,9 +143,10 @@ function Vacations(): JSX.Element {
                 icon={<AccessTimeIcon />}
                 checkedIcon={<AccessTimeFilledIcon />}
                 checked={selected === "notStarted"}
-                onChange={() =>
-                  setSelected(selected === "notStarted" ? "" : "notStarted")
-                }
+                onChange={() => {
+                  setSelected(selected === "notStarted" ? "" : "notStarted");
+                  setPage(1);
+                }}
               />
             }
             label="Vacations that didn't start"
@@ -155,9 +157,10 @@ function Vacations(): JSX.Element {
                 icon={<PlayCircleOutlineIcon />}
                 checkedIcon={<PlayCircleFilledIcon />}
                 checked={selected === "active"}
-                onChange={() =>
-                  setSelected(selected === "active" ? "" : "active")
-                }
+                onChange={() => {
+                  setSelected(selected === "active" ? "" : "active");
+                  setPage(1);
+                }}
               />
             }
             label="Vacations that are active now"
