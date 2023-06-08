@@ -25,7 +25,7 @@ function MainRoute(): JSX.Element {
     if (role === "admin") {
       return <VacationsReport />;
     } else {
-      // If user is not logged in, redirect to login
+      // If user is not admin, redirect to page404
       return <Navigate to="/*" replace />;
     }
   };
