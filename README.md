@@ -62,7 +62,7 @@ npm install
 
 # Run the development server
 cd backend
-npm run dev
+npm start
 
 # Run the development client
 cd frontend
