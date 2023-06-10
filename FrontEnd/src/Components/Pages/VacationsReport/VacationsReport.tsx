@@ -55,7 +55,13 @@ function VacationsReport(): JSX.Element {
             }}
             barSize={20}
           >
-            <XAxis dataKey="name" interval={0} angle={-20} textAnchor="end" />
+            <XAxis
+              dataKey="name"
+              interval={0}
+              angle={-20}
+              textAnchor="end"
+              height={50}
+            />
             <YAxis domain={[0, maxFollowers]} tickCount={maxFollowers + 1} />
             <Tooltip />
             <Legend />
