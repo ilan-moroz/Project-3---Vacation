@@ -14,7 +14,6 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
-import { Vacation } from "../../../Model/Vacation";
 import { useSelector } from "react-redux";
 import { VacationWithKey } from "../../../Model/VacationWithKey";
 import { allFollowersAction } from "../../../Redux/FollowReducer";
@@ -69,7 +68,7 @@ function Vacations(): JSX.Element {
     (state: RootState) => state.vacations.vacations
   );
   // sort the vacations by date
-  let sortedVacations = sortBy(vacations, (vacation: Vacation) => {
+  let sortedVacations = sortBy(vacations, (vacation: VacationWithKey) => {
     return moment(vacation.vacationStart, "DD/MM/YYYY");
   });
 
