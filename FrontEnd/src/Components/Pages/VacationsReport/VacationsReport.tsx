@@ -42,7 +42,7 @@ function VacationsReport(): JSX.Element {
 
   return (
     <div className="VacationsReport">
-      <Button variant="contained" sx={{ marginTop: 2 }}>
+      <Button variant="contained" sx={{ marginTop: 2, zIndex: 1 }}>
         <CSVLink data={data} filename={"vacations.csv"}>
           Download CSV
         </CSVLink>
