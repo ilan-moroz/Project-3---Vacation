@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import "./VacationsReport.css";
 import {
@@ -12,6 +11,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { RootState } from "../../../Redux/VacationStore";
+import { CSVLink } from "react-csv";
+import { Button } from "@mui/material";
 
 function VacationsReport(): JSX.Element {
   const followers = useSelector((state: RootState) => state.follower.followers);
@@ -19,7 +20,7 @@ function VacationsReport(): JSX.Element {
     (state: RootState) => state.vacations.vacations
   );
 
-  // Map vacationKey to followers count
+  // Map vacationKey to count the followers
   const followersCount = vacations.map((vacation) => ({
     vacationKey: vacation.vacationKey,
     followers: followers.filter(
@@ -29,7 +30,7 @@ function VacationsReport(): JSX.Element {
 
   // Create the data array for the chart
   const data = vacations.map((vacation) => ({
-    name: vacation.vacationDestiny.split("-")[0],
+    destination: vacation.vacationDestiny.split("-")[0],
     followers:
       followersCount.find(
         (follower) => follower.vacationKey === vacation.vacationKey
@@ -41,6 +42,11 @@ function VacationsReport(): JSX.Element {
 
   return (
     <div className="VacationsReport">
+      <Button variant="contained" sx={{ marginTop: 2 }}>
+        <CSVLink data={data} filename={"vacations.csv"}>
+          Download CSV
+        </CSVLink>
+      </Button>
       <div className="VacationsReportContainer">
         <ResponsiveContainer width="50%" height="50%" className="chart">
           <BarChart
@@ -56,7 +62,7 @@ function VacationsReport(): JSX.Element {
             barSize={20}
           >
             <XAxis
-              dataKey="name"
+              dataKey="destination"
               interval={0}
               angle={-20}
               textAnchor="end"
