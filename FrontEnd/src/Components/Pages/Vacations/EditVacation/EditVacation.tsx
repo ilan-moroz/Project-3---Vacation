@@ -5,7 +5,7 @@ import MaterialButton from "@mui/material/Button";
 import { Vacation } from "../../../../Model/Vacation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { vacation } from "../../../../Redux/VacationStore";
+import { RootState, vacation } from "../../../../Redux/VacationStore";
 import {
   Dialog,
   DialogContent,
@@ -17,6 +17,7 @@ import {
 import axios from "axios";
 import { editVacationsAction } from "../../../../Redux/VacationReducer";
 import { VacationWithKey } from "../../../../Model/VacationWithKey";
+import { useSelector } from "react-redux";
 
 // props to get vacation information from VacationCard component
 type EditVacationProps = {
@@ -81,6 +82,11 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
     return `${day}/${month}/${year}`;
   }
 
+  // get the vacation from redux
+  const vacations = useSelector(
+    (state: RootState) => state.vacations.vacations
+  );
+
   const {
     register,
     handleSubmit,
@@ -96,6 +102,17 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
   });
 
   const handleClickOpen = () => {
+    // after edit get the new values
+    const updatedVacation = vacations.find(
+      (vacation) => vacation.vacationKey === editVacation.vacationKey
+    );
+    if (updatedVacation) {
+      reset({
+        ...updatedVacation,
+        vacationStart: transformDate(updatedVacation.vacationStart),
+        vacationEnd: transformDate(updatedVacation.vacationEnd),
+      });
+    }
     setOpen(true);
   };
 
