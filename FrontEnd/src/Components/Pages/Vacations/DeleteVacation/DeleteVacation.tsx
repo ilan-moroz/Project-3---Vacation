@@ -44,7 +44,7 @@ function DeleteVacation({
       await axios.delete(
         `http://localhost:8080/api/v1/vacation/followers/removeAllFollowers/${vacationKey}`
       );
-      vacation.dispatch(removeAllFollowsAction(vacationKey));
+      await vacation.dispatch(removeAllFollowsAction(vacationKey));
     }
     // delete the vacation from mysql and image from backend
     await axios
