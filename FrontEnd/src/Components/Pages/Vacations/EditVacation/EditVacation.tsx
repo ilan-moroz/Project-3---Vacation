@@ -68,17 +68,6 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
       )
       .then(() => {
         handleClose();
-        // dispatch the delete action to Redux store
-        vacation.dispatch(
-          editVacationsAction({
-            ...updatedVacation,
-            photoFile:
-              newImage && newImage.name
-                ? newImage.name
-                : oldImage.split("/").pop(),
-            vacationKey: editVacation.vacationKey,
-          })
-        );
         // delete the image from the backend
         if (
           oldImage.split("/").pop() !== newImage.name &&
@@ -91,6 +80,17 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
               `http://localhost:8080/api/v1/vacation/vacations/deleteImage/${imageName}`
             )
             .then(() => {
+              // dispatch the delete action to Redux store
+              vacation.dispatch(
+                editVacationsAction({
+                  ...updatedVacation,
+                  photoFile:
+                    newImage && newImage.name
+                      ? newImage.name
+                      : oldImage.split("/").pop(),
+                  vacationKey: editVacation.vacationKey,
+                })
+              );
               uploadImage(newImage);
               console.log(
                 `Image ${oldImage} was successfully deleted and ${newImage} was uploaded.`
@@ -99,6 +99,14 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
             .catch((error) => {
               console.error("There was an error deleting the image:", error);
             });
+        } else {
+          // dispatch the delete action to Redux store
+          vacation.dispatch(
+            editVacationsAction({
+              ...updatedVacation,
+              vacationKey: editVacation.vacationKey,
+            })
+          );
         }
       });
   };
