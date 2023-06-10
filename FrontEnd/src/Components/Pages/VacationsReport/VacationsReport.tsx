@@ -30,15 +30,15 @@ function VacationsReport(): JSX.Element {
 
   // Create the data array for the chart
   const data = vacations.map((vacation) => ({
-    destination: vacation.vacationDestiny.split("-")[0],
-    followers:
+    Destination: vacation.vacationDestiny.split("-")[0],
+    Followers:
       followersCount.find(
         (follower) => follower.vacationKey === vacation.vacationKey
       )?.followers || 0,
   }));
 
   // Calculate the maximum number of followers
-  const maxFollowers = Math.max(...data.map((item) => item.followers));
+  const maxFollowers = Math.max(...data.map((item) => item.Followers));
 
   return (
     <div className="VacationsReport">
@@ -62,7 +62,7 @@ function VacationsReport(): JSX.Element {
             barSize={20}
           >
             <XAxis
-              dataKey="destination"
+              dataKey="Destination"
               interval={0}
               angle={-20}
               textAnchor="end"
@@ -73,7 +73,7 @@ function VacationsReport(): JSX.Element {
             <Legend />
             <CartesianGrid strokeDasharray="3 3" />
             <Bar
-              dataKey="followers"
+              dataKey="Followers"
               fill="#d18884"
               background={{ fill: "#eee" }}
             />
