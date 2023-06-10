@@ -3,7 +3,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Button from "@mui/joy/Button";
 import axios from "axios";
 import { useState } from "react";
-import { vacation } from "../../../../Redux/VacationStore";
+import { RootState, vacation } from "../../../../Redux/VacationStore";
 import { deleteVacationAction } from "../../../../Redux/VacationReducer";
 import {
   Dialog,
@@ -13,6 +13,8 @@ import {
   DialogTitle,
 } from "@mui/material";
 import { VacationWithKey } from "../../../../Model/VacationWithKey";
+import { useSelector } from "react-redux";
+import { removeAllFollowsAction } from "../../../../Redux/FollowReducer";
 
 // props to get vacation information from VacationCard component
 type DeleteVacationProps = {
@@ -33,13 +35,22 @@ function DeleteVacation({
     setOpen(false);
   };
 
+  //  get the logged in user state
+  const followers = useSelector((state: RootState) => state.follower.followers);
+
   const deleteVacation = async (vacationKey: number, image: string) => {
+    // if the vacation has a follow remove it from database and redux
+    if (followers.some((follower) => follower.vacationKey === vacationKey)) {
+      await axios.delete(
+        `http://localhost:8080/api/v1/vacation/followers/removeAllFollowers/${vacationKey}`
+      );
+      vacation.dispatch(removeAllFollowsAction(vacationKey));
+    }
     // delete the vacation from mysql and image from backend
     await axios
       .delete(
         `http://localhost:8080/api/v1/vacation/vacations/delete/${vacationKey}`
       )
-      // after the delete operation fetch the vacations and refresh the page
       .then(() => {
         handleClose();
         // dispatch the delete action to Redux store
@@ -50,7 +61,6 @@ function DeleteVacation({
           .delete(
             `http://localhost:8080/api/v1/vacation/vacations/deleteImage/${imageName}`
           )
-
           .then(() => {
             console.log(
               `Image for vacation ${image} was successfully deleted.`

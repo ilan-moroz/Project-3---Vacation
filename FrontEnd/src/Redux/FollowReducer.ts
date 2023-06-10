@@ -14,6 +14,7 @@ export enum FollowActionType {
   addFollow = "addFollow",
   removeFollow = "removeFollow",
   allFollowers = "allFollowers",
+  removeAllFollowers = "removeAllFollowers",
 }
 
 //action data structure
@@ -47,6 +48,13 @@ export const removeFollowAction = (
   };
 };
 
+export const removeAllFollowsAction = (vacationKey: number): FollowAction => {
+  return {
+    type: FollowActionType.removeAllFollowers,
+    payload: vacationKey,
+  };
+};
+
 //this is the reducer function
 export function FollowReducer(
   currentState: FollowState = new FollowState(),
@@ -71,6 +79,13 @@ export function FollowReducer(
           (follow) =>
             follow.userKey !== action.payload.userKey ||
             follow.vacationKey !== action.payload.vacationKey
+        ),
+      };
+    case FollowActionType.removeAllFollowers:
+      return {
+        ...currentState,
+        followers: currentState.followers.filter(
+          (follow) => follow.vacationKey !== action.payload
         ),
       };
   }

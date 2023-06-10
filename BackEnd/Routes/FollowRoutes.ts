@@ -33,6 +33,20 @@ followRouter.delete(
   }
 );
 
+// REMOVE ALL FOLLOWER WHEN VACATION REMOVED
+followRouter.delete(
+  "/removeAllFollowers/:vacationKey",
+  async (request: Request, response: Response, next: NextFunction) => {
+    const vacationKey = +request.params.vacationKey;
+    try {
+      const result = await logic.removeAllFollowers(vacationKey);
+      response.status(200).json({ message: "Follow removed", result: result });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 // GET ALL followers
 followRouter.get(
   "/allFollowers",
