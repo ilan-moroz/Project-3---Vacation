@@ -36,38 +36,63 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
     }
   }
 
+  // save the image in the backend
+  const uploadImage = (newImage: any) => {
+    // console.log(newImage);
+    const image = new FormData();
+    image.append("sampleFile", newImage);
+    axios.post(
+      "http://localhost:8080/api/v1/vacation/vacations/uploadImage",
+      image,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+  };
+
   const updateVacation = async (updatedVacation: Vacation) => {
+    // check if the image has changed
+    const oldImage = editVacation.photoFile;
+    console.log(oldImage.split("/").pop());
+    const newImage = updatedVacation.photoFile[0];
+    console.log(newImage);
     // edit the vacation
-    await axios
-      .put(
-        `http://localhost:8080/api/v1/vacation/vacations/editVacation/${editVacation.vacationKey}`,
-        updatedVacation
-      )
-      // after the delete operation fetch the vacations and refresh the page
-      .then(() => {
-        handleClose();
-        // dispatch the delete action to Redux store
-        vacation.dispatch(
-          editVacationsAction({
-            ...updatedVacation,
-            vacationKey: editVacation.vacationKey,
-          })
-        );
-        //   // delete the image from the backend
-        //   const imageName = new URL(image).pathname.split("/").pop();
-        //   axios
-        //     .delete(
-        //       `http://localhost:8080/api/v1/vacation/vacations/deleteImage/${imageName}`
-        //     )
-        //     .then(() => {
-        //       console.log(
-        //         `Image for vacation ${image} was successfully deleted.`
-        //       );
-        //     })
-        //     .catch((error) => {
-        //       console.error("There was an error deleting the image:", error);
-        //     });
-      });
+    // await axios
+    //   .put(
+    //     `http://localhost:8080/api/v1/vacation/vacations/editVacation/${editVacation.vacationKey}`,
+    //     updatedVacation
+    //   )
+    //   // after the delete operation fetch the vacations and refresh the page
+    //   .then(() => {
+    //     handleClose();
+    //     // dispatch the delete action to Redux store
+    //     vacation.dispatch(
+    //       editVacationsAction({
+    //         ...updatedVacation,
+    //         vacationKey: editVacation.vacationKey,
+    //       })
+    //     );
+    //     // delete the image from the backend
+    //     if (oldImage !== newImage) {
+    //       // delete the old image from the backend
+    //       const imageName = new URL(oldImage).pathname.split("/").pop();
+    //       axios
+    //         .delete(
+    //           `http://localhost:8080/api/v1/vacation/vacations/deleteImage/${imageName}`
+    //         )
+    //         .then(() => {
+    //           uploadImage(newImage);
+    //           console.log(
+    //             `Image ${oldImage} was successfully deleted and ${newImage} was uploaded.`
+    //           );
+    //         })
+    //         .catch((error) => {
+    //           console.error("There was an error deleting the image:", error);
+    //         });
+    //     }
+    //   });
   };
 
   // converts a date from the format dd/mm/yyyy to yyyy-mm-dd for edit.
