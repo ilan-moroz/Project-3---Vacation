@@ -22,8 +22,8 @@ import { vacation } from "../../../Redux/VacationStore";
 import { userLoginAction } from "../../../Redux/UserReducer";
 
 // saves new user in the database and redux
-const addNewUser = (newUser: User) => {
-  axios
+const addNewUser = async (newUser: User) => {
+  await axios
     .post("http://localhost:8080/api/v1/vacation/users/newUser", newUser)
     .then((response) => {
       vacation.dispatch(
@@ -101,7 +101,7 @@ export default function Register() {
           password: data.password,
           role: "user",
         };
-        addNewUser(newUser);
+        await addNewUser(newUser);
         navigate("/vacations");
       }
     } catch (error) {
