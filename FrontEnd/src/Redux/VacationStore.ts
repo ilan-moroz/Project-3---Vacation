@@ -5,14 +5,30 @@ import { UserReducer } from "./UserReducer";
 import { VacationReducer } from "./VacationReducer";
 import { FollowReducer } from "./FollowReducer";
 
-const persistConfig = {
-  key: "root",
+const userPersistConfig = {
+  key: "users",
   storage,
 };
 
-const persistedUserReducer = persistReducer(persistConfig, UserReducer);
-const persistedVacationReducer = persistReducer(persistConfig, VacationReducer);
-const persistedFollowReducer = persistReducer(persistConfig, FollowReducer);
+const vacationPersistConfig = {
+  key: "vacations",
+  storage,
+};
+
+const followerPersistConfig = {
+  key: "follower",
+  storage,
+};
+
+const persistedUserReducer = persistReducer(userPersistConfig, UserReducer);
+const persistedVacationReducer = persistReducer(
+  vacationPersistConfig,
+  VacationReducer
+);
+const persistedFollowReducer = persistReducer(
+  followerPersistConfig,
+  FollowReducer
+);
 
 const reducers = {
   users: persistedUserReducer,
