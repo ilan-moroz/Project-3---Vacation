@@ -121,7 +121,7 @@ function Vacations(): JSX.Element {
     <div className="Vacations">
       {/* Checkboxes for user filter only for user*/}
       {role === "user" && (
-        <div>
+        <div style={{ marginTop: 2 }}>
           <FormControlLabel
             control={
               <Checkbox
