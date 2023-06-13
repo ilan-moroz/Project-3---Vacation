@@ -34,7 +34,7 @@ export class RemoveAllFollowersError extends vacationError {
 export class GetAllFollowersError extends vacationError {
   public constructor() {
     super(
-      400,
+      404,
       `There was an error getting all followers from all the vacations`
     );
   }
