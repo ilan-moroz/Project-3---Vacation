@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ClientError } from "../Models/VacationErrors";
 
-const VacationErrorHandler = (
+const WebSiteErrorHandler = (
   err: ClientError,
   req: Request,
   res: Response,
@@ -10,4 +10,4 @@ const VacationErrorHandler = (
   res.status(err.status).send(err.message);
 };
 
-export default VacationErrorHandler;
+export default WebSiteErrorHandler;

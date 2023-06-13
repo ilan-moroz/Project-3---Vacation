@@ -1,3 +1,5 @@
+import { Vacation } from "./Vacation";
+
 export class ClientError {
   public status: number;
   public message: string;
@@ -26,5 +28,32 @@ export class VacationNotFoundError extends ClientError {
 export class cantGetAllVacations extends ClientError {
   public constructor() {
     super(404, `unable to get the vacations from database`);
+  }
+}
+
+//vacation not found error class
+export class VacationNotUploaded extends ClientError {
+  public constructor(vacation: Vacation) {
+    super(400, `Vacation could not be uploaded: ${JSON.stringify(vacation)}`);
+  }
+}
+
+// image upload error class
+export class NoFilesUploadedError extends ClientError {
+  public constructor() {
+    super(400, "No files were uploaded");
+  }
+}
+// image upload error class
+export class FileUploadFailedError extends ClientError {
+  public constructor(errorMessage: string) {
+    super(500, `File upload failed: ${errorMessage}`);
+  }
+}
+
+// image delete error class
+export class DeleteImageError extends ClientError {
+  public constructor(image: string) {
+    super(500, `Error when deleting the image: ${image}`);
   }
 }

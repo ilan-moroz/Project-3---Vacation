@@ -3,11 +3,14 @@ import logic from "../Logic/vacationLogicMYSQL";
 import { UploadedFile } from "express-fileupload";
 import fs from "fs";
 import {
-  ClientError,
+  DeleteImageError,
+  FileUploadFailedError,
+  NoFilesUploadedError,
   VacationNotFoundError,
+  VacationNotUploaded,
   cantGetAllVacations,
 } from "../Models/VacationErrors";
-import VacationErrorHandler from "../MiddleWare/vacationErrors";
+import WebSiteErrorHandler from "../MiddleWare/websiteErrors";
 
 const vacationRouter = express.Router();
 
@@ -15,9 +18,16 @@ const vacationRouter = express.Router();
 vacationRouter.post(
   "/newVacation",
   async (request: Request, response: Response, next: NextFunction) => {
-    const newVacation = request.body;
-    console.log(newVacation);
-    response.status(201).json(await logic.addVacation(newVacation));
+    try {
+      const newVacation = request.body;
+      const uploadedVacation = await logic.addVacation(newVacation);
+      if (!uploadedVacation) {
+        throw new VacationNotUploaded(newVacation);
+      }
+      response.status(201).json(uploadedVacation);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
@@ -58,18 +68,24 @@ vacationRouter.get(
 vacationRouter.post(
   "/uploadImage",
   async (request: Request, response: Response, next: NextFunction) => {
-    let sampleFile: UploadedFile;
-    let uploadPath: string;
-    if (!request.files || Object.keys(request.files).length === 0) {
-      return response.status(400).send("No files were uploaded.");
+    try {
+      let sampleFile: UploadedFile;
+      let uploadPath: string;
+      if (!request.files || Object.keys(request.files).length === 0) {
+        throw new NoFilesUploadedError();
+      }
+      sampleFile = request.files.sampleFile as UploadedFile;
+      uploadPath = "./vacation_photos/" + sampleFile.name;
+      sampleFile.mv(uploadPath, function (err: any) {
+        if (err) {
+          throw new FileUploadFailedError(err);
+        }
+        console.log("File saved at:", uploadPath); // Log the file path
+        response.send("File uploaded!");
+      });
+    } catch (error) {
+      next(error);
     }
-    sampleFile = request.files.sampleFile as UploadedFile;
-    uploadPath = "./vacation_photos/" + sampleFile.name;
-    sampleFile.mv(uploadPath, function (err: any) {
-      if (err) return response.status(500).send(err);
-      console.log("File saved at:", uploadPath); // Log the file path
-      response.send("File uploaded!");
-    });
   }
 );
 
@@ -78,14 +94,12 @@ vacationRouter.delete(
   "/deleteImage/:image",
   async (request: Request, response: Response, next: NextFunction) => {
     const imageName = request.params.image;
-    fs.unlink(`./vacation_photos/${imageName}`, (err: any) => {
-      if (err) {
-        console.error("Error when deleting the image: ", err);
-        response.status(500).send("There was an error deleting the image");
-      } else {
-        response.send("Image successfully deleted");
-      }
-    });
+    try {
+      fs.unlinkSync(`./vacation_photos/${imageName}`);
+      response.send("Image successfully deleted");
+    } catch (err) {
+      next(new DeleteImageError(imageName));
+    }
   }
 );
 
@@ -118,7 +132,7 @@ vacationRouter.put(
 );
 
 // Error handling middleware
-vacationRouter.use(VacationErrorHandler);
+vacationRouter.use(WebSiteErrorHandler);
 
 // TEST ROUTE
 vacationRouter.get(
