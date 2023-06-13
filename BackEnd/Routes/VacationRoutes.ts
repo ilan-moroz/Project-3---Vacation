@@ -2,6 +2,12 @@ import express, { NextFunction, Request, Response } from "express";
 import logic from "../Logic/vacationLogicMYSQL";
 import { UploadedFile } from "express-fileupload";
 import fs from "fs";
+import {
+  ClientError,
+  VacationNotFoundError,
+  cantGetAllVacations,
+} from "../Models/VacationErrors";
+import VacationErrorHandler from "../MiddleWare/vacationErrors";
 
 const vacationRouter = express.Router();
 
@@ -19,7 +25,15 @@ vacationRouter.post(
 vacationRouter.get(
   "/allVacations",
   async (request: Request, response: Response, next: NextFunction) => {
-    response.status(200).json(await logic.getAllVacations());
+    try {
+      const vacations = await logic.getAllVacations();
+      if (!vacations) {
+        throw new cantGetAllVacations();
+      }
+      response.status(200).json(vacations);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
@@ -27,8 +41,16 @@ vacationRouter.get(
 vacationRouter.get(
   "/singleVacation/:vacationKey",
   async (request: Request, response: Response, next: NextFunction) => {
-    const vacationKey = +request.params.vacationKey;
-    response.status(200).json(await logic.getSingleVacation(vacationKey));
+    try {
+      const vacationKey = +request.params.vacationKey;
+      const vacation = await logic.getSingleVacation(vacationKey);
+      if (!vacation) {
+        throw new VacationNotFoundError(request.params.vacationKey);
+      }
+      response.status(200).json(vacation);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
@@ -94,6 +116,9 @@ vacationRouter.put(
     }
   }
 );
+
+// Error handling middleware
+vacationRouter.use(VacationErrorHandler);
 
 // TEST ROUTE
 vacationRouter.get(

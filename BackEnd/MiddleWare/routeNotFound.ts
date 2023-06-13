@@ -1,14 +1,14 @@
-import { Request, Response, NextFunction } from 'express'
-import { RouteNotFoundError } from '../Models/ClientErrors'
+import { Request, Response, NextFunction } from "express";
+import { RouteNotFoundError } from "../Models/VacationErrors";
 
 //middleware ERORRHANDLER function
 const ErrorHandler = (
   request: Request,
   response: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
-  const err = new RouteNotFoundError(request.originalUrl)
-  next(err)
-}
+  const err = new RouteNotFoundError(request.originalUrl);
+  next(err);
+};
 
-export default ErrorHandler
+export default ErrorHandler;
