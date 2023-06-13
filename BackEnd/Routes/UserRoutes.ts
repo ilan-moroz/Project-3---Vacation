@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import logic from "../Logic/usersLogicMYSQL";
 import WebSiteErrorHandler from "../MiddleWare/websiteErrors";
-import { UserUploadError } from "../Models/UserErrors";
+import { EmailError, UserUploadError } from "../Models/UserErrors";
 
 const userRouter = express.Router();
 
@@ -27,8 +27,15 @@ userRouter.post(
   "/checkEmail",
   async (request: Request, response: Response, next: NextFunction) => {
     const email = request.body.email;
-    console.log(email);
-    response.status(200).json(await logic.checkEmail(email));
+    try {
+      const checkEmail = await logic.checkEmail(email);
+      if (!checkEmail) {
+        throw new EmailError(email);
+      }
+      response.status(200).json(checkEmail);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
