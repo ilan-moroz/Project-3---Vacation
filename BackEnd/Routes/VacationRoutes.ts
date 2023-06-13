@@ -5,11 +5,11 @@ import fs from "fs";
 import {
   DeleteImageError,
   FileUploadFailedError,
+  GetAllVacationsError,
   NoFilesUploadedError,
   VacationDeleteError,
   VacationNotFoundError,
-  VacationNotUploaded,
-  cantGetAllVacations,
+  VacationUploadError,
 } from "../Models/VacationErrors";
 import WebSiteErrorHandler from "../MiddleWare/websiteErrors";
 
@@ -23,7 +23,7 @@ vacationRouter.post(
       const newVacation = request.body;
       const uploadedVacation = await logic.addVacation(newVacation);
       if (!uploadedVacation) {
-        throw new VacationNotUploaded(newVacation);
+        throw new VacationUploadError(newVacation);
       }
       response.status(201).json(uploadedVacation);
     } catch (error) {
@@ -39,7 +39,7 @@ vacationRouter.get(
     try {
       const vacations = await logic.getAllVacations();
       if (!vacations) {
-        throw new cantGetAllVacations();
+        throw new GetAllVacationsError();
       }
       response.status(200).json(vacations);
     } catch (error) {

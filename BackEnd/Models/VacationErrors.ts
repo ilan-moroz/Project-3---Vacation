@@ -25,14 +25,14 @@ export class VacationNotFoundError extends ClientError {
 }
 
 //cant get all vacation error
-export class cantGetAllVacations extends ClientError {
+export class GetAllVacationsError extends ClientError {
   public constructor() {
     super(404, `unable to get the vacations from database`);
   }
 }
 
 //vacation not found error class
-export class VacationNotUploaded extends ClientError {
+export class VacationUploadError extends ClientError {
   public constructor(vacation: Vacation) {
     super(400, `Vacation could not be uploaded: ${JSON.stringify(vacation)}`);
   }
