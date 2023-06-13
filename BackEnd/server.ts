@@ -8,6 +8,7 @@ import userRouter from "./Routes/UserRoutes";
 import vacationRouter from "./Routes/VacationRoutes";
 import fileUpload from "express-fileupload";
 import followRouter from "./Routes/FollowRoutes";
+import WebSiteErrorHandler from "./MiddleWare/websiteErrors";
 
 // Create Server
 const server = express();
@@ -40,6 +41,9 @@ logic.createFollowTable();
 
 // Handle errors (route not found)
 server.use("*", ErrorHandler);
+
+// Final error handling middleware
+server.use(WebSiteErrorHandler);
 
 // Start the server
 server.listen(config.WebPort, () => {
