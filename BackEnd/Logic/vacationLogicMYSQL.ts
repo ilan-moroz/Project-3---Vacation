@@ -37,7 +37,7 @@ const deleteVacation = (key: number): Promise<boolean> => {
 const updateVacation = async (
   vacationKey: number,
   updatedVacation: Vacation
-): Promise<void> => {
+): Promise<boolean> => {
   // get the current vacation data for comparison
   const currentVacation: Vacation = await getSingleVacation(vacationKey); // Implement this function to fetch current data
   // all the updated values will be stored here
@@ -66,7 +66,7 @@ const updateVacation = async (
   }
   SQLcommand += updatedValues.join(", ");
   SQLcommand += ` WHERE vacationKey = ${vacationKey};`;
-  await dalMySQL.execute(SQLcommand);
+  return await dalMySQL.execute(SQLcommand);
 };
 
 export default {

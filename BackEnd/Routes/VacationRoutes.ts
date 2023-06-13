@@ -8,6 +8,7 @@ import {
   GetAllVacationsError,
   NoFilesUploadedError,
   VacationDeleteError,
+  VacationEditError,
   VacationNotFoundError,
   VacationUploadError,
 } from "../Models/VacationErrors";
@@ -110,12 +111,6 @@ vacationRouter.delete(
   async (request: Request, response: Response, next: NextFunction) => {
     const key = +request.params.key;
     try {
-      // check if the key exists
-      const exists = await logic.getSingleVacation(key);
-      if (!exists) {
-        response.status(404).json(`Vacation with key: ${key} does not exist`);
-        return;
-      }
       const result = await logic.deleteVacation(key);
       if (!result) {
         throw new VacationDeleteError(key);
@@ -134,12 +129,15 @@ vacationRouter.put(
   "/editVacation/:vacationKey",
   async (request: Request, response: Response, next: NextFunction) => {
     const vacationKey = +request.params.vacationKey;
-    const updateVacation = request.body;
+    const editVacation = request.body;
     try {
       const updatedVacation = await logic.updateVacation(
         vacationKey,
-        updateVacation
+        editVacation
       );
+      if (!updatedVacation) {
+        throw new VacationEditError(vacationKey);
+      }
       response.status(200).json(updatedVacation);
     } catch (error) {
       next(error);

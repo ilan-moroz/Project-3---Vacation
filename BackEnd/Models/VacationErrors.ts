@@ -67,3 +67,13 @@ export class VacationDeleteError extends ClientError {
     );
   }
 }
+
+// vacation edit error class
+export class VacationEditError extends ClientError {
+  public constructor(vacationKey: number) {
+    super(
+      500,
+      `Error when editing the the vacation with the key: ${vacationKey}`
+    );
+  }
+}
