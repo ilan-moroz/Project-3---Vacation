@@ -93,7 +93,11 @@ function EditVacation({ editVacation }: EditVacationProps): JSX.Element {
               );
               uploadImage(newImage);
               console.log(
-                `Image ${oldImage} was successfully deleted and ${newImage} was uploaded.`
+                `Image ${oldImage
+                  .split("/")
+                  .pop()} was successfully deleted and ${
+                  newImage.name
+                } was uploaded.`
               );
             })
             .catch((error) => {

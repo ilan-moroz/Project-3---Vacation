@@ -62,9 +62,7 @@ function DeleteVacation({
             `http://localhost:8080/api/v1/vacation/vacations/deleteImage/${imageName}`
           )
           .then(() => {
-            console.log(
-              `Image for vacation ${image} was successfully deleted.`
-            );
+            console.log(`Image: ${image} was successfully deleted.`);
           })
           .catch((error) => {
             console.error("There was an error deleting the image:", error);
