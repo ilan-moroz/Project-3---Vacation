@@ -57,3 +57,13 @@ export class DeleteImageError extends ClientError {
     super(500, `Error when deleting the image: ${image}`);
   }
 }
+
+// vacation delete error class
+export class VacationDeleteError extends ClientError {
+  public constructor(vacationKey: number) {
+    super(
+      500,
+      `Error when deleting the the vacation with the key: ${vacationKey}`
+    );
+  }
+}
