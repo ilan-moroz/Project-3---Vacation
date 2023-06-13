@@ -1,5 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import logic from "../Logic/usersLogicMYSQL";
+import WebSiteErrorHandler from "../MiddleWare/websiteErrors";
+import { UserUploadError } from "../Models/UserErrors";
 
 const userRouter = express.Router();
 
@@ -8,8 +10,15 @@ userRouter.post(
   "/newUser",
   async (request: Request, response: Response, next: NextFunction) => {
     const newUser = request.body;
-    console.log(newUser);
-    response.status(201).json(await logic.addUser(newUser));
+    try {
+      const uploadedUser = await logic.addUser(newUser);
+      if (!uploadedUser) {
+        throw new UserUploadError(newUser);
+      }
+      response.status(201).json(uploadedUser);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
@@ -46,6 +55,9 @@ userRouter.get(
     }
   }
 );
+
+// Error handling middleware
+userRouter.use(WebSiteErrorHandler);
 
 // TEST ROUTE
 userRouter.get(
