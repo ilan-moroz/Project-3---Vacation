@@ -110,12 +110,18 @@ vacationRouter.delete(
   async (request: Request, response: Response, next: NextFunction) => {
     const key = +request.params.key;
     try {
+      // check if the key exists
+      const exists = await logic.getSingleVacation(key);
+      if (!exists) {
+        response.status(404).json(`Vacation with key: ${key} does not exist`);
+        return;
+      }
       const result = await logic.deleteVacation(key);
       if (!result) {
         throw new VacationDeleteError(key);
       }
       response
-        .status(204)
+        .status(200)
         .json(`Vacation with key: ${key} successfully deleted`);
     } catch (error) {
       next(error);
