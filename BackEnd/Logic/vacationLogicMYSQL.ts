@@ -53,11 +53,9 @@ const updateVacation = async (
     updatedValues.push(`vacationDesc = '${updatedVacation.vacationDesc}'`);
   }
   if (updatedVacation.vacationStart !== currentVacation.vacationStart) {
-    // let dateStart = new Date(updatedVacation.vacationStart);
     updatedValues.push(`vacationStart = '${updatedVacation.vacationStart}'`);
   }
   if (updatedVacation.vacationEnd !== currentVacation.vacationEnd) {
-    // let dateEnd = new Date(updatedVacation.vacationEnd);
     updatedValues.push(`vacationEnd = '${updatedVacation.vacationEnd}'`);
   }
   if (updatedVacation.price !== currentVacation.price) {
