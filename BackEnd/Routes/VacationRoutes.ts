@@ -6,6 +6,7 @@ import {
   DeleteImageError,
   FileUploadFailedError,
   NoFilesUploadedError,
+  VacationDeleteError,
   VacationNotFoundError,
   VacationNotUploaded,
   cantGetAllVacations,
@@ -108,8 +109,17 @@ vacationRouter.delete(
   "/delete/:key",
   async (request: Request, response: Response, next: NextFunction) => {
     const key = +request.params.key;
-    logic.deleteVacation(key);
-    response.status(204).json();
+    try {
+      const result = await logic.deleteVacation(key);
+      if (!result) {
+        throw new VacationDeleteError(key);
+      }
+      response
+        .status(204)
+        .json(`Vacation with key: ${key} successfully deleted`);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
