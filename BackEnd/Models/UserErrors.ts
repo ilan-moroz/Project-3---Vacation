@@ -17,14 +17,14 @@ export class EmailError extends vacationError {
 
 // email or password exist error class
 export class EmailPasswordError extends vacationError {
-  public constructor(email: string, password: string) {
-    super(400, `Email: ${email} or ${password} does not exist`);
+  public constructor(email: string) {
+    super(400, `Email: ${email} or password does not exist`);
   }
 }
 
 // first and last name error class
 export class FirstLastNameError extends vacationError {
   public constructor() {
-    super(400, `User was not found`);
+    super(404, `User was not found`);
   }
 }

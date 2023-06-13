@@ -53,7 +53,7 @@ userRouter.post(
     try {
       const checkUser = await logic.checkUser(email, password);
       if (!checkUser) {
-        throw new EmailPasswordError(email, password);
+        throw new EmailPasswordError(email);
       }
       response.status(200).json(checkUser);
     } catch (error) {
