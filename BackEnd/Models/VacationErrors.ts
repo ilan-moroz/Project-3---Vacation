@@ -31,7 +31,7 @@ export class GetAllVacationsError extends vacationError {
   }
 }
 
-//vacation not found error class
+//vacation upload error class
 export class VacationUploadError extends vacationError {
   public constructor(vacation: Vacation) {
     super(400, `Vacation could not be uploaded: ${JSON.stringify(vacation)}`);
