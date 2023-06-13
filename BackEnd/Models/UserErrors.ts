@@ -21,3 +21,10 @@ export class EmailPasswordError extends vacationError {
     super(400, `Email: ${email} or ${password} does not exist`);
   }
 }
+
+// first and last name error class
+export class FirstLastNameError extends vacationError {
+  public constructor() {
+    super(400, `User was not found`);
+  }
+}
