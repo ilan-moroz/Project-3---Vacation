@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { ClientError } from "../Models/VacationErrors";
+import { vacationError } from "../Models/VacationErrors";
 
 const WebSiteErrorHandler = (
-  err: ClientError,
+  err: vacationError,
   req: Request,
   res: Response,
   next: NextFunction
