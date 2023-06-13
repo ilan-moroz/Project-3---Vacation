@@ -9,7 +9,7 @@ const addVacation = async (newVacation: Vacation) => {
   const SQLcommand = `
       INSERT INTO vacation.vacations 
       (vacationDestiny, vacationDesc, vacationStart, vacationEnd, price, photoFile)
-      VALUES ('${newVacation.vacationDestiny}', '${newVacation.vacationDesc}', 
+      VALUES ('${newVacation.vacationDestiny}', '${VacationDesc}', 
       '${newVacation.vacationStart}', '${newVacation.vacationEnd}', '${newVacation.price}', '${newVacation.photoFile}');`;
   return await dalMySQL.execute(SQLcommand);
 };
