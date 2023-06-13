@@ -83,7 +83,7 @@ vacationRouter.post(
           throw new FileUploadFailedError(err);
         }
         console.log("File saved at:", uploadPath); // Log the file path
-        response.send("File uploaded!");
+        response.status(201).json({ message: "File uploaded!" });
       });
     } catch (error) {
       next(error);
@@ -98,7 +98,7 @@ vacationRouter.delete(
     const imageName = request.params.image;
     try {
       fs.unlinkSync(`./vacation_photos/${imageName}`);
-      response.send("Image successfully deleted");
+      response.status(200).json({ message: "Image successfully deleted" });
     } catch (err) {
       next(new DeleteImageError(imageName));
     }
@@ -117,7 +117,7 @@ vacationRouter.delete(
       }
       response
         .status(200)
-        .json(`Vacation with key: ${key} successfully deleted`);
+        .json({ message: `Vacation with key: ${key} successfully deleted` });
     } catch (error) {
       next(error);
     }
