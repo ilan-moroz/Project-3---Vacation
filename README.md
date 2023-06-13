@@ -28,7 +28,7 @@ The project is built using:
 
 - Database: MySQL
 - Server Side: REST API in Node.js using Express
-- Client Side: React with Redux
+- Client Side: React with Redux using typescript
 
 ## User Interface
 
@@ -48,7 +48,7 @@ The project is built using:
 
 #### Vacation Reports Page
 
-- Displays all vacations along with their follower counts.
+- Display all vacations names, including their follower counts, and provide an option to download the CSV file.
 
 ## Getting Started
 
@@ -58,6 +58,8 @@ The project is built using:
 - MySQL
 - React
 - Redux
+- TypeScript
+- Express
 
 ### Installation
 
