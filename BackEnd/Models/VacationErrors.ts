@@ -27,7 +27,7 @@ export class VacationNotFoundError extends vacationError {
 //cant get all vacation error
 export class GetAllVacationsError extends vacationError {
   public constructor() {
-    super(404, `unable to get the vacations from database`);
+    super(500, `unable to get the vacations from database`);
   }
 }
 
