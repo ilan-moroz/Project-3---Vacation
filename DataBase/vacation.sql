@@ -38,7 +38,7 @@ CREATE TABLE `follow` (
 
 LOCK TABLES `follow` WRITE;
 /*!40000 ALTER TABLE `follow` DISABLE KEYS */;
-INSERT INTO `follow` VALUES (2,5),(2,9),(2,6),(2,8),(2,1),(4,8),(4,10),(4,7),(4,2),(4,3),(5,4),(5,10),(5,1),(5,3),(6,6),(6,1),(6,3),(6,5),(7,2),(7,3),(7,9),(8,2),(8,7),(8,8),(9,3),(9,1),(9,6),(10,6),(10,5),(10,9),(10,6),(10,2),(10,9),(11,6),(11,5),(11,10),(12,6),(12,3),(13,6),(13,9),(13,7),(14,4),(14,8),(14,10),(15,6),(15,3),(15,5),(16,14),(16,11),(16,12),(15,16),(15,13),(14,11),(14,12),(13,16),(13,13),(13,12),(12,16),(12,12),(12,15),(9,11),(9,14),(9,16),(6,15),(6,16),(6,11),(2,15),(2,14);
+INSERT INTO `follow` VALUES (2,5),(2,9),(2,6),(2,8),(2,1),(4,8),(4,10),(4,7),(4,2),(4,3),(5,4),(5,10),(5,1),(5,3),(6,6),(6,1),(6,3),(6,5),(7,2),(7,3),(7,9),(8,2),(8,7),(8,8),(9,3),(9,1),(9,6),(10,6),(10,5),(10,9),(10,6),(10,2),(10,9),(11,6),(11,5),(11,10),(12,6),(12,3),(13,6),(13,9),(13,7),(14,4),(14,8),(14,10),(15,6),(15,3),(15,5),(16,14),(16,11),(16,12),(15,16),(15,13),(14,11),(14,12),(13,16),(13,13),(13,12),(12,16),(12,12),(12,15),(9,11),(9,14),(9,16),(6,15),(6,16),(6,11),(2,15),(2,14),(3,11),(3,6),(3,3);
 /*!40000 ALTER TABLE `follow` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `users` (
   `role` varchar(45) NOT NULL,
   PRIMARY KEY (`userKey`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,7 +87,7 @@ CREATE TABLE `vacations` (
   `price` int NOT NULL,
   `photoFile` varchar(90) NOT NULL,
   PRIMARY KEY (`vacationKey`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-08 18:14:17
+-- Dump completed on 2023-06-13 13:39:55
