@@ -1,7 +1,11 @@
 import express, { NextFunction, Request, Response } from "express";
 import logic from "../Logic/usersLogicMYSQL";
 import WebSiteErrorHandler from "../MiddleWare/websiteErrors";
-import { EmailError, UserUploadError } from "../Models/UserErrors";
+import {
+  EmailError,
+  EmailPasswordError,
+  UserUploadError,
+} from "../Models/UserErrors";
 
 const userRouter = express.Router();
 
@@ -45,7 +49,15 @@ userRouter.post(
   async (request: Request, response: Response, next: NextFunction) => {
     const email = request.body.email;
     const password = request.body.password;
-    response.status(200).json(await logic.checkUser(email, password));
+    try {
+      const checkUser = await logic.checkUser(email, password);
+      if (!checkUser) {
+        throw new EmailPasswordError(email, password);
+      }
+      response.status(200).json(checkUser);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 

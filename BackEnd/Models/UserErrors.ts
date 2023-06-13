@@ -14,3 +14,10 @@ export class EmailError extends vacationError {
     super(400, `Email: ${email} does not exist`);
   }
 }
+
+// email or password exist error class
+export class EmailPasswordError extends vacationError {
+  public constructor(email: string, password: string) {
+    super(400, `Email: ${email} or ${password} does not exist`);
+  }
+}
