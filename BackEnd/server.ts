@@ -46,6 +46,6 @@ server.use("*", ErrorHandler);
 server.use(WebSiteErrorHandler);
 
 // Start the server
-server.listen(config.WebPort, () => {
+server.listen(process.env.PORT || config.WebPort, () => {
   console.log(`listening on http://${config.mySQLhost}:${config.WebPort}`);
 });
