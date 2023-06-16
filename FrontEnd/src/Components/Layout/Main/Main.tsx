@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import "./Main.css";
 import { RootState } from "../../../Redux/VacationStore";
 
@@ -12,8 +13,8 @@ function Main(): JSX.Element {
           <p>Your journey towards the perfect vacation starts here.</p>
           <p>To unlock a world of unforgettable experiences,</p>
           <p>
-            please <a href="/register">register</a> or{" "}
-            <a href="/login">login.</a>{" "}
+            please <NavLink to="/register">register</NavLink> or
+            <NavLink to="/login">login</NavLink>.
           </p>
         </div>
       )}
