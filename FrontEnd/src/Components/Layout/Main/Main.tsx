@@ -13,7 +13,7 @@ function Main(): JSX.Element {
           <p>Your journey towards the perfect vacation starts here.</p>
           <p>To unlock a world of unforgettable experiences,</p>
           <p>
-            please <NavLink to="/register">register</NavLink> or
+            please <NavLink to="/register">register</NavLink> or{" "}
             <NavLink to="/login">login</NavLink>.
           </p>
         </div>
