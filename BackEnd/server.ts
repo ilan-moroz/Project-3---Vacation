@@ -9,6 +9,7 @@ import vacationRouter from "./Routes/VacationRoutes";
 import fileUpload from "express-fileupload";
 import followRouter from "./Routes/FollowRoutes";
 import WebSiteErrorHandler from "./MiddleWare/websiteErrors";
+import path from "path";
 
 // Create Server
 const server = express();
@@ -38,6 +39,14 @@ console.log("check if table exists...");
 logic.createUsersTable();
 logic.createVacationsTable();
 logic.createFollowTable();
+
+// Serve static files from the React app
+server.use(express.static(path.join(__dirname, "../FrontEnd/build")));
+
+// Catch-all route handler
+server.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../FrontEnd/build", "index.html"));
+});
 
 // Handle errors (route not found)
 server.use("*", ErrorHandler);
