@@ -24,6 +24,9 @@ RUN npm run build
 # Second stage - overrun prev stage with alpine image containing nginx (for latest version use nginx:alpine):
 FROM nginx:alpine AS production-stage
 
+# Copy nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Copy JavaScript files from previous stage's /tmp/build into nginx special web expose directory:
 COPY --from=build-stage /tmp/build /usr/share/nginx/html
 
