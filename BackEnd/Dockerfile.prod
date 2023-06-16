@@ -21,7 +21,7 @@ RUN tsc
 
 # -----------------------------------------------------------------------
 
-# Second stage - will overrun first stage installations after complete:
+# Second stage - inherit current image from an alpine image containing node (for latest versions use node:alpine):
 FROM node:18-alpine3.16 AS production-stage
 
 # Create an empty directory for project files and set it as the Current Directory:
@@ -32,6 +32,9 @@ COPY --from=build-stage /tmp/package*.json /app
 
 # Copy JavaScript files from previous stage's /tmp/build into /app:
 COPY --from=build-stage /tmp/build /app
+
+# Copy vacation_photos directory from the backend directory into /app/vacation_photos:
+COPY vacation_photos ./vacation_photos
 
 # Install npm dependencies (without devDependencies):
 RUN npm i --only=prod
