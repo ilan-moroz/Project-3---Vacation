@@ -152,86 +152,90 @@ export default function Login() {
           square
           sx={{ height: "100%" }}
         >
-          <Header />
           <Box
-            sx={{
-              height: "100%",
-              my: -10,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            sx={{ display: "flex", flexDirection: "column", height: "100%" }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Login
-            </Typography>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <TextField
-                margin="normal"
-                fullWidth
-                id="email"
-                label="Email Address"
-                placeholder="Email Address"
-                autoFocus
-                {...register("email", {
-                  required: true,
-                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                })}
-                error={Boolean(errors.email)}
-                helperText={
-                  errors.email &&
-                  "Email is required and must be a valid email address"
-                }
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Email />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextField
-                margin="normal"
-                fullWidth
-                label="Password"
-                type="password"
-                id="password"
-                placeholder="Password"
-                {...register("password", {
-                  required: true,
-                  minLength: 4,
-                })}
-                error={Boolean(errors.password)}
-                helperText={
-                  errors.password &&
-                  "Password must have a minimum of 4 characters"
-                }
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Password />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign In
-              </Button>
-              <NavLink to="/register" className="button">
-                {"Don't have an account? Register now!"}
-              </NavLink>
-              <Copyright sx={{ mt: 5 }} />
-            </form>
+            <Header style={{ zIndex: 999 }} />
+            <Box
+              sx={{
+                height: "100%",
+                my: -10,
+                mx: 4,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Login
+              </Typography>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  placeholder="Email Address"
+                  autoFocus
+                  {...register("email", {
+                    required: true,
+                    pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  })}
+                  error={Boolean(errors.email)}
+                  helperText={
+                    errors.email &&
+                    "Email is required and must be a valid email address"
+                  }
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Email />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  label="Password"
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  {...register("password", {
+                    required: true,
+                    minLength: 4,
+                  })}
+                  error={Boolean(errors.password)}
+                  helperText={
+                    errors.password &&
+                    "Password must have a minimum of 4 characters"
+                  }
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Password />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign In
+                </Button>
+                <NavLink to="/register" className="button">
+                  {"Don't have an account? Register now!"}
+                </NavLink>
+                <Copyright sx={{ mt: 5 }} />
+              </form>
+            </Box>
           </Box>
         </Grid>
       </Grid>

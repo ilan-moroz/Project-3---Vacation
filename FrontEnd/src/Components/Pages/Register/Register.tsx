@@ -145,123 +145,127 @@ export default function Register() {
           square
           sx={{ height: "100%" }}
         >
-          <Header />
           <Box
-            sx={{
-              height: "100%",
-              my: -10,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            sx={{ display: "flex", flexDirection: "column", height: "100%" }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Register
-            </Typography>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <TextField
-                margin="normal"
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-                {...register("firstName", { required: true })}
-                error={Boolean(errors.firstName)}
-                helperText={errors.firstName && "First name is required"}
-                placeholder="First Name"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Person />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextField
-                margin="normal"
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                autoFocus
-                {...register("lastName", { required: true })}
-                error={Boolean(errors.lastName)}
-                helperText={errors.lastName && "Last name is required"}
-                placeholder="Last Name"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Group />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextField
-                margin="normal"
-                fullWidth
-                id="email"
-                label="Email Address"
-                autoFocus
-                {...register("email", {
-                  required: true,
-                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                })}
-                error={Boolean(errors.email)}
-                helperText={
-                  errors.email &&
-                  "Email is required and must be a valid email address"
-                }
-                placeholder="Email Address"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Email />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextField
-                margin="normal"
-                fullWidth
-                autoFocus
-                label="Password"
-                type="password"
-                id="password"
-                {...register("password", {
-                  required: true,
-                  minLength: 4,
-                })}
-                error={Boolean(errors.password)}
-                helperText={
-                  errors.password &&
-                  "Password must have a minimum of 4 characters"
-                }
-                placeholder="Password"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Password />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
+            <Header style={{ zIndex: 999 }} />{" "}
+            <Box
+              sx={{
+                height: "100%",
+                my: -10,
+                mx: 4,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
                 Register
-              </Button>
-              <NavLink to="/login" className="button">
-                {"Already have an account? Login now!"}
-              </NavLink>
-              <Copyright sx={{ mt: 5 }} />
-            </form>
+              </Typography>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                  {...register("firstName", { required: true })}
+                  error={Boolean(errors.firstName)}
+                  helperText={errors.firstName && "First name is required"}
+                  placeholder="First Name"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Person />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  autoFocus
+                  {...register("lastName", { required: true })}
+                  error={Boolean(errors.lastName)}
+                  helperText={errors.lastName && "Last name is required"}
+                  placeholder="Last Name"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Group />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  autoFocus
+                  {...register("email", {
+                    required: true,
+                    pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  })}
+                  error={Boolean(errors.email)}
+                  helperText={
+                    errors.email &&
+                    "Email is required and must be a valid email address"
+                  }
+                  placeholder="Email Address"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Email />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  autoFocus
+                  label="Password"
+                  type="password"
+                  id="password"
+                  {...register("password", {
+                    required: true,
+                    minLength: 4,
+                  })}
+                  error={Boolean(errors.password)}
+                  helperText={
+                    errors.password &&
+                    "Password must have a minimum of 4 characters"
+                  }
+                  placeholder="Password"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Password />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Register
+                </Button>
+                <NavLink to="/login" className="button">
+                  {"Already have an account? Login now!"}
+                </NavLink>
+                <Copyright sx={{ mt: 5 }} />
+              </form>
+            </Box>
           </Box>
         </Grid>
       </Grid>
