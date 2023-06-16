@@ -1,12 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import logic from "../Logic/usersLogicMYSQL";
 import WebSiteErrorHandler from "../MiddleWare/websiteErrors";
-import {
-  EmailError,
-  EmailPasswordError,
-  FirstLastNameError,
-  UserUploadError,
-} from "../Models/UserErrors";
+import { FirstLastNameError, UserUploadError } from "../Models/UserErrors";
 
 const userRouter = express.Router();
 
@@ -34,9 +29,6 @@ userRouter.post(
     const email = request.body.email;
     try {
       const checkEmail = await logic.checkEmail(email);
-      if (!checkEmail) {
-        throw new EmailError(email);
-      }
       response.status(200).json(checkEmail);
     } catch (error) {
       next(error);
@@ -52,9 +44,6 @@ userRouter.post(
     const password = request.body.password;
     try {
       const checkUser = await logic.checkUser(email, password);
-      if (!checkUser) {
-        throw new EmailPasswordError(email);
-      }
       response.status(200).json(checkUser);
     } catch (error) {
       next(error);

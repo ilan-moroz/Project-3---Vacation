@@ -8,20 +8,6 @@ export class UserUploadError extends vacationError {
   }
 }
 
-// email don't exist error class
-export class EmailError extends vacationError {
-  public constructor(email: string) {
-    super(400, `Email: ${email} does not exist`);
-  }
-}
-
-// email or password exist error class
-export class EmailPasswordError extends vacationError {
-  public constructor(email: string) {
-    super(400, `Email: ${email} or password does not exist`);
-  }
-}
-
 // first and last name error class
 export class FirstLastNameError extends vacationError {
   public constructor() {
