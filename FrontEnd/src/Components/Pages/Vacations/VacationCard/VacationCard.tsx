@@ -154,9 +154,7 @@ export default function BasicCard(props: VacationWithKey) {
               {/* Switch icon based on following state */}
               {isFollowing ? <Favorite /> : <FavoriteBorder />}
             </IconButton>
-            <Typography sx={{ ml: 1 }} className="black-text">
-              followers: {followerCount}
-            </Typography>
+            <Typography className="black-text">{followerCount}</Typography>
           </Box>
         )}
       </AspectRatio>
