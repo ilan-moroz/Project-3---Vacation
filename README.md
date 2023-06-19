@@ -60,6 +60,7 @@ The project is built using:
 - Redux
 - TypeScript
 - Express
+- Docker
 
 ### Installation
 
