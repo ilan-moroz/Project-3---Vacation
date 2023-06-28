@@ -19,6 +19,7 @@ import "notyf/notyf.min.css";
 import axios from "axios";
 import { vacation } from "../../../Redux/VacationStore";
 import { adminLoginAction, userLoginAction } from "../../../Redux/UserReducer";
+import backgroundImage from "../../../assets/images/bg.png";
 
 function Copyright(props: any) {
   return (
@@ -131,15 +132,10 @@ export default function Login() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage:
-              "url(https://source.unsplash.com/1920x1080/?landscape,travel)",
+            backgroundImage: `url(${backgroundImage})`,
             backgroundRepeat: "no-repeat",
-            backgroundColor: (t) =>
-              t.palette.mode === "dark"
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "left",
           }}
         />
         <Grid
