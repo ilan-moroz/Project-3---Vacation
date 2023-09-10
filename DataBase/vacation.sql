@@ -15,10 +15,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/main
 CREATE DATABASE IF NOT EXISTS vacation;
 
 USE vacation;
