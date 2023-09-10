@@ -19,7 +19,10 @@
 
 =======
 >>>>>>> refs/remotes/origin/main
+CREATE DATABASE IF NOT EXISTS vacation;
+
 USE vacation;
+
 --
 -- Table structure for table `follow`
 --
